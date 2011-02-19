@@ -1,13 +1,12 @@
 <?php
-class Item extends Model 
-{
+class Item extends CI_Model {
 	/**
-	* get Item information
-	*
-	* @param 	string	$field		fieldname in table. for multiple field used comma(,) to separate ex.($field = 'field1, field2, field3')
-	*
-	* @return	array
-	*/
+	 * get Item information
+	 *
+	 * @param 	string	$field		fieldname in table. for multiple field used comma(,) to separate ex.($field = 'field1, field2, field3')
+	 *
+	 * @return	array
+	 */
 	function get_info($field = '*')
 	{
 	

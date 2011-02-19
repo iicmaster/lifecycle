@@ -1,13 +1,12 @@
 <?php
-class NPC extends Model 
-{
+class NPC extends CI_Model {
 	/**
-	* get NPC information
-	*
-	* @param 	string	$field		fieldname in table. for multiple field used comma(,) to separate ex.($field = 'field1, field2, field3')
-	*
-	* @return	array
-	*/
+	 * get NPC information
+	 *
+	 * @param 	string	$field		fieldname in table. for multiple field used comma(,) to separate ex.($field = 'field1, field2, field3')
+	 *
+	 * @return	array
+	 */
 	function get_info($field = '*')
 	{
 	
