@@ -48,8 +48,8 @@ $(function()
 		
 		// set new value
 		var id = $(this).attr('alt');
-		$("#map_info img").attr('src', 'http://localhost/lc/images/map/path/'+id+'.png');
-		$("#mapDetail").css('backgroundImage', 'url(http://localhost/lc/images/map/'+id+'.jpg)');
+		$("#map_info img").attr('src', 'http://localhost/lc/assets/images/map/path/'+id+'.png');
+		$("#mapDetail").css('backgroundImage', 'url(http://localhost/lc/assets/images/map/'+id+'.jpg)');
 		
 		$("#worldmap").fadeOut(function(){
 			
@@ -65,7 +65,7 @@ $(function()
 		//alert(id);
 		var tooltip = $('#mapIcon_'+id).qtip('api');
 		var title = $(tooltip.elements.content).text();
-		var content = '<img alt="'+id+'" src="http://localhost/lc/images/map/icon/'+id+'.jpg" />';
+		var content = '<img alt="'+id+'" src="http://localhost/lc/assets/images/map/icon/'+id+'.jpg" />';
 		tooltip.updateTitle(title);
 		tooltip.updateContent(content);
 	});
