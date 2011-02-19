@@ -3,11 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Life Cycle</title>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/reset.css"/>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/ui-lightness/jquery-ui-1.8rc2.custom.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/interface.css"/>	
-<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/interface.worldmap.css"/>	
-<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/interface.conversation.css"/>	
+<?php echo css_asset('reset.css'); ?>
+<?php echo css_asset('ui-lightness/jquery-ui-1.8rc2.custom.css'); ?>
+<?php echo css_asset('interface.css'); ?>
+<?php echo css_asset('interface.worldmap.css'); ?>
+<?php echo css_asset('interface.conversation.css'); ?>
 </head>
 <body>
 <div id="banner">Advertising</div>
@@ -61,7 +61,7 @@
 					<a id="bt_map_info_open">Info</a>
 					<div id="map_info">
 						<a id="bt_map_info_close" class="ui-icon ui-icon-closethick">close</a>
-						<img src="<?php echo base_url() ?>images/map/path/4.png" alt="Path" />
+						<?php echo image_asset('map/path/4.png', '', array('alt'=>'Path')); ?>
 						<div id="map_description">
 							<h2>เขตเพาะปลูกทิศตะวันออกเฉียงใต้ ทุ่งชูก้า</h2>
 							<p>เขตที่นาเก่าของเมืองนิพันนรา เป็นพื้นที่นารกร้าง ที่มีต้นไม้พันธุ์พิเศษซึ่งเอื้อต่อการเจริญเติบโต ของต้นข้าวหอมมะลิสีทองเติบโตอยู่ ทำให้พันธุ์ข้าวของที่นี่มีลักษณะเฉพาะ เป็นเขตการเกษตรมีค่าที่สร้างรายได้และวัตถุดิบหายากให้กับชาวเมือง</p>
@@ -74,12 +74,12 @@
 				<div class="tab_content_left">		
 					<ul class="list">
 						<li>
-							<img src="<?php echo base_url() ?>/images/guidepost/tst_01.png" width="75" height="75" />
+							<?php echo image_asset('guidepost/tst_01.png', '', array('alt'=>'')); ?>
 							<h3>สถานีขนส่งสาธารณะ</h3>
 							<p>-</p>
 						</li>
 						<li>
-							<img src="<?php echo base_url() ?>/images/guidepost/tst_02.png" width="75" height="75" />
+							<?php echo image_asset('guidepost/tst_02.png', '', array('alt'=>'')); ?>
 							<h3>ตลาดสวนมะม่วง</h3>
 							<p>-</p>
 						</li>
@@ -88,22 +88,22 @@
 				<div class="tab_content_right">
 					<ul class="list">
 						<li>
-							<img src="<?php echo base_url() ?>/images/npc/icon_7.png" width="75" height="75" />
+							<?php echo image_asset('npc/icon_7.png', '', array('alt'=>'ดอกเตอร์ มีนา รักวิทย์')); ?>
 							<h3>ดอกเตอร์ มีนา รักวิทย์</h3>
 							<p>นักวิทยาศาสตร์ประจำสถาบันการวิจัย และพัฒนาแห่งสหพันธ์</p>
 						</li>
 						<li>
-							<img src="<?php echo base_url() ?>/images/npc/icon_55.png" width="75" height="75" />
+							<?php echo image_asset('npc/icon_55.png', '', array('alt'=>'พ่อเลี้ยง กลั่น')); ?>
 							<h3>พ่อเลี้ยง กลั่น</h3>
 							<p>เจ้าของบริษัทห้างอาหารและยา หวังเปลี่ยนสี และคู่แข่งทางธุรกิจของเสี่ยเช็ง</p >
 						</li>
 						<li>
-							<img src="<?php echo base_url() ?>/images/npc/icon_57.png" width="75" height="75" />
+							<?php echo image_asset('npc/icon_57.png', '', array('alt'=>'มิงค์')); ?>
 							<h3>มิงค์</h3>
 							<p>ลูกสาวสุดรักสุดหวงของพ่อเลี้ยงกลั่น</p>
 						</li>
 						<li>
-							<img src="<?php echo base_url() ?>/images/npc/icon_12.png" width="75" height="75" />
+							<?php echo image_asset('npc/icon_12.png', '', array('alt'=>'เฟร็ด บุญมี')); ?>
 							<h3>เฟร็ด บุญมี</h3>
 							<p>ลูกน้องคนสนิทของเสี่ยเช็ง และเป็นพี่คนกลางในบรรดาพี่น้องร่วมสาบานทั้ง 3</p>
 						</li>
@@ -125,12 +125,12 @@
 					<div class="tab_content_right">
 						<ul class="list">
 						<li>
-							<img src="<?php echo base_url() ?>/images/item/icon_227.png" width="75" height="75" alt="สารเรืองแสง" title="ของเหลวเรืองแสง ที่ส่องแสงสว่างอ่อนๆออกมา มันช่วยนำทางในความมืดได้" />
+							<?php echo image_asset('item/icon_227.png', '', array('alt'=>'สารเรืองแสง', 'title'=>'')); ?>
 							<h3>สารเรืองแสง</h3>
 							<p class="price"><a href="#">คำอธิบายเพิ่มเติม...</a> <span>฿ 1,500</span></p>
 						</li>
 						<li>
-							<img src="<?php echo base_url() ?>/images/item/icon_327.png" width="75" height="75" alt="หญ้า" title="หญ้า...มีแต่คนโง่เท่านั้นที่กิน เพิ่ม HP 15" />
+							<?php echo image_asset('item/icon_327.png', '', array('alt'=>'หญ้า', 'title'=>'หญ้า...มีแต่คนโง่เท่านั้นที่กิน เพิ่ม HP 15')); ?>
 							<h3>หญ้า</h3>
 							<p class="price"><a href="#">คำอธิบายเพิ่มเติม...</a> <span>20 ฿</span></p>
 						</li>
@@ -187,11 +187,11 @@
 		<div id="kramaOrb" title="ชีวิตตกต่ำ เพราะกรรมนำพา"></div>
 	</div><!--end menuBottom-->
 </div>
-<script type="text/javascript" src="<?php echo base_url() ?>js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url() ?>js/jquery-ui-1.8rc2.custom.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url() ?>js/jquery.qtip.min.js"></script>
+<?php echo js_asset('jquery-1.4.2.min.js'); ?>
+<?php echo js_asset('jquery-ui-1.8rc2.custom.min.js'); ?>
+<?php echo js_asset('jquery.qtip.min.js'); ?>
 
-<script type="text/javascript" src="<?php echo base_url() ?>js/interface.mainDisplay.js"></script>
-<script type="text/javascript" src="<?php echo base_url() ?>js/interface.worldmap.js"></script>
+<?php echo js_asset('interface.mainDisplay.js'); ?>
+<?php echo js_asset('interface.worldmap.js'); ?>
 </body>
 </html>
