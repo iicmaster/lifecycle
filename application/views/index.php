@@ -187,6 +187,9 @@
 		<div id="kramaOrb" title="ชีวิตตกต่ำ เพราะกรรมนำพา"></div>
 	</div><!--end menuBottom-->
 </div>
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<?php echo js_asset('facebook.js'); ?>
 <?php echo js_asset('jquery-1.4.2.min.js'); ?>
 <?php echo js_asset('jquery-ui-1.8rc2.custom.min.js'); ?>
 <?php echo js_asset('jquery.qtip.min.js'); ?>
