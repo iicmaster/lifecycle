@@ -10,7 +10,7 @@
 <?php echo css_asset('interface.conversation.css'); ?>
 </head>
 <body>
-<div id="banner">Advertising</div>
+<!--<div id="banner">Advertising</div>-->
 <div id="interface">
 	<div id="menuTop">
 		<span id="menuTop_playerlevel">45</span> 
