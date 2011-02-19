@@ -35,20 +35,6 @@ class Map extends CI_Model {
 		}
 	 }
 	
-	
-	/**
-	 * Get guidepost in location
-	 *
-	 * @param 	string	$location_type	type of location (state, map, zone, section, store, dungeon)
-	 * @param 	int		$id_location	id of location
-	 *
-	 * @return	array	id, name, descrption
-	 */
-	 function get_guidepost($location_type, $id_location)
-	 {
-		 
-	 }
-	
 	/**
 	 * Get detail of location
 	 *
@@ -59,38 +45,52 @@ class Map extends CI_Model {
 	 */
 	 function get_detail($location_type, $id_location)
 	 {
+		 $query = $this->db->get_where('map_'.$location_type, array('id_'.$location_type => $id_location));
 		 
+		 return $query->result_array();
+	 }	
+	 
+	/**
+	 * Get guidepost in location
+	 *
+	 * @param 	int		$id_location	id of location
+	 *
+	 * @return	array	id, name, descrption
+	 */
+	 function get_guidepost($location_type, $id_section)
+	 {
+		 $query = $this->db->get_where('map_'.$location_type, array('id_'.$location_type => $id_section));
+		 
+		 return $query->result_array();
 	 }
 	
 	/**
 	 * Get NPC in location
 	 *
-	 * @param 	string	$location_type	type of location (state, map, zone, section, store, dungeon)
 	 * @param 	int		$id_location	id of location
 	 *
 	 * @return	array	id, name, descrption
 	 */
-	function get_npc($location_type, $id_location)
-	{
-		$query = $this->db->get_where('map_'.$location_type, array('id_'.$location_type => $id_location));
+	 function get_npc($location_type, $id_section)
+	 {
+		$query = $this->db->get_where('map_'.$location_type, array('id_'.$location_type => $id_section));
 		
 		return $query->result_array();
-	}
+	 }
 	
 	/**
 	 * Get monster in location
 	 *
-	 * @param 	string	$location_type	type of location (state, map, zone, section, store, dungeon)
 	 * @param 	int		$id_location	id of location
 	 *
 	 * @return	array	id, name, descrption, level
 	 */
-	 function get_monster($location_type, $id_location)
+	 function get_monster($location_type, $id_section)
 	 {
-		 
+		$query = $this->db->get_where('map_'.$location_type, array('id_'.$location_type => $id_section));
+		
+		return $query->result_array();
 	 }
-	 
-	 
 	
 }
 

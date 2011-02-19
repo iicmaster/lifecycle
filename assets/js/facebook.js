@@ -29,8 +29,19 @@ function post_wall(url, picture, name, caption, description)
 function get_friends()
 {
 	FB.api({'method' : 'friends.getAppUsers'},
-		function(response){
-			alert(response);
+		function(fids)
+		{
+			FB.api(
+				{
+					'method' : 'users.getinfo',
+					'uids' : fids,
+					'fields' : 'name,pic_square'
+				}, 
+				function(response)
+				{
+					return response;
+				}
+			);
 		}
 	);
 }
