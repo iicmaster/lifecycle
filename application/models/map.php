@@ -38,29 +38,39 @@ class Map extends CI_Model {
 	/**
 	 * Get detail of location
 	 *
-	 * @param 	string	$location_type	type of location (state, map, zone, section, store, dungeon)
+	 * @param 	string	$location_type	type of location (district, map, zone, section, store, dungeon)
 	 * @param 	int		$id_location	id of location
 	 *
 	 * @return	array	id, name, descrption
 	 */
 	 function get_detail($location_type, $id_location)
 	 {
-		 $query = $this->db->get_where('map_'.$location_type, array('id_'.$location_type => $id_location));
-		 
-		 return $query->result_array();
+		 $query = array();
+		 foreach(comma_to_array($location_type) as $type)
+		 {
+			$this->db->select('map_' . $type . '.id_' . $type . ', name, description');
+			$this->db->from('map_' . $type);
+			$this->db->where('status', 1);
+			$this->db->where('map_' . $type . '.id_' . $type, $id_location);
+			$this->db->join('language_map_' . $type, 'map_' . $type . '.id_' . $type . ' = language_map_' . $type . '.id_' . $type, 'left');
+			$this->db->where('id_language', 1);
+			
+			array_push($query, $this->db->get()->result_array());
+		 }
+		 return $query;
 	 }	
 	 
 	/**
 	 * Get guidepost in location
 	 *
-	 * @param 	int		$id_location	id of location
+	 * @param 	int		$id_section		id of location
 	 *
 	 * @return	array	id, name, descrption
 	 */
 	 function get_guidepost($location_type, $id_section)
 	 {
 		 $query = $this->db->get_where('map_'.$location_type, array('id_'.$location_type => $id_section));
-		 
+		
 		 return $query->result_array();
 	 }
 	
@@ -73,9 +83,9 @@ class Map extends CI_Model {
 	 */
 	 function get_npc($location_type, $id_section)
 	 {
-		$query = $this->db->get_where('map_'.$location_type, array('id_'.$location_type => $id_section));
+		 $query = $this->db->get_where('map_'.$location_type, array('id_'.$location_type => $id_section));
 		
-		return $query->result_array();
+		 return $query->result_array();
 	 }
 	
 	/**
@@ -87,9 +97,9 @@ class Map extends CI_Model {
 	 */
 	 function get_monster($location_type, $id_section)
 	 {
-		$query = $this->db->get_where('map_'.$location_type, array('id_'.$location_type => $id_section));
+		 $query = $this->db->get_where('map_'.$location_type, array('id_'.$location_type => $id_section));
 		
-		return $query->result_array();
+		 return $query->result_array();
 	 }
 	
 }
