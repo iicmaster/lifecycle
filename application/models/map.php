@@ -34,6 +34,8 @@ class Map extends CI_Model {
 			return $table;
 		}
 	 }
+	 
+	// ------------------------------------------------------------------------
 	
 	/**
 	 * Get detail of location
@@ -63,15 +65,22 @@ class Map extends CI_Model {
 	/**
 	 * Get guidepost in location
 	 *
+	 * $access  public
 	 * @param 	int		$id_section		id of location
 	 *
 	 * @return	array	id, name, descrption
 	 */
-	 function get_guidepost($location_type, $id_section)
-	 {
-		 $query = $this->db->get_where('map_'.$location_type, array('id_'.$location_type => $id_section));
-		
-		 return $query->result_array();
+	 function get_guidepost($id_section)
+	 { 
+		 $sql = 'SELECT target FROM map_guidepost WHERE location = ' . $id_section;
+		 $query = $this->db->query($sql);
+		 $result = array();
+		 
+		 foreach($query->result() as $row)
+		 {
+			 array_push($result, $this->get_detail('section', $row->target));
+		 }
+		 return $result;
 	 }
 	
 	/**
