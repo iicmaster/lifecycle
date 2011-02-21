@@ -47,19 +47,26 @@ class Map extends CI_Model {
 	 */
 	 function get_detail($location_type, $id_location)
 	 {
-		 $query = array();
+		 $query = '';
+		 
 		 foreach(comma_to_array($location_type) as $type)
 		 {
-			$this->db->select('map_' . $type . '.id_' . $type . ', name, description');
+			$this->db->select('name, description');
 			$this->db->from('map_' . $type);
 			$this->db->where('status', 1);
 			$this->db->where('map_' . $type . '.id_' . $type, $id_location);
 			$this->db->join('language_map_' . $type, 'map_' . $type . '.id_' . $type . ' = language_map_' . $type . '.id_' . $type, 'left');
 			$this->db->where('id_language', 1);
 			
-			array_push($query, $this->db->get()->result_array());
+			$row = $this->db->get()->result_array();
+			$query .=  ',' . $row[0]['name'] . ',' . $row[0]['description'];
+			
+			//array_push($query, $this->db->get()->result_array());
 		 }
-		 return $query;
+		 
+		 $result = comma_to_array(substr($query, 1));
+		 
+		 return $result;
 	 }	
 	 
 	/**
@@ -72,13 +79,14 @@ class Map extends CI_Model {
 	 */
 	 function get_guidepost($id_section)
 	 { 
-		 $sql = 'SELECT target FROM map_guidepost WHERE location = ' . $id_section;
+		 $sql = 'SELECT id_guidepost, target FROM map_guidepost WHERE location = ' . $id_section;
 		 $query = $this->db->query($sql);
 		 $result = array();
 		 
 		 foreach($query->result() as $row)
 		 {
-			 array_push($result, $this->get_detail('section', $row->target));
+			 $str = $row->id_guidepost . ',' . array_to_comma($this->get_detail('section', $row->target));
+			 array_push($result, comma_to_array($str));
 		 }
 		 return $result;
 	 }
