@@ -4,9 +4,9 @@ class Map extends CI_Model {
 	/**
 	 * Get name of table of location in databse
 	 *
+	 * @access  public
 	 * @param 	string	$location_type	type of location (district, map, zone, section, store, dungeon)
-	 *
-	 * @return	string	name of table
+	 * @return	string	$table			name of table
 	 */
 	 function get_location_table($location_type)
 	 {
@@ -40,10 +40,10 @@ class Map extends CI_Model {
 	/**
 	 * Get detail of location
 	 *
+	 * @access  public
 	 * @param 	string	$location_type	type of location (district, map, zone, section, store, dungeon)
 	 * @param 	int		$id_location	id of location
-	 *
-	 * @return	array	id, name, descrption
+	 * @return	array	$query			id, name, descrption
 	 */
 	 function get_detail($location_type, $id_location)
 	 {
@@ -69,13 +69,14 @@ class Map extends CI_Model {
 		 return $result;
 	 }	
 	 
+	// ------------------------------------------------------------------------
+	 
 	/**
 	 * Get guidepost in location
 	 *
-	 * $access  public
+	 * @access  public
 	 * @param 	int		$id_section		id of location
-	 *
-	 * @return	array	id, name, descrption
+	 * @return	array	$result			id, name, descrption, image
 	 */
 	 function get_guidepost($id_section)
 	 { 
@@ -90,13 +91,15 @@ class Map extends CI_Model {
 		 }
 		 return $result;
 	 }
+	 
+	// ------------------------------------------------------------------------
 	
 	/**
 	 * Get NPC in location
 	 *
+	 * @access  public
 	 * @param 	int		$id_location	id of location
-	 *
-	 * @return	array	id, name, descrption
+	 * @return	array					id, name, descrption
 	 */
 	 function get_npc($location_type, $id_section)
 	 {
@@ -104,13 +107,15 @@ class Map extends CI_Model {
 		
 		 return $query->result_array();
 	 }
+	 
+	// ------------------------------------------------------------------------
 	
 	/**
 	 * Get monster in location
 	 *
+	 * @access  public
 	 * @param 	int		$id_location	id of location
-	 *
-	 * @return	array	id, name, descrption, level
+	 * @return	array					id, name, descrption, level
 	 */
 	 function get_monster($location_type, $id_section)
 	 {
