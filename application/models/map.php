@@ -47,24 +47,16 @@ class Map extends CI_Model {
 	 */
 	 function get_detail($location_type, $id_location)
 	 {
-		 $query = '';
+		 $this->db->select('map_' . $location_type . '.id_' . $location_type . ',name, description');
+		 $this->db->from('map_' . $location_type);
+		 $this->db->where('status', 1);
+		 $this->db->where('map_' . $location_type . '.id_' . $location_type, $id_location);
+		 $this->db->join('language_map_' . $location_type, 'map_' . $location_type . '.id_' . $location_type . ' = language_map_' . $location_type . '.id_' . $location_type, 'left');
+		 $this->db->where('id_language', 1);
 		 
-		 foreach(comma_to_array($location_type) as $type)
-		 {
-			$this->db->select('name, description');
-			$this->db->from('map_' . $type);
-			$this->db->where('status', 1);
-			$this->db->where('map_' . $type . '.id_' . $type, $id_location);
-			$this->db->join('language_map_' . $type, 'map_' . $type . '.id_' . $type . ' = language_map_' . $type . '.id_' . $type, 'left');
-			$this->db->where('id_language', 1);
-			
-			$row = $this->db->get()->result_array();
-			$query .=  ',' . $row[0]['name'] . ',' . $row[0]['description'];
-			
-			//array_push($query, $this->db->get()->result_array());
-		 }
+		 $row = $this->db->get()->result_array();
 		 
-		 $result = comma_to_array(substr($query, 1));
+		 $result = comma_to_array($row[0]['id_' . $location_type] . ',' . $row[0]['name'] . ',' . $row[0]['description']);
 		 
 		 return $result;
 	 }	
@@ -80,15 +72,17 @@ class Map extends CI_Model {
 	 */
 	 function get_guidepost($id_section)
 	 { 
-		 $sql = 'SELECT id_guidepost, target FROM map_guidepost WHERE location = ' . $id_section;
+		 $sql = 'SELECT id_guidepost, target, image FROM map_guidepost WHERE location = ' . $id_section;
 		 $query = $this->db->query($sql);
 		 $result = array();
 		 
 		 foreach($query->result() as $row)
 		 {
-			 $str = $row->id_guidepost . ',' . array_to_comma($this->get_detail('section', $row->target));
-			 array_push($result, comma_to_array($str));
+			 $section = $this->get_detail('section', $row->target);
+			 $guidepost = $row->id_guidepost . ',' . $section[1] . ',' . $section[2] . ',' . $row->image;
+			 array_push($result, comma_to_array($guidepost));
 		 }
+		 
 		 return $result;
 	 }
 	 
