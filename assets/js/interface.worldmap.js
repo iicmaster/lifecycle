@@ -48,8 +48,8 @@ $(function()
 		
 		// set new value
 		var id = $(this).attr('alt');
-		$("#map_info img").attr('src', 'http://localhost/lc/assets/images/map/path/'+id+'.png');
-		$("#mapDetail").css('backgroundImage', 'url(http://localhost/lc/assets/images/map/'+id+'.jpg)');
+		$("#map_info img").attr('src', 'http://localhost/lifecycle/assets/images/map/path/'+id+'.png');
+		$("#mapDetail").css('backgroundImage', 'url(http://localhost/lifecycle/assets/images/map/'+id+'.jpg)');
 		
 		$("#worldmap").fadeOut(function(){
 			
