@@ -1,5 +1,6 @@
 body
-{
+{ 
+	background: #444;
 	margin: 0px;
 	font-family: "Microsoft Sans Serif";
 	font-size: 12px;
@@ -22,8 +23,8 @@ body
 	background: url(../images/map/bg/4.jpg) center no-repeat;
 /*	border: 1px solid #CCC;*/
 	height: 650px;
-	margin: auto;
-/*	padding: 2px;*/
+	margin: 10px auto;
+	padding: 5px;
 	width: 740px;
 	
 	box-shadow: 0px 0px 8px rgba(0,0,0, 0.3);
@@ -253,9 +254,9 @@ body
 			-moz-border-radius: 5px;
 			-webkit-border-radius: 5px;
 			
-			box-shadow: 0px 0px 5px rgba(0,0,0, 0.2);
-			-moz-box-shadow: 0px 0px 5px rgba(0,0,0, 0.2);
-			-webkit-box-shadow: 0px 0px 5px rgba(0,0,0, 0.2);
+			box-shadow: 0px 0px 5px rgba(0,0,0, 0.2) inset;
+			-moz-box-shadow: 0px 0px 5px rgba(0,0,0, 0.28) inset;
+			-webkit-box-shadow: 0px 0px 5px rgba(0,0,0, 0.2) inset;
 		}
 		
 		#tab_content_preload
@@ -508,9 +509,15 @@ body
 		padding: 5px;
 		width: 343px;
 		
+		/* CSS 3 */
+		
 		border-radius: 5px;
 		-moz-border-radius: 5px;
 		-webkit-border-radius: 5px;
+			
+		box-shadow: 0px 0px 5px rgba(0,0,0, 0.2) inset;
+		-moz-box-shadow: 0px 0px 5px rgba(0,0,0, 0.28) inset;
+		-webkit-box-shadow: 0px 0px 5px rgba(0,0,0, 0.2) inset;
 	}
 
 	#kramaOrb
@@ -520,6 +527,8 @@ body
 		position: absolute;
 		margin: -65px 0px 0px 310px;
 		width: 120px;
+		
+		/* CSS 3 */
 		
 		background-size: 100%;
 		-moz-background-size: 100%;
@@ -541,7 +550,8 @@ body
 	border: 1px solid #999;
 	padding: 10px;
 	margin-top: -10px;
-	
+		
+	/* CSS 3 */
 	
 	border-radius: 5px;
 	-moz-border-radius: 5px;

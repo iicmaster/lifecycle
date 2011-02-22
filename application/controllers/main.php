@@ -41,8 +41,40 @@ class Main extends CI_Controller
 			}
 		}*/
 		//$this->get_npc(409);
-		$this->get_monster(142);
+		//$this->get_monster(142);
+		//$this->gen_map_icon();
+		
+		$data['map_icon'] = $this->gen_map_icon();
+		$this->load->view('index.php', $data);
+		
 	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	  * Generate map's icon in world map
+	  *
+	  * @access	public
+	  * @return	string	$html
+	  */
+	  
+	function gen_map_icon($status = 'enable', $type = 'all')
+	{
+		$this->load->model('map');
+		$_rows = $this->map->get_map($status, $type);
+		$_html = '';
+		
+		foreach($_rows as $_row)
+		{
+			$_class = ($_row->type == 0) ? 'map_icon_map' : 'map_icon_city';
+			
+			$_html .= '<div id="map_icon_'.$_row->id_map.'" class="'.$_class.'" rel="'.$_row->id_map.'" title="'.$_row->name.'"></div>';
+		}
+		
+		return $_html;
+	}
+	
+	// ------------------------------------------------------------------------
 	
 	function get_npc($id_section)
 	{

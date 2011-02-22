@@ -29,6 +29,24 @@ class NPC extends CI_Model {
 	{
 	
 	}
+	 
+	// ------------------------------------------------------------------------
+	
+	/**
+	  * Get NPC item
+	  *
+	  * @access	public
+	  * @param	int		$id_npc				id of NPC 
+	  * @return	array						id_item, name, description, price
+	  */
+	  
+	function get_npc_item($id_npc)
+	{
+	
+	}
+	 
+	
+	
 	
 }
 

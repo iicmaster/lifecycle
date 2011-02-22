@@ -27,10 +27,11 @@
 			<div id="tab_heading_menu">
 				<a id="bt_popup_status" href="#nogo">Status</a> 
 				<a id="bt_popup_skill" href="#nogo">Skill</a> 
-				<a id="bt_popup_skill" href="#nogo">Equip</a> 
-				<a id="bt_popup_skill" href="#nogo">Item</a> 
-				<a id="bt_popup_skill" href="#nogo">P.E.</a>
-				<a id="bt_popup_skill" href="#nogo">Option</a>
+				<a id="bt_popup_equip" href="#nogo">Equip</a> 
+				<a id="bt_popup_item" href="#nogo">Item</a> 
+				<a id="bt_popup_quest" href="#nogo">Quest</a> 
+				<!--<a id="bt_popup_skill" href="#nogo">P.E.N.</a>-->
+				<!--<a id="bt_popup_skill" href="#nogo">Option</a>-->
 			</div>
 			<div id="tab_heading_buttonGroup">
 				<a id="tab_heading_button_1" href="#nogo">แผนที่</a> 
@@ -43,18 +44,7 @@
 			<div id="tab_content_preload">Loading...</div>
 			<div id="tab_content_1" class="tab_content_full">
 				<div id="worldmap">		
-					<div class="mapIcon_city" id="mapIcon_1" title="เมืองหลวงของมนุษย์ นิพันนรา"></div>
-					<div class="mapIcon_map" id="mapIcon_2" title="เขตเพาะปลูกกลางชูก้า"></div>
-					<div class="mapIcon_map" id="mapIcon_3" title="เขตเพาะปลูกทิศตะวันออกทุ่งชูก้า"></div>
-					<div class="mapIcon_map" id="mapIcon_4" title="เขตเพาะปลูกทิศตะวันออกเฉียงใต้ทุ่งชูก้า"></div>
-					<div class="mapIcon_map" id="mapIcon_13" title="อ่าวหมู"></div>
-					<div class="mapIcon_map" id="mapIcon_58" title="ป่าผู้เฒ่า"></div>
-					<div class="mapIcon_map" id="mapIcon_59" title="เขตอุดมสมบูรณ์ริมฝั่งทะเลสาปชูก้าด้านใต้"></div>
-					<div class="mapIcon_map" id="mapIcon_60" title="ปากน้ำนางครวญ"></div>
-					<div class="mapIcon_map" id="mapIcon_66" title="ทุ่งนาลันทาไกล"></div>
-					<div class="mapIcon_map" id="mapIcon_72" title="ป่าเนื้อฝั่งขวา"></div>
-					<div class="mapIcon_city" id="mapIcon_73" title="วิชัยปราการ"></div>
-					<div class="mapIcon_map" id="mapIcon_77" title="ทุ่งทรัฟฟลู"></div>
+					<?php echo $map_icon; ?>
 				</div>
 				<div id="mapDetail">
 					<a id="bt_worldmap">World Map</a>
@@ -163,10 +153,10 @@
 			</div>
 			<div id="popup_skill" title="Skill">
 				<h3>Skill name 1</h3>
-				<img width="64" height="64" alt="Skill Image" />
+				<?php echo image_asset('blank.png', '', array('alt'=>'Skill Image', 'width'=>'64', 'height'=>'64')); ?>
 				<p>Desc: </p>
 				<h3>Skill name 2</h3>
-				<img width="64" height="64" alt="Skill Image" />
+				<?php echo image_asset('blank.png', '', array('alt'=>'Skill Image', 'width'=>'64', 'height'=>'64')); ?>
 				<p>Desc: </p>
 			</div>
 		</div><!--end popup_window-->
@@ -188,7 +178,7 @@
 	</div><!--end menuBottom-->
 </div>
 <div id="fb-root"></div>
-<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
 <?php echo js_asset('facebook.js'); ?>
 <?php echo js_asset('jquery-1.4.2.min.js'); ?>
 <?php echo js_asset('jquery-ui-1.8rc2.custom.min.js'); ?>

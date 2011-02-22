@@ -44,7 +44,7 @@ class Map extends CI_Model {
 	  * @access	public
 	  * @param 	string	$location_type	type of location (district, map, zone, section, store, dungeon)
 	  * @param 	int		$id_location	id of location
-	  * @return	array	$query			id_location, name, descrption
+	  * @return	array	$result			id_location, name, descrption
 	  */
 	  
 	function get_detail($location_type, $id_location)
@@ -62,6 +62,48 @@ class Map extends CI_Model {
 		
 		return $result;
 	}	
+	 
+	// ------------------------------------------------------------------------
+	
+	/**
+	  * Get all of map in the world
+	  *
+	  * @access	public
+	  * @param 	string	$status		map status (enable, disable, all)
+	  * @param 	string	$type		map type (normal, city, all)
+	  * @return	array	$result		id_map, name, type
+	  */
+	 function get_map($status = 'enable', $type = 'all')
+	 {
+		 
+		$this->db->select('map_map.id_map, name, type');
+		$this->db->from('map_map');
+		
+		if($status == 'disable')
+		{
+			$this->db->where('status', 0);
+		}
+		else if($status == 'enable')
+		{
+			$this->db->where('status', 1);
+		}
+		
+		if($type == 'normal')
+		{
+			$this->db->where('type', 0);
+		}
+		else if($type == 'city')
+		{
+			$this->db->where('type', 1);
+		}
+		
+		$this->db->join('language_map_map', 'map_map.id_map = language_map_map.id_map', 'left');
+		$this->db->where('id_language', 1);
+		
+		return $this->db->get()->result();
+		
+	 }
+	 
 	 
 	// ------------------------------------------------------------------------
 	 
@@ -175,6 +217,7 @@ class Map extends CI_Model {
 	}
 	
 	// ------------------------------------------------------------------------
+	
 }
 
 /* End of file map.php */
