@@ -43,7 +43,7 @@ class Map extends CI_Model {
 	 * @access  public
 	 * @param 	string	$location_type	type of location (district, map, zone, section, store, dungeon)
 	 * @param 	int		$id_location	id of location
-	 * @return	array	$query			id, name, descrption
+	 * @return	array	$query			id_location, name, descrption
 	 */
 	 function get_detail($location_type, $id_location)
 	 {
@@ -64,11 +64,11 @@ class Map extends CI_Model {
 	// ------------------------------------------------------------------------
 	 
 	/**
-	 * Get guidepost in location
+	 * Get guidepost in section
 	 *
 	 * @access  public
-	 * @param 	int		$id_section		id of location
-	 * @return	array	$result			id, name, descrption, image
+	 * @param 	int		$id_section		id of section
+	 * @return	array	$result			id_target, name, descrption, image
 	 */
 	 function get_guidepost($id_section)
 	 { 
@@ -89,35 +89,46 @@ class Map extends CI_Model {
 	// ------------------------------------------------------------------------
 	
 	/**
-	 * Get NPC in location
+	 * Get NPC in section
 	 *
 	 * @access  public
-	 * @param 	int		$id_location	id of location
-	 * @return	array					id, name, descrption
+	 * @param 	int		$id_section		id of section
+	 * @return	array					id_npc, name, descrption
 	 */
-	 function get_npc($location_type, $id_section)
+	 function get_npc($id_section)
 	 {
-		 $query = $this->db->get_where('map_'.$location_type, array('id_'.$location_type => $id_section));
-		
-		 return $query->result_array();
+		 
 	 }
 	 
 	// ------------------------------------------------------------------------
 	
 	/**
-	 * Get monster in location
+	 * Get monster in section
 	 *
 	 * @access  public
-	 * @param 	int		$id_location	id of location
-	 * @return	array					id, name, descrption, level
+	 * @param 	int		$id_section		id of section
+	 * @return	array					id_monster, name, descrption, level
 	 */
-	 function get_monster($location_type, $id_section)
+	 function get_monster($id_section)
 	 {
-		 $query = $this->db->get_where('map_'.$location_type, array('id_'.$location_type => $id_section));
-		
-		 return $query->result_array();
+		 
 	 }
 	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get company in section
+	 *
+	 * @access  public
+	 * @param 	int		$id_section		id of section
+	 * @return	array					id_company, name, descrption, image
+	 */
+	 function get_company($id_section)
+	 {
+		 
+	 }
+	
+	// ------------------------------------------------------------------------
 }
 
 /* End of file map.php */
