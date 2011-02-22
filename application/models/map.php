@@ -97,7 +97,20 @@ class Map extends CI_Model {
 	 */
 	 function get_npc($id_section)
 	 {
+		 $sql = 'SELECT npc.id_npc, name, description 
+		 		 FROM npc 
+				 LEFT JOIN language_npc ON npc.id_npc = language_npc.id_npc 
+				 WHERE location = ' . $id_section . ' AND id_language = 1';
+				 
+		 $query = $this->db->query($sql);
+		 $result = array();
 		 
+		 foreach($query->result() as $row)
+		 {
+			 array_push($result, comma_to_array($row->id_npc . ',' . $row->name . ',' . $row->description)); 
+		 }
+		 
+		 return $result;
 	 }
 	 
 	// ------------------------------------------------------------------------
@@ -111,7 +124,21 @@ class Map extends CI_Model {
 	 */
 	 function get_monster($id_section)
 	 {
+		 $sql = 'SELECT monster.id_monster, level_monster, id_section, name, description 
+		 		 FROM monster
+				 LEFT JOIN map_section_monster ON monster.id_monster = map_section_monster.id_monster
+				 LEFT JOIN language_monster ON monster.id_monster = language_monster.id_monster 
+				 WHERE id_section = ' . $id_section . ' AND id_language = 1';
+				 
+		 $query = $this->db->query($sql);
+		 $result = array();
 		 
+		 foreach($query->result() as $row)
+		 {
+			 array_push($result, comma_to_array($row->id_monster . ',' . $row->name . ',' . $row->description . ',' . $row->level_monster)); 
+		 }
+		 
+		 return $result;
 	 }
 	
 	// ------------------------------------------------------------------------
@@ -125,7 +152,20 @@ class Map extends CI_Model {
 	 */
 	 function get_company($id_section)
 	 {
+		 $sql = 'SELECT id_company, name, description, image
+		 		 FROM job_salaryman_company
+				 LEFT JOIN language_job_salaryman_company ON job_salaryman_company.id_company = language_job_salaryman_company.id_company
+				 WHERE id_section = ' . $id_section . ' AND id_language = 1';
+				 
+		 $query = $this->db->query($sql);
+		 $result = array();
 		 
+		 foreach($query->result() as $row)
+		 {
+			 array_push($result, comma_to_array($row->id_company . ',' . $row->name . ',' . $row->description . ',' . $row->image)); 
+		 }
+		 
+		 return $result;
 	 }
 	
 	// ------------------------------------------------------------------------

@@ -17,25 +17,39 @@ class Main extends CI_Controller
 		
 		$session = $this->facebook->getSession();
 		
+		$url = $this->facebook->getLoginUrl(array(
+			'req_perms' => 'publish_stream',
+			'canvas'    => 1,
+			'fbconnect' => 0,
+			'next'      => 'http://apps.facebook.com/thelifecycle/'
+		));
+			
 		if(!$session)
 		{
-			$url = $this->facebook->getLoginUrl(array(
-				'req_perms' => 'publish_stream',
-				'canvas'    => 1,
-				'fbconnect' => 0,
-				'next'      => 'http://apps.facebook.com/thelifecycle/'
-			));
 			echo '<script>top.location.href = "' . $url . '";</script>';
 		}
 		else
 		{
-			$me = $this->facebook->api('/me');
-			print_array($me);
-		}
-		*/
-		$this->get_guidepost(267);
-		//$this->get_detail('guidepost', 2);
-		//$this->load->view('index.php');
+			try
+			{
+				$me = $this->facebook->api('/me');
+				$this->load->view('index.php');
+			}
+			catch(Exception $e)
+			{
+				echo '<script>top.location.href = "' . $url . '";</script>';
+			}
+		}*/
+		//$this->get_npc(409);
+		$this->get_monster(142);
+	}
+	
+	function get_npc($id_section)
+	{
+		$this->load->model('map');
+		$data['arr'] = $this->map->get_npc($id_section);
+		print_array($data['arr']);
+		exit();	
 	}
 	
 	function get_detail($location_type, $id_location)
@@ -54,9 +68,12 @@ class Main extends CI_Controller
 		exit();
 	}
 	
-	function get_monster()
+	function get_monster($id_section)
 	{
-
+		$this->load->model('map');
+		$data['arr'] = $this->map->get_monster($id_section);
+		print_array($data['arr']);
+		exit();	
 	}
 }
 
