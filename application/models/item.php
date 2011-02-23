@@ -7,7 +7,7 @@ class Item extends CI_Model {
 	 *
 	 * @return	array
 	 */
-	function get_info($fields = '*')
+	function get_fields($fields = '*')
 	{
 		$sql_join = '';
 		foreach(comma_to_array($fields) as $row)

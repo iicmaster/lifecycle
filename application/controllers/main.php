@@ -12,9 +12,7 @@ class Main extends CI_Controller
 		//$data['map_icon'] = $this->gen_map_icon();
 		//$this->load->view('index.php', $data);
 		//$this->get_item();
-		$this->load->model('npc');
-		$data['arr'] = $this->npc->get_npc_item(3);
-		print_array($data['arr']);
+		$this->get_npc(41);
 	}
 	
 	function get_item()

@@ -9,7 +9,7 @@ class NPC extends CI_Model {
 	  * @return	array	
 	  */
 	  
-	function get_detail($fields = '*')
+	function get_fields($fields = '*')
 	{
 		$sql_join = '';
 		foreach(comma_to_array($fields) as $row)
@@ -40,18 +40,14 @@ class NPC extends CI_Model {
 	{
 		$sql = 'SELECT ordering, dialog, link 
 				FROM dialog_group 
+				LEFT JOIN npc ON dialog_group.id_npc = npc.id_npc
 				LEFT JOIN dialog_group_dialog ON dialog_group.id_group = dialog_group_dialog.id_group
-				WHERE id_npc = ' . $id_npc;
+				LEFT JOIN language_dialog ON dialog_group_dialog.id_dialog = language_dialog.id_dialog
+				WHERE dialog_group.id_npc = ' . $id_npc;
 				
 		$query = $this->db->query($sql);
-		$result = array();
 		
-		foreach($query->result() as $row)
-		{
-			array_push($result, comma_to_array($row->ordering . ',' . $row->dialog . ',' . $row->link)); 
-		}
-		
-		return $result;
+		return $query->result_array();
 	}
 	 
 	// ------------------------------------------------------------------------

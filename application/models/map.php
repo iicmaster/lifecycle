@@ -149,14 +149,8 @@ class Map extends CI_Model {
 				 WHERE location = ' . $id_section . ' AND id_language = 1';
 				 
 		$query = $this->db->query($sql);
-		$result = array();
 		
-		foreach($query->result() as $row)
-		{
-		 array_push($result, comma_to_array($row->id_npc . ',' . $row->name . ',' . $row->description)); 
-		}
-		
-		return $result;
+		return $query->result_array();
 	}
 	 
 	// ------------------------------------------------------------------------
