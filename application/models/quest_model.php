@@ -32,7 +32,13 @@ class Quest_model extends CI_Model {
 	 
 	function get_full_desctiption($id_quest)
 	{
-		$sql = 'SELECT name, id_npc, ';
+		$sql = 'SELECT * FROM quest
+				LEFT JOIN quest_objective ON quest.id_quest = quest_objective.id_quest
+				WHERE id_quest = ' . $id_quest;
+				
+		$query = $this->db->query($sql);
+		
+		return $query->result_array();
 	}
 	 
 	// ------------------------------------------------------------------------
