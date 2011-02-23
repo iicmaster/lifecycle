@@ -7,10 +7,10 @@ class Item extends CI_Model {
 	 *
 	 * @return	array
 	 */
-	function get_info($field = '*')
+	function get_info($fields = '*')
 	{
 		$sql_join = '';
-		foreach(comma_to_array($field) as $row)
+		foreach(comma_to_array($fields) as $row)
 		{
 			if($row == 'name' || $row == 'description' || $row == '*')
 			{
@@ -18,9 +18,9 @@ class Item extends CI_Model {
 				break;
 			}
 		}
-		$sql = 'SELECT ' . $field . ' FROM item' . $sql_join;
-		$this->db->query($sql);
-		return $this->db->get()->result_array();
+		$sql = 'SELECT ' . $fields . ' FROM item' . $sql_join;
+		$query = $this->db->query($sql);
+		return $query->result_array();
 	}
 }
 

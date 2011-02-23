@@ -26,6 +26,12 @@ function post_wall(url, picture, name, caption, description)
 	});
 }
 
+// users.getinfo fields picture
+// pic = 100 * 300
+// pic_big = 200 * 600
+// pic_small = 50 *150
+// pic_square = 50 * 50
+
 function get_friends()
 {
 	FB.api({'method' : 'friends.getAppUsers'},

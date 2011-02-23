@@ -9,8 +9,19 @@ class Main extends CI_Controller
  	function index() 
 	{
 		//$user = $this->facebook_connect();
-		$data['map_icon'] = $this->gen_map_icon();
-		$this->load->view('index.php', $data);
+		//$data['map_icon'] = $this->gen_map_icon();
+		//$this->load->view('index.php', $data);
+		//$this->get_item();
+		$this->load->model('npc');
+		$data['arr'] = $this->npc->get_npc_item(3);
+		print_array($data['arr']);
+	}
+	
+	function get_item()
+	{
+		$this->load->model('item');
+		$data['arr'] = $this->item->get_info();
+		print_array($data['arr']);	
 	}
 	
 	function facebook_connect()
@@ -96,7 +107,6 @@ class Main extends CI_Controller
 		$this->load->model('npc');
 		$data['arr'] = $this->npc->get_dialog($id_npc);
 		print_array($data['arr']);
-		exit();	
 	}
 	
 	function get_detail($location_type, $id_location)
@@ -104,7 +114,6 @@ class Main extends CI_Controller
 		$this->load->model('map');
 		$data['arr'] = $this->map->get_detail($location_type, $id_location);
 		print_array($data['arr']);
-		exit();	
 	}
 	
 	function get_guidepost($id_location)
@@ -112,7 +121,6 @@ class Main extends CI_Controller
 		$this->load->model('map');
 		$data['arr'] = $this->map->get_guidepost($id_location);
 		print_array($data['arr']);
-		exit();
 	}
 	
 	function get_monster($id_section)
@@ -120,7 +128,6 @@ class Main extends CI_Controller
 		$this->load->model('map');
 		$data['arr'] = $this->map->get_monster($id_section);
 		print_array($data['arr']);
-		exit();	
 	}
 }
 

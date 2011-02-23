@@ -11,7 +11,18 @@ class NPC extends CI_Model {
 	  
 	function get_detail($fields = '*')
 	{
-	
+		$sql_join = '';
+		foreach(comma_to_array($fields) as $row)
+		{
+			if($row == 'name' || $row == 'description' || $row == '*')
+			{
+				$sql_join = ' LEFT JOIN language_npc ON npc.id_npc = language_npc.id_npc';		
+				break;
+			}
+		}
+		$sql = 'SELECT ' . $fields . ' FROM npc' . $sql_join;
+		$query = $this->db->query($sql);
+		return $query->result_array();
 	}
 	 
 	// ------------------------------------------------------------------------
@@ -55,12 +66,22 @@ class NPC extends CI_Model {
 	  
 	function get_npc_item($id_npc)
 	{
-	
+		$sql = 'SELECT npc_item.id_item, name, description, price_buy, buy_rate
+				FROM npc_item 
+				LEFT JOIN npc ON npc_item.id_npc = npc.id_npc
+				LEFT JOIN item ON npc_item.id_item = item.id_item
+				LEFT JOIN language_item ON item.id_item = language_item.id_item
+				WHERE npc.id_npc = ' . $id_npc;
+		$query = $this->db->query($sql);
+		$result = array();
+		
+		foreach($query->result() as $row)
+		{
+			array_push($result, comma_to_array($row->id_item . ',' . $row->name . ',' . $row->description . ',' . ($row->price_buy * $row->buy_rate / 100)));	
+		}
+		
+		return $result;
 	}
-	 
-	
-	
-	
 }
 
 /* End of file npc.php */
