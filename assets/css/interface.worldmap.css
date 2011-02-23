@@ -15,16 +15,11 @@
 
 .map_icon_city
 {
+	background: url(../images/map/worldmap/pin_city.png);
 	cursor: pointer;
 	position: absolute;
-	width: 32px;
-	height: 32px;
-	background: #FFF;
-	border: 2px dashed #F00;
-	
-	border-radius: 32px;
-	-moz-border-radius: 32px;
-	-webkit-border-radius: 32px;
+	width: 64px;
+	height: 64px;
 }
 
 .map_icon_map
@@ -49,18 +44,18 @@
 
 div[id^=qtip] img { cursor: pointer; }
 
-#map_icon_1 { top:100px; left: 20px; }
-#map_icon_2 { top:210px; left: 30px; }
-#map_icon_3 { top:185px; left: 135px; }
-#map_icon_4 { top:240px; left: 135px; }
-#map_icon_13 { top:260px; left: 260px; }
+#map_icon_1 { top:210px; left: 20px; }
+#map_icon_2 { top:320px; left: 30px; }
+#map_icon_3 { top:245px; left: 135px; }
+#map_icon_4 { top:280px; left: 135px; }
+#map_icon_13 { top:340px; left: 260px; }
 #map_icon_58 { top:175px; left: 555px; }
 #map_icon_59 { top:250px; left: 555px; }
-#map_icon_60 { top:290px; left: 325px; }
-#map_icon_66 { top:320px; left: 445px; }
-#map_icon_72 { top:100px; left: 555px; }
-#map_icon_73 { top:20px; left: 545px; }
-#map_icon_77 { top:30px; left: 505px; }
+#map_icon_60 { top:310px; left: 315px; }
+#map_icon_63 { top:320px; left: 445px; }
+#map_icon_69 { top:100px; left: 555px; }
+#map_icon_70 { top:20px; left: 545px; }
+#map_icon_74 { top:30px; left: 505px; }
 
 /*--------------------------------------------------*/
 /* Map Detail */	
