@@ -16,22 +16,22 @@ class Map_model extends CI_Model {
 		switch($location_type)
 		{
 			case('district'):
-				$table = 'map_district';
+				$table = 'atlas_district';
 				break;
 			case('map'):
-				$table = 'map_map';
+				$table = 'atlas_map';
 				break;
 			case('zone'):
-				$table = 'map_zone';
+				$table = 'atlas_zone';
 				break;
 			case('section'):
-				$table = 'map_section';
+				$table = 'atlas_section';
 				break;
 			case('store'):
-				$table = 'map_store';
+				$table = 'atlas_store';
 				break;
 			case('dungeon'):
-				$table = 'map_dungeon';
+				$table = 'atlas_dungeon';
 				break;
 				
 			return $table;
@@ -51,11 +51,11 @@ class Map_model extends CI_Model {
 	  
 	function get_detail($location_type, $id_location)
 	{
-		$this->db->select('map_' . $location_type . '.id_' . $location_type . ',name, description');
-		$this->db->from('map_' . $location_type);
+		$this->db->select('atlas_' . $location_type . '.id_' . $location_type . ',name, description');
+		$this->db->from('atlas_' . $location_type);
 		$this->db->where('status', 1);
-		$this->db->where('map_' . $location_type . '.id_' . $location_type, $id_location);
-		$this->db->join('language_map_' . $location_type, 'map_' . $location_type . '.id_' . $location_type . ' = language_map_' . $location_type . '.id_' . $location_type, 'left');
+		$this->db->where('atlas_' . $location_type . '.id_' . $location_type, $id_location);
+		$this->db->join('language_atlas_' . $location_type, 'atlas_' . $location_type . '.id_' . $location_type . ' = language_atlas_' . $location_type . '.id_' . $location_type, 'left');
 		$this->db->where('id_language', 1);
 		
 		$row = $this->db->get()->result_array();
@@ -78,8 +78,8 @@ class Map_model extends CI_Model {
 	 function get_map($status = 'enable', $type = 'all')
 	 {
 		 
-		$this->db->select('map_map.id_map, name, type');
-		$this->db->from('map_map');
+		$this->db->select('atlas_map.id_map, name, type');
+		$this->db->from('atlas_map');
 		
 		if($status == 'disable')
 		{
@@ -99,7 +99,7 @@ class Map_model extends CI_Model {
 			$this->db->where('type', 1);
 		}
 		
-		$this->db->join('language_map_map', 'map_map.id_map = language_map_map.id_map', 'left');
+		$this->db->join('language_atlas_map', 'atlas_map.id_map = language_atlas_map.id_map', 'left');
 		$this->db->where('id_language', 1);
 		
 		return $this->db->get()->result();
@@ -119,7 +119,7 @@ class Map_model extends CI_Model {
 	  
 	function get_guidepost($id_section)
 	{ 
-		$sql = 'SELECT id_guidepost, target, image FROM map_guidepost WHERE location = ' . $id_section;
+		$sql = 'SELECT id_guidepost, target, image FROM atlas_guidepost WHERE location = ' . $id_section;
 		$query = $this->db->query($sql);
 		$result = array();
 		
@@ -169,7 +169,7 @@ class Map_model extends CI_Model {
 	{
 		$sql = 'SELECT monster.id_monster, level_monster, id_section, name, description 
 				 FROM monster
-				 LEFT JOIN map_section_monster ON monster.id_monster = map_section_monster.id_monster
+				 LEFT JOIN atlas_section_monster ON monster.id_monster = atlas_section_monster.id_monster
 				 LEFT JOIN language_monster ON monster.id_monster = language_monster.id_monster 
 				 WHERE id_section = ' . $id_section . ' AND id_language = 1';
 			 

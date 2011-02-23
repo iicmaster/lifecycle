@@ -9,10 +9,12 @@ class Main extends CI_Controller
  	function index() 
 	{
 		//$user = $this->facebook_connect();
-		//$data['map_icon'] = $this->gen_map_icon();
-		//$this->load->view('index.php', $data);
 		//$this->get_item();
-		$this->get_npc(41);
+		//$this->get_npc(41);
+		
+		
+		$data['map_icon'] = $this->gen_map_icon();
+		$this->load->view('index.php', $data);
 	}
 	
 	function get_item()
