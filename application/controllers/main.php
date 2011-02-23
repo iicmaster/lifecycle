@@ -41,13 +41,30 @@ class Main extends CI_Controller
 			}
 		}*/
 		//$this->get_npc(409);
-		$this->get_monster(142);
+		//$this->check_register(100000381776149);
+		//$this->get_npc(7);
+		$this->load->view('index.php');
 	}
 	
-	function get_npc($id_section)
+	function check_register($id_facebook)
 	{
-		$this->load->model('map');
-		$data['arr'] = $this->map->get_npc($id_section);
+		$this->load->model('player');
+		$data = $this->player->check_register($id_facebook);
+		if(!$data)
+		{
+			echo '1111';	
+		}
+		else
+		{
+			echo '222';	
+		}
+
+	}
+	
+	function get_npc($id_npc)
+	{
+		$this->load->model('npc');
+		$data['arr'] = $this->npc->get_dialog($id_npc);
 		print_array($data['arr']);
 		exit();	
 	}
