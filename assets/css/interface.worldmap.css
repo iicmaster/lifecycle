@@ -13,7 +13,7 @@
 	-webkit-background-size: 100%;
 }
 
-.mapIcon_city
+.map_icon_city
 {
 	cursor: pointer;
 	position: absolute;
@@ -27,7 +27,7 @@
 	-webkit-border-radius: 32px;
 }
 
-.mapIcon_map
+.map_icon_map
 {
 	cursor: pointer;
 	position: absolute;
@@ -43,18 +43,18 @@
 
 div[id^=qtip] img { cursor: pointer; }
 
-#mapIcon_1 { top:100px; left: 20px; }
-#mapIcon_2 { top:210px; left: 30px; }
-#mapIcon_3 { top:185px; left: 135px; }
-#mapIcon_4 { top:240px; left: 135px; }
-#mapIcon_13 { top:260px; left: 260px; }
-#mapIcon_58 { top:175px; left: 555px; }
-#mapIcon_59 { top:250px; left: 555px; }
-#mapIcon_60 { top:290px; left: 325px; }
-#mapIcon_66 { top:320px; left: 445px; }
-#mapIcon_72 { top:100px; left: 555px; }
-#mapIcon_73 { top:20px; left: 545px; }
-#mapIcon_77 { top:30px; left: 505px; }
+#map_icon_1 { top:100px; left: 20px; }
+#map_icon_2 { top:210px; left: 30px; }
+#map_icon_3 { top:185px; left: 135px; }
+#map_icon_4 { top:240px; left: 135px; }
+#map_icon_13 { top:260px; left: 260px; }
+#map_icon_58 { top:175px; left: 555px; }
+#map_icon_59 { top:250px; left: 555px; }
+#map_icon_60 { top:290px; left: 325px; }
+#map_icon_66 { top:320px; left: 445px; }
+#map_icon_72 { top:100px; left: 555px; }
+#map_icon_73 { top:20px; left: 545px; }
+#map_icon_77 { top:30px; left: 505px; }
 
 /*--------------------------------------------------*/
 /* Map Detail */	

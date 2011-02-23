@@ -42,14 +42,16 @@ $(function()
 		}
 	});
 	
-	$('div[id^=qtip] img').live('click', function(){
+	$('div[id^=qtip] img, div[id^=map_icon_]').live('click', function(){
 		
 		$('div.qtip').hide();
 		
 		// set new value
-		var id = $(this).attr('alt');
+		var id = $(this).attr('rel');
+		//alert(id);
 		$("#map_info img").attr('src', 'http://localhost/lifecycle/assets/images/map/path/'+id+'.png');
 		$("#mapDetail").css('backgroundImage', 'url(http://localhost/lifecycle/assets/images/map/'+id+'.jpg)');
+		$("#interface").css('backgroundImage', 'url(http://localhost/lifecycle/assets/images/map/bg/'+id+'.jpg)');
 		
 		$("#worldmap").fadeOut(function(){
 			
@@ -60,12 +62,12 @@ $(function()
 	});
 	
 	
-	$('div[id^=mapIcon_]').hover(function(){
-		var id = $(this).attr('id').replace("mapIcon_", "");
+	$('div[id^=map_icon_]').hover(function(){
+		var id = $(this).attr('id').replace("map_icon_", "");
 		//alert(id);
-		var tooltip = $('#mapIcon_'+id).qtip('api');
+		var tooltip = $('#map_icon_'+id).qtip('api');
 		var title = $(tooltip.elements.content).text();
-		var content = '<img alt="'+id+'" src="http://localhost/lifecycle/assets/images/map/icon/'+id+'.jpg" />';
+		var content = '<img alt="'+id+'" rel="'+id+'" src="http://localhost/lifecycle/assets/images/map/icon/'+id+'.jpg" />';
 		tooltip.updateTitle(title);
 		tooltip.updateContent(content);
 	});
