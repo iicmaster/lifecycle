@@ -10,7 +10,7 @@ class Quest_model extends CI_Model {
 	 * @return	array					name, description
 	 */
 	 
-	function get_desctiption($id_quest)
+	function get_description($id_quest)
 	{
 		$sql = 'SELECT name, description 
 				FROM language_quest
@@ -30,10 +30,11 @@ class Quest_model extends CI_Model {
 	 * @return	array					name, id_npc (owner), npc_name, objective { objective_no, name, description, status }, reward
 	 */
 	 
-	function get_full_desctiption($id_quest)
+	function get_full_description($id_quest)
 	{
 		$sql = 'SELECT * FROM quest
 				LEFT JOIN quest_objective ON quest.id_quest = quest_objective.id_quest
+				LEFT JOIN quest_reward ON quest.id_quest = quest_reward.id_quest
 				WHERE id_quest = ' . $id_quest;
 				
 		$query = $this->db->query($sql);
