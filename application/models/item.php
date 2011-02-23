@@ -1,12 +1,15 @@
 <?php
 class Item extends CI_Model {
+	 
+	// ------------------------------------------------------------------------
+	
 	/**
 	 * get Item information
 	 *
 	 * @param 	string	$field		fieldname in table. for multiple field used comma(,) to separate ex.($field = 'field1, field2, field3')
-	 *
 	 * @return	array
 	 */
+	 
 	function get_info($fields = '*')
 	{
 		$sql_join = '';
@@ -22,6 +25,8 @@ class Item extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
+	 
+	// ------------------------------------------------------------------------
 }
 
 /* End of file item.php */

@@ -1,5 +1,7 @@
 <?php
 class Map extends CI_Model {
+	 
+	// ------------------------------------------------------------------------
 	
 	/**
 	  * Get name of table of location in databse

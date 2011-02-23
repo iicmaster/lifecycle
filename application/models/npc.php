@@ -1,5 +1,7 @@
 <?php
 class NPC extends CI_Model {
+	 
+	// ------------------------------------------------------------------------
 
 	/**
 	  * Get detail of location
