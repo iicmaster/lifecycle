@@ -8,7 +8,14 @@ class Main extends CI_Controller
 	
  	function index() 
 	{
-		/*$this->facebook = new Facebook(array(
+		//$user = $this->facebook_connect();
+		$data['map_icon'] = $this->gen_map_icon();
+		$this->load->view('index.php', $data);
+	}
+	
+	function facebook_connect()
+	{
+		$this->facebook = new Facebook(array(
 			'appId'  => '119204944778534',
 			'secret' => '1375dadc2ad75f35365a99ab3cc02c2a',
 			'cookie' => true,
@@ -32,19 +39,14 @@ class Main extends CI_Controller
 		{
 			try
 			{
-				$me = $this->facebook->api('/me');
-				$this->load->view('index.php');
+				$data = $this->facebook->api('/me');
+				return $data;
 			}
 			catch(Exception $e)
 			{
 				echo '<script>top.location.href = "' . $url . '";</script>';
 			}
-		}*/
-		//$this->check_register(100000381776149);
-		//$this->get_npc(409);
-		$data['map_icon'] = $this->gen_map_icon();
-		$this->load->view('index.php', $data);
-		
+		}	
 	}
 	
 	// ------------------------------------------------------------------------
