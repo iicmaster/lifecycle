@@ -38,14 +38,14 @@ class NPC_model extends CI_Model {
 	  * @return	array						list of dialog in 2D array { ordering, dialog, link }
 	  */
 	  
-	function get_dialog($id_npc, $id_dialog_group = 1)
+	function get_dialog($id_npc, $id_dialog_group)
 	{
 		$sql = 'SELECT ordering, dialog, link 
 				FROM dialog_group 
 				LEFT JOIN npc ON dialog_group.id_npc = npc.id_npc
-				LEFT JOIN dialog_group_dialog ON dialog_group.id_group = ' . $id_dialog_group . '
+				LEFT JOIN dialog_group_dialog ON dialog_group.id_group = dialog_group_dialog.id_group
 				LEFT JOIN language_dialog ON dialog_group_dialog.id_dialog = language_dialog.id_dialog
-				WHERE dialog_group.id_npc = ' . $id_npc . '
+				WHERE dialog_group.id_npc = ' . $id_npc . ' and dialog_group.id_group = ' . $id_dialog_group . '
 				ORDER BY ordering';
 				
 		$query = $this->db->query($sql);

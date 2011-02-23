@@ -12,7 +12,6 @@ class Main extends CI_Controller
 		//$this->get_item();
 		//$this->get_npc(41);
 		
-		
 		$data['map_icon'] = $this->gen_map_icon();
 		$this->load->view('index.php', $data);
 	}
@@ -105,7 +104,7 @@ class Main extends CI_Controller
 	function get_npc($id_npc)
 	{
 		$this->load->model('npc_model');
-		$data['arr'] = $this->npc_model->get_dialog($id_npc);
+		$data['arr'] = $this->npc_model->get_dialog($id_npc, 141);
 		print_array($data['arr']);
 	}
 	
