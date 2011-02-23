@@ -69,8 +69,8 @@ class Main extends CI_Controller
 	  
 	function gen_map_icon($status = 'enable', $type = 'all')
 	{
-		$this->load->model('map');
-		$_rows = $this->map->get_map($status, $type);
+		$this->load->model('map_model');
+		$_rows = $this->map_model->get_map($status, $type);
 		$_html = '';
 		
 		foreach($_rows as $_row)
@@ -87,8 +87,8 @@ class Main extends CI_Controller
 	
 	function check_register($id_facebook)
 	{
-		$this->load->model('player');
-		$data = $this->player->check_register($id_facebook);
+		$this->load->model('player_model');
+		$data = $this->player_model->check_register($id_facebook);
 		if(!$data)
 		{
 			echo '1111';	
@@ -102,29 +102,29 @@ class Main extends CI_Controller
 	
 	function get_npc($id_npc)
 	{
-		$this->load->model('npc');
-		$data['arr'] = $this->npc->get_dialog($id_npc);
+		$this->load->model('npc_model');
+		$data['arr'] = $this->npc_model->get_dialog($id_npc);
 		print_array($data['arr']);
 	}
 	
 	function get_detail($location_type, $id_location)
 	{
-		$this->load->model('map');
-		$data['arr'] = $this->map->get_detail($location_type, $id_location);
+		$this->load->model('map_model');
+		$data['arr'] = $this->map_model->get_detail($location_type, $id_location);
 		print_array($data['arr']);
 	}
 	
 	function get_guidepost($id_location)
 	{
-		$this->load->model('map');
-		$data['arr'] = $this->map->get_guidepost($id_location);
+		$this->load->model('map_model');
+		$data['arr'] = $this->map_model->get_guidepost($id_location);
 		print_array($data['arr']);
 	}
 	
 	function get_monster($id_section)
 	{
-		$this->load->model('map');
-		$data['arr'] = $this->map->get_monster($id_section);
+		$this->load->model('map_model');
+		$data['arr'] = $this->map_model->get_monster($id_section);
 		print_array($data['arr']);
 	}
 }

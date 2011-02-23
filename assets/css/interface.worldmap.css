@@ -5,7 +5,7 @@
 #worldmap
 {
 	position: relative; 
-	background: url(../images/map/worldmap/test_2.jpg) center no-repeat;
+	background: url(../images/map/worldmap/worldmap.jpg) center no-repeat;
 	height: 403px;
 	
 	background-size: 100%;
@@ -33,12 +33,18 @@
 	position: absolute;
 	width: 16px;
 	height: 16px;
-	background: #FFF;
+	background: #F93;
 	border: 1px solid #666;
+	
+	/* CSS 3 */
 	
 	border-radius: 16px;
 	-moz-border-radius: 16px;
 	-webkit-border-radius: 16px;
+		
+	box-shadow: 0px 0px 5px rgba(0,0,0, 0.8);
+	-moz-box-shadow: 0px 0px 5px rgba(0,0,0, 0.8);
+	-webkit-box-shadow: 0px 0px 5px rgba(0,0,0, 0.8);
 }
 
 div[id^=qtip] img { cursor: pointer; }
