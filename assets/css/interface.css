@@ -20,24 +20,26 @@ body
 
 #interface
 {
-	background: url(../images/map/bg/4.jpg) center no-repeat;
+	background: url(../images/map/bg/1.jpg) center no-repeat;
 /*	border: 1px solid #CCC;*/
 	height: 650px;
 	margin: 10px auto;
 	padding: 5px;
 	width: 740px;
 	
-	box-shadow: 0px 0px 8px rgba(0,0,0, 0.3);
-	-moz-box-shadow: 0px 0px 8px rgba(0,0,0, 0.3);
-	-webkit-box-shadow: 0px 0px 8px rgba(0,0,0, 0.3);
+	/* CSS 3 */
 	
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
+	box-shadow: 0px 0px 10px rgba(255,255,255, 0.6);
+	-moz-box-shadow: 0px 0px 10px rgba(255,255,255, 0.6);
+	-webkit-box-shadow: 0px 0px 10px rgba(255,255,255, 0.6);
 	
 	background-size: auto 100%;
 	-moz-background-size: auto 100%;
 	-webkit-background-size: auto 100%;
+	
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 }
 
 /* Set border radius and shadow */
@@ -289,7 +291,7 @@ body
 		{
 			float: right;
 			width: 343px;
-			overflow-y: scroll;
+			overflow-y: auto;
 			overflow-x: hidden;
 		}
 		

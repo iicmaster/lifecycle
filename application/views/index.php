@@ -30,6 +30,7 @@
 				<a id="bt_popup_equip" href="#nogo">Equip</a> 
 				<a id="bt_popup_item" href="#nogo">Item</a> 
 				<a id="bt_popup_quest" href="#nogo">Quest</a> 
+				<a id="bt_popup_help" href="#nogo">Help</a> 
 				<!--<a id="bt_popup_skill" href="#nogo">P.E.N.</a>-->
 				<!--<a id="bt_popup_skill" href="#nogo">Option</a>-->
 			</div>
