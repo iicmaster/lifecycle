@@ -17,7 +17,7 @@ class Main extends CI_Controller
  	function index() 
 	{		
 		// set date
-		$data['map_icon'] = $this->gen_map_icon();
+		$data['map_icon'] = $this->_gen_map_icon();
 		
 		$this->load->view('index.php', $data);
 	}
@@ -27,11 +27,11 @@ class Main extends CI_Controller
 	/**
 	  * Generate map's icon in world map
 	  *
-	  * @access	public
+	  * @access	private
 	  * @return	string	$_html
 	  */
 	  
-	function gen_map_icon($status = 'enable', $type = 'all')
+	function _gen_map_icon($status = 'enable', $type = 'all')
 	{
 		$this->load->model('map_model');
 		$_rows = $this->map_model->get_map($status, $type);

@@ -27,7 +27,7 @@ body
 	padding: 5px;
 	width: 740px;
 	
-	/* CSS 3 */
+	/* CSS3 */
 	
 	box-shadow: 0px 0px 10px rgba(255,255,255, 0.6);
 	-moz-box-shadow: 0px 0px 10px rgba(255,255,255, 0.6);
@@ -43,7 +43,7 @@ body
 }
 
 /* Set border radius and shadow */
-#menuTop, #mainDisplay, #menuBottom
+#section_top, #section_main, #section_bottom
 {
 	background: transparent;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF,endColorstr=#CCFFFFFF);
@@ -58,66 +58,95 @@ body
 	-webkit-box-shadow: 0px 0px 8px rgba(0,0,0, 0.4);
 }
 
-#menuTop
+#section_top
 { 
-	height: 50px;
-	line-height: 50px;
+	height: 40px;
+	line-height: 40px;
+	padding: 5px;
+	position: relative;
 	width: auto;
 }	
 
-	#menuTop span { margin-right: 10px; }	
 	
-	#menuTop_playerlevel
-	{
-		font-family: Arial;
-		font-size: 28px;
-		font-weight: bold;
-		line-height: 50px;
-		padding: 0px 10px;
-		text-align: center;
-		width: 50px;
+	#section_top_player_profile_image { margin: 0px 20px 0px 0px; }
+	
+	#section_top_player_detail 
+	{ 
+		position: absolute; 
+		border-left: 1px solid #CCC;
+		border-right: 1px solid #CCC;
+		height: 38px;
+		padding: 0px 5px;
+		top: 5px;
+		left: 50px;
 	}
 	
-	#menuTop_playerName { font-size: 14px; }
+		#section_top_player_detail span 
+		{ 
+			float: left; 
+			line-height: 20px;
+			margin-right: 10px; 
+		}	
+		
+		#section_top_player_name 
+		{ 
+			font-size: 16px; 
+			font-weight: bold;
+		}
+		
+		#section_top_player_level
+		{
+			/*font-size: 28px;*/
+		}
+		
+		#section_top_player_job { clear: left; }
 	
-	#menuTop_playerDetail { position: absolute; }
 	
-	#menuTop_feedback
+	
+	#section_top_feedback
 	{
 		background: #FFF;
 		border: 1px solid #CCC;
 		color: #666;
 		display: block;
 		float: right;
-		font-size: 9px;
-		height: 32px;
+		font-size: 10px;
+		/*height: 32px;*/
 		line-height: normal;
-		margin: 5px 10px;
-		padding-top: 6px;
+		margin: 7.5px 5px 0px 0px;
+		padding: 5px 10px;
 		text-align: center;
 		text-decoration: none;
-		width: 38px;
 		
-		border-radius: 40px;
-		-moz-border-radius: 40px;
-		-webkit-border-radius: 40px;
-		
-		box-shadow: rgba(0,0,0, 0.2) 0px 0px 3px;
-		-moz-box-shadow: rgba(0,0,0, 0.2) 0px 0px 3px;
-		-webkit-box-shadow: rgba(0,0,0, 0.2) 0px 0px 3px;
+		/* CSS3 */
+			
+		box-shadow: 0px 0px 3px rgba(0,0,0, 0.2);
+		-moz-box-shadow: 0px 0px 3px rgba(0,0,0, 0.2);
+		-webkit-box-shadow: 0px 0px 3px rgba(0,0,0, 0.2);
 	}
 	
-	#menuTop_feedback:hover
+	#section_top_feedback:hover
 	{
-		background-color: rgba(255, 0, 0, 0.7);
+		background-color: #F90;
+		border: 1px solid #F60;
 		color: #FFF;
 		
-		box-shadow: #F00 0px 0px 3px;
+		/* CSS3 */
+		
+		/*border-radius: 40px;
+		-moz-border-radius: 40px;
+		-webkit-border-radius: 40px;*/
+		
+		box-shadow: 0px 0px 3px rgba(0,0,0, 0.2);
+		-moz-box-shadow: 0px 0px 3px rgba(0,0,0, 0.2);
+		-webkit-box-shadow: 0px 0px 3px rgba(0,0,0, 0.2);
+		
+		/*box-shadow: #F00 0px 0px 3px;
 		-moz-box-shadow: #F00 0px 0px 3px;
-		-webkit-box-shadow: #F00 0px 0px 3px;
+		-webkit-box-shadow: #F00 0px 0px 3px;*/
 	}
 
-#mainDisplay
+#section_main
 { 
 	height: 450px;
 	margin-top: 10px;
@@ -142,13 +171,15 @@ body
 			line-height: 30px;
 			padding: 0px 15px;
 			
+			/* CSS3 */
+			
 			border-radius: 30px;
 			-moz-border-radius: 30px;
 			-webkit-border-radius: 30px;
 			
-			box-shadow: rgba(0,0,0, 0.2) 0px 0px 3px;
-			-moz-box-shadow: rgba(0,0,0, 0.2) 0px 0px 3px;
-			-webkit-box-shadow: rgba(0,0,0, 0.2) 0px 0px 3px;
+			box-shadow: 0px 0px 3px rgba(0,0,0, 0.2);
+			-moz-box-shadow: 0px 0px 3px rgba(0,0,0, 0.2);
+			-webkit-box-shadow: 0px 0px 3px rgba(0,0,0, 0.2);
 		}
 			
 			#tab_heading_buttonGroup a
@@ -216,9 +247,9 @@ body
 			background: url(../images/interface/v_1/sprite_tabHeading.png) no-repeat;
 			background-position: 0px 0px;
 				
-			box-shadow: rgba(0,0,0, 0.2) 0px 0px 3px;
-			-moz-box-shadow: rgba(0,0,0, 0.2) 0px 0px 3px;
-			-webkit-box-shadow: rgba(0,0,0, 0.2) 0px 0px 3px;
+			box-shadow: 0px 0px 3px rgba(0,0,0, 0.2);
+			-moz-box-shadow: 0px 0px 3px rgba(0,0,0, 0.2);
+			-webkit-box-shadow: 0px 0px 3px rgba(0,0,0, 0.2);
 		}
 		
 		#tab_heading_menu a:active, #tab_heading_menu a.active
@@ -302,13 +333,13 @@ body
 			height: 75px;
 		}
 
-		#mainDisplay_tab_content_left_button
+		#section_main_tab_content_left_button
 		{
 			float: left;
 			width: 343px;
 		}
 		
-		#mainDisplay_tab_content_right_button
+		#section_main_tab_content_right_button
 		{
 			float: right;
 			width: 343px;
@@ -385,14 +416,14 @@ body
 			text-decoration: none;
 		}
 
-#menuBottom
+#section_bottom
 { 
 	height: 110px;
 	margin-top: 10px;
 	width: auto;
 }	
 
-	#menuBottom_status
+	#section_bottom_status
 	{
 		float: left;
 		margin: 5px 0px 5px 10px;
@@ -400,7 +431,7 @@ body
 		width: 350px;
 	}
 	
-		#menuBottom_status li
+		#section_bottom_status li
 		{
 			float: left;
 			margin: 7px 10px 5px 0px;
@@ -411,7 +442,7 @@ body
 			text-shadow: 1px 1px 1px #FFF;
 		}
 		
-			#menuBottom_status li b, div[id$="_bar"]
+			#section_bottom_status li b, div[id$="_bar"]
 			{
 				border: 1px solid #666;
 				color: #333;
@@ -452,7 +483,7 @@ body
 				-webkit-box-shadow: rgba(0,0,0, 0.3) 0px 0px 3px;
 			}
 			
-			#menuBottom_status li b
+			#section_bottom_status li b
 			{
 				background-image: url(../images/interface/v_1/sprite_statusBar.png);
 				background-position: 0px -120px;
@@ -498,44 +529,24 @@ body
 			#STA_bar, #STA_bar > div.ui-progressbar-value 	{ background-position: 0px -80px; }
 			#EXP_bar, #EXP_bar > div.ui-progressbar-value 	{ background-position: 0px -100px; width: 296px; }
 	
-	#menuBottom_chat
-	{
-		background:transparent;
-		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF,endColorstr=#CCFFFFFF);
-		
-		background-color: rgba(255, 255, 255, 0.8);
-		border: 1px solid #CCC;
-		float: right;
-		height: 88px;
-		margin: 5px;
-		padding: 5px;
-		width: 343px;
-		
-		/* CSS 3 */
-		
-		border-radius: 5px;
-		-moz-border-radius: 5px;
-		-webkit-border-radius: 5px;
-			
-		box-shadow: 0px 0px 5px rgba(0,0,0, 0.2) inset;
-		-moz-box-shadow: 0px 0px 5px rgba(0,0,0, 0.28) inset;
-		-webkit-box-shadow: 0px 0px 5px rgba(0,0,0, 0.2) inset;
-	}
+	
 
 	#kramaOrb
 	{
 		background-image: url(../images/interface/v_1/KramaOrb_red_small.png);
-		height: 120px;
+		height: 64px;
 		position: absolute;
 		margin: -65px 0px 0px 310px;
-		width: 120px;
+		width: 64px;
 		
-		/* CSS 3 */
+		/* CSS3 */
 		
 		background-size: 100%;
 		-moz-background-size: 100%;
 		-webkit-background-size: 100%;
 	}
+	
+.qtip-tip { min-width: 200px;}		
 	
 .tooltip 
 {
@@ -553,7 +564,7 @@ body
 	padding: 10px;
 	margin-top: -10px;
 		
-	/* CSS 3 */
+	/* CSS3 */
 	
 	border-radius: 5px;
 	-moz-border-radius: 5px;

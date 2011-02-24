@@ -8,22 +8,26 @@
 <?php echo css_asset('jquery.tipTip.css'); ?>
 <?php echo css_asset('interface.css'); ?>
 <?php echo css_asset('interface.worldmap.css'); ?>
+<?php echo css_asset('interface.content.friend.css'); ?>
 <?php echo css_asset('interface.conversation.css'); ?>
 </head>
 <body>
 <!--<div id="banner">Advertising</div>-->
 <div id="interface">
-	<div id="menuTop">
-		<span id="menuTop_playerlevel">45</span> 
-		<span id="menuTop_playerName">อัสดง นามไพเราะเสนาะหู</span>
-		<div id="menuTop_playerDetail"></div>
-		<span id="menuTop_playerJob">อาชีพ: <i>พนักงานเงินเดือน</i></span> 
-		<span id="menuTop_playerJobLavel">ระดับ: <i>4</i></span> 
-		<span id="menuTop_playerMoney">เงินสด: <i>3,589,741</i> ฿</span> 
-		<a id="menuTop_feedback" href="#">Feed Back</a> 
+	<div id="section_top">
+		<span id="section_top_player_profile_image"><?php echo image_asset('profile.jpg', '', array('alt'=>'Profile Image', 'width'=>'40 ', 'height'=>'40')); ?></span> 
+		
+		<div id="section_top_player_detail">
+			<span id="section_top_player_name">อัสดง นามไพเราะเสนาะหู</span>
+			<span id="section_top_player_level">ระดับ: <i>45</i></span> 
+			<span id="section_top_player_job">อาชีพ: <i>พนักงานเงินเดือน</i></span> 
+			<span id="section_top_player_job_lavel">ระดับ: <i>4</i></span> 
+			<span id="section_top_player_money">เงินสด: <i>3,589,741</i> ฿</span> 
+		</div>
+		<a id="section_top_feedback" href="#">Feed Back & Bug Report</a> 
 	</div>
-	<!--end menuTop-->
-	<div id="mainDisplay">
+	<!--end section_top-->
+	<div id="section_main">
 		<div id="tab_heading">
 			<div id="tab_heading_menu">
 				<a id="bt_popup_status" href="#nogo">Status</a> 
@@ -41,7 +45,7 @@
 				<a id="tab_heading_button_3" href="#nogo">สนทนา</a>
 			</div>
 		</div>
-		<!--end mainDisplay_tab_heading-->
+		<!--end section_main_tab_heading-->
 		<div id="tab_content">
 			<div id="tab_content_preload">Loading...</div>
 			<div id="tab_content_1" class="tab_content_full">
@@ -130,9 +134,9 @@
 					</div>
 				</div>
 			</div>
-			<div id="mainDisplay_tab_content_left_button"></div>
-			<div id="mainDisplay_tab_content_right_button"></div>
-		</div><!--end mainDisplay_tab_content-->
+			<div id="section_main_tab_content_left_button"></div>
+			<div id="section_main_tab_content_right_button"></div>
+		</div><!--end section_main_tab_content-->
 		<div id="popup_window">
 			<div id="popup_status" title="Status">
 				<h3>Main Status</h3>
@@ -144,7 +148,7 @@
 				<p>DEX: </p>
 				<h3>General Status</h3>
 				<p>LP: </p>
-				<p>SP: </p>
+				<p>MP: </p>
 				<p>ATK: </p>
 				<p>DEF: </p>
 				<p>DOD: </p>
@@ -154,40 +158,87 @@
 				<p>CAR: </p>
 			</div>
 			<div id="popup_skill" title="Skill">
-				<h3>Skill name 1</h3>
-				<?php echo image_asset('blank.png', '', array('alt'=>'Skill Image', 'width'=>'64', 'height'=>'64')); ?>
+				<h3>Skill name 5</h3>
+				<?php echo image_asset('skill/1.png', '', array('alt'=>'Skill Image', 'width'=>'64', 'height'=>'64')); ?>
 				<p>Desc: </p>
-				<h3>Skill name 2</h3>
-				<?php echo image_asset('blank.png', '', array('alt'=>'Skill Image', 'width'=>'64', 'height'=>'64')); ?>
+				<h3>Skill name 13</h3>
+				<?php echo image_asset('skill/2.png', '', array('alt'=>'Skill Image', 'width'=>'64', 'height'=>'64')); ?>
 				<p>Desc: </p>
 			</div>
 		</div><!--end popup_window-->
-	</div><!--end mainDisplay-->
-	<div id="menuBottom">
-		<div id="menuBottom_status">
+	</div><!--end section_main-->
+	<div id="section_bottom">
+		<div id="section_bottom_status">
 			<ul>
 				<li title="Life Point : 340 / 680"><b>LP</b><div id="LP_bar"><i>50%</i></div></li>
 				<li title="Health Status : Normal"><b>HS</b><div id="HS_bar"><i>ปกติ</i></div></li>
-				<li title="Spiritual Point : 200 / 200"><b>SP</b><div id="SP_bar"><i>100%</i></div></li>
+				<li title="Mind Power : 200 / 200"><b>MP</b><div id="SP_bar"><i>100%</i></div></li>
 				<li title="Stamina Point : 320 / 1000"><b>STA</b><div id="STA_bar"><i>32%</i></div></li>
 				<li title="Experience Point : 1800 / 2000"><b>EXP</b><div id="EXP_bar"><i>90%</i></div></li>
 			</ul>
 		</div>
-		<div id="menuBottom_chat">
-        
+		<div id="section_bottom_friend">
+			<a id="button_next" class="button_friend" href="#" title="Next">&#x25B6;</a>
+			<a id="button_prev" class="button_friend" href="#" title="Previous">&#x25C0;</a>
+        	<ul>
+				<li>
+					<?php echo image_asset('profile_friend_1.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
+					<p>Lv. 13</p>
+					<p>คน: ตกงาน</p>
+				</li>
+				<li>
+					<?php echo image_asset('profile_friend_2.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
+					<p>Lv. XX</p>
+					<p>คน: พนักงานเงินเดือน</p>
+				</li>
+				<li>
+					<?php echo image_asset('profile_friend_3.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
+					<p>Lv. XX</p>
+					<p>แมว: ช๊อคคคค</p>
+				</li>
+				<li>
+					<?php echo image_asset('profile_friend_4.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
+					<p>Lv. XX</p>
+					<p>สัตว์ป่า: ทรพา</p>
+				</li>
+				<li>
+					<?php echo image_asset('profile_friend_5.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
+					<p>Lv. XX</p>
+				</li>
+				<li>
+					<?php echo image_asset('profile_friend_6.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
+					<p>Lv. XX</p>
+				</li>
+				<li>
+					<?php echo image_asset('profile_friend_7.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
+					<p>Lv. XX</p>
+				</li>
+				<li>
+					<?php echo image_asset('profile_friend_8.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
+					<p>Lv. XX</p>
+				</li>
+				<li>
+					<?php echo image_asset('profile_friend_9.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
+					<p>Lv. XX</p>
+				</li>
+				<li>
+					<?php echo image_asset('profile_friend_10.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
+					<p>Lv. XX</p>
+				</li>
+			</ul>
         </div>
 		<div id="kramaOrb" title="ชีวิตตกต่ำ เพราะกรรมนำพา"></div>
-	</div><!--end menuBottom-->
+	</div><!--end section_bottom-->
 </div>
 <div id="fb-root"></div>
 <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
 <?php echo js_asset('facebook.js'); ?>
-<?php echo js_asset('jquery-1.4.4.min.js'); ?>
+<?php echo js_asset('jquery-1.4.2.min.js'); ?>
 <?php echo js_asset('jquery-ui-1.8.9.custom.min.js'); ?>
 <?php echo js_asset('jquery.qtip.min.js'); ?>
 <?php echo js_asset('jquery.tipTip.min.js'); ?>
 
-<?php echo js_asset('interface.mainDisplay.js'); ?>
+<?php echo js_asset('interface.section_main.js'); ?>
 <?php echo js_asset('interface.worldmap.js'); ?>
 </body>
 </html>
