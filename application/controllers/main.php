@@ -16,14 +16,16 @@ class Main extends CI_Controller
 	
  	function index() 
 	{		
-		/*$data = $this->facebook_connect();
-		print_array($data);
+		$facebook = $this->facebook_connect();
+		$language = $this->get_id_language($facebook['locale']);
+		
+		/*print_array($data);
 		exit();*/
 		$data = array(
-			'id' => '100001090580233',
-			'name' => 'Infinity Imagine',
-			'locale' => 1,
-			'image' => 'http://profile.ak.fbcdn.net/hprofile-ak-snc4/23254_100000381776149_958_q.jpg',
+			'id' => $facebook['uid'],
+			'name' => $facebook['name'],
+			'id_language' => $language,
+			'image' => $facebook['pic_square'],
 			'id_character' => 1,
 			'location' => 434,
 			'id_job' => 0,
@@ -54,7 +56,7 @@ class Main extends CI_Controller
 			'age' => 1,	 
 			'experience' => 0
 		);	
-	
+
 		$this->session->set_userdata($data);
 		
 		// set date
@@ -100,6 +102,14 @@ class Main extends CI_Controller
 	  
 	function facebook_connect()
 	{
+		$data = array(
+			'uid' => '100001090580233',
+			'name' => 'Infinity Imagine',
+			'locale' => 'en_US',
+			'pic_square' => 'http://profile.ak.fbcdn.net/hprofile-ak-snc4/186726_100001090580233_2911516_q.jpg'
+		);
+		return $data;
+		
 		$this->facebook = new Facebook(array(
 			'appId'  => '119204944778534',
 			'secret' => '1375dadc2ad75f35365a99ab3cc02c2a',
