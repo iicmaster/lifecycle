@@ -84,8 +84,7 @@
 		text-align: left;
 		padding: 2px;
 		overflow: hidden;	
-		width: 146px;
-	}
+		width: 146px;	}
 	
 	#section_bottom_friend ul li:hover
 	{
@@ -99,6 +98,11 @@
 		height: 40px;
 		margin-right: 5px;	
 	}
+	
+	#section_bottom_friend ul li p
+	{
+		white-space: nowrap;
+	}
 		
-/* End of file main.php */
-/* Location: ./application/controllers/main.php */		
+/* End of file interface.content.css */
+/* Location: ./assets/css/interface.content.css */		

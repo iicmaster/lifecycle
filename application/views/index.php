@@ -16,7 +16,6 @@
 <div id="interface">
 	<div id="section_top">
 		<span id="section_top_player_profile_image"><?php echo image_asset('profile.jpg', '', array('alt'=>'Profile Image', 'width'=>'40 ', 'height'=>'40')); ?></span> 
-		
 		<div id="section_top_player_detail">
 			<span id="section_top_player_name">อัสดง นามไพเราะเสนาะหู</span>
 			<span id="section_top_player_level">ระดับ: <i>45</i></span> 
@@ -39,10 +38,10 @@
 				<!--<a id="bt_popup_skill" href="#nogo">P.E.N.</a>-->
 				<!--<a id="bt_popup_skill" href="#nogo">Option</a>-->
 			</div>
-			<div id="tab_heading_buttonGroup">
+			<div id="tab_heading_button_group">
 				<a id="tab_heading_button_1" href="#nogo">แผนที่</a> 
 				<a id="tab_heading_button_2" href="#nogo">ป้ายบอกทาง</a> 
-				<a id="tab_heading_button_3" href="#nogo">สนทนา</a>
+				<!--<a id="tab_heading_button_3" href="#nogo">สนทนา</a>-->
 			</div>
 		</div>
 		<!--end section_main_tab_heading-->
@@ -227,7 +226,7 @@
 				</li>
 			</ul>
         </div>
-		<div id="kramaOrb" title="ชีวิตตกต่ำ เพราะกรรมนำพา"></div>
+		<div id="krama_orb" title="ชีวิตตกต่ำ เพราะกรรมนำพา"></div>
 	</div><!--end section_bottom-->
 </div>
 <div id="fb-root"></div>
@@ -238,7 +237,7 @@
 <?php echo js_asset('jquery.qtip.min.js'); ?>
 <?php echo js_asset('jquery.tipTip.min.js'); ?>
 
-<?php echo js_asset('interface.section_main.js'); ?>
+<?php echo js_asset('interface.js'); ?>
 <?php echo js_asset('interface.worldmap.js'); ?>
 </body>
 </html>

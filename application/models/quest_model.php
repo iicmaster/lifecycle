@@ -27,7 +27,7 @@ class Quest_model extends CI_Model {
 	 * get quest full structure
 	 *
 	 * @param 	int		$id_quest		id of quest
-	 * @return	array					name, id_npc, npc_name, objective { objective_no, name, description, status }, reward { name, amount}
+	 * @return	array					name, id_npc, npc_name, objective { objective_no, name, description, status }, reward { name, amount }
 	 */
 	 
 	function get_full_description($id_quest)

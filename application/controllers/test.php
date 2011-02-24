@@ -1,6 +1,6 @@
 <?php
 
-require_once(APPPATH . 'libraries/facebook.php');
+//require_once(APPPATH . 'libraries/facebook.php');
 
 class Test extends CI_Controller
 {
@@ -30,6 +30,7 @@ class Test extends CI_Controller
 		}
 		$this->load->model('quest_model');
 		print_array($this->quest_model->get_full_description(13));*/
+		
 		$this->load->view('map.php');
 	}
 	

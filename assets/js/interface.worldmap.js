@@ -1,10 +1,18 @@
+/* ------------------------------------------------------------------------ */
+/* interface.worldmap.js */	
+/* ------------------------------------------------------------------------ */
+
 $(function()
 {
 	
-/*--------------------------------------------------*/
-/* World Map */	
-/*--------------------------------------------------*/
+	/* ------------------------------------------------------------------------ */
+	/* World Map */	
+	/* ------------------------------------------------------------------------ */
 
+	/**
+	  * Set up qtip
+	  */
+	  
 	$("#worldmap [title]").qtip({
 		content: 
 		{
@@ -56,16 +64,51 @@ $(function()
 		}
 	});
 	
+	/* ------------------------------------------------------------------------ */
+
+	/**
+	  * Display map thumpnail when mouseover map icon
+	  */
+	
+	$('div[id^=map_icon_]').hover(function(){
+		
+		var id = $(this).attr('id').replace("map_icon_", "");
+		var tooltip = $('#map_icon_'+id).qtip('api');
+		var title = $(tooltip.elements.content).text();
+		var content = '<img alt="'+id+'" rel="'+id+'" src="http://localhost/lifecycle/assets/images/map/icon/'+id+'.jpg" />';
+		
+		tooltip.updateTitle(title);
+		tooltip.updateContent(content);
+		
+	});
+	
+	/* ------------------------------------------------------------------------ */
+
+	/**
+	  * Display map detail when click map's icon or map's thummbnail
+	  */
+	
 	$('div[id^=qtip] img, div[id^=map_icon_]').live('click', function(){
 		
 		$('div.qtip').hide();
 		
 		// set new value
-		var id = $(this).attr('rel');
-		//alert(id);
-		$("#map_info img").attr('src', 'http://localhost/lifecycle/assets/images/map/path/'+id+'.png');
-		$("#mapDetail").css('backgroundImage', 'url(http://localhost/lifecycle/assets/images/map/'+id+'.jpg)');
-		$("#interface").css('backgroundImage', 'url(http://localhost/lifecycle/assets/images/map/bg/'+id+'.jpg)');
+		var id_map = $(this).attr('rel');
+		
+		$("#interface").css('backgroundImage', 'url(http://localhost/lifecycle/assets/images/map/bg/' + id_map + '.jpg)');
+		$("#mapDetail").css('backgroundImage', 'url(http://localhost/lifecycle/assets/images/map/' + id_map + '.jpg)');
+		$("#map_info img").attr('src', 'http://localhost/lifecycle/assets/images/map/path/' + id_map + '.png');
+		
+		/* Ajax */
+		
+		var location_type = 'map';
+		var url = 'http://localhost/lifecycle/main/get_detail/' + location_type  + '/' + id_map;
+		$.post(url, function(data){
+				
+			$("#map_description h2").html(data['name']);
+			$("#map_description p").html(data['description']);
+			
+		},'json');	
 		
 		$("#worldmap").fadeOut(function(){
 			
@@ -73,34 +116,41 @@ $(function()
 			$("#bt_map_info_open").hide();
 			$("#mapDetail").fadeIn();
 		});
+		
 	});
 	
+	/* ------------------------------------------------------------------------ */
+	/* Map Detail */	
+	/* ------------------------------------------------------------------------ */
 	
-	$('div[id^=map_icon_]').hover(function(){
-		var id = $(this).attr('id').replace("map_icon_", "");
-		//alert(id);
-		var tooltip = $('#map_icon_'+id).qtip('api');
-		var title = $(tooltip.elements.content).text();
-		var content = '<img alt="'+id+'" rel="'+id+'" src="http://localhost/lifecycle/assets/images/map/icon/'+id+'.jpg" />';
-		tooltip.updateTitle(title);
-		tooltip.updateContent(content);
-	});
-	
-	
-	
-/*--------------------------------------------------*/
-/* Map Detail */	
-/*--------------------------------------------------*/
-
+	/**
+	  * 1. Close map description
+	  * 2. Show button map description
+	  */
+	  
 	$("#bt_map_info_close").click(function(){
 		$("#map_info").animate({left: '-720px'});
 		$("#bt_map_info_open").fadeIn();
 	});
 	
+	/* ------------------------------------------------------------------------ */
+
+	/**
+	  * 1. Open map description
+	  * 2. Hide button map description
+	  */
+	
 	$("#bt_map_info_open").click(function(){
 		$("#map_info").css('left', '720px').animate({left: '0'});
 		$(this).fadeOut();
 	});
+	
+	/* ------------------------------------------------------------------------ */
+
+	/**
+	  * 1. Hide map description
+	  * 2. Show world map
+	  */
 	
 	$("#bt_worldmap").click(function(){
 		$("#mapDetail").fadeOut(function(){
@@ -108,4 +158,9 @@ $(function()
 		});
 	});
 	
+	/* ------------------------------------------------------------------------ */
+	
 });
+
+/* End of file interface.worldmap.js */
+/* Location: ./assets/js/interface.worldmap.js */	

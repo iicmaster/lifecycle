@@ -161,7 +161,7 @@ body
 		margin-bottom: 10px;
 	}
 		
-		#tab_heading_buttonGroup
+		#tab_heading_button_group
 		{
 			background: url(../images/interface/v_1/sprite_tabHeading.png) no-repeat;
 			background-position: 0px 0px;
@@ -182,7 +182,7 @@ body
 			-webkit-box-shadow: 0px 0px 3px rgba(0,0,0, 0.2);
 		}
 			
-			#tab_heading_buttonGroup a
+			#tab_heading_button_group a
 			{
 				background: url(../images/interface/v_1/sprite_tabHeading.png) no-repeat;
 				color: #666;
@@ -194,12 +194,12 @@ body
 				text-decoration: none;
 			}
 			
-			#tab_heading_buttonGroup a:last-child
+			#tab_heading_button_group a:last-child
 			{
 				border-right: 1px solid #DDD;
 			}
 			
-			#tab_heading_buttonGroup a:hover
+			#tab_heading_button_group a:hover
 			{
 				background-position: 0px -30px;
 				
@@ -208,7 +208,7 @@ body
 				-webkit-box-shadow: rgba(0, 174, 239, 0.2) 0px 0px 8px;
 			}
 			
-			#tab_heading_buttonGroup a:active, #tab_heading_buttonGroup a.active
+			#tab_heading_button_group a:active, #tab_heading_button_group a.active
 			{
 				background-position: 0px -60px;
 				
@@ -531,13 +531,13 @@ body
 	
 	
 
-	#kramaOrb
+	#krama_orb
 	{
 		background-image: url(../images/interface/v_1/KramaOrb_red_small.png);
-		height: 64px;
+		height: 100px;
 		position: absolute;
-		margin: -65px 0px 0px 310px;
-		width: 64px;
+		margin: -60px 0px 0px 320px;
+		width: 100px;
 		
 		/* CSS3 */
 		

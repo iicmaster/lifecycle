@@ -1,3 +1,6 @@
+/* ------------------------------------------------------------------------ */
+/* interface.js */	
+/* ------------------------------------------------------------------------ */
 $(function()
 {
 	/*$("#tab_content_1").fadeIn(350);*/
@@ -8,7 +11,7 @@ $(function()
 	$("#tab_heading_button_1").click(function()
 	{
 		// active tab heading button
-		$("#tab_heading_buttonGroup a").removeClass();
+		$("#tab_heading_button_group a").removeClass();
 		$(this).addClass('active');
 		
 		// show tab content
@@ -40,7 +43,7 @@ $(function()
 	$("#tab_heading_button_2").click(function()
 	{
 		// active tab heading button
-		$("#tab_heading_buttonGroup a").removeClass();
+		$("#tab_heading_button_group a").removeClass();
 		$(this).addClass('active');
 		
 		
@@ -73,7 +76,7 @@ $(function()
 	$("#tab_heading_button_3").click(function()
 	{
 		// active tab heading button
-		$("#tab_heading_buttonGroup a").removeClass();
+		$("#tab_heading_button_group a").removeClass();
 		$(this).addClass('active');
 		
 		// show tab content
@@ -113,3 +116,6 @@ $(function()
 	});
 	
 })
+
+/* End of file interface.js */
+/* Location: ./assets/js/interface.js */	
