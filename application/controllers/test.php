@@ -1,6 +1,6 @@
 <?php
 
-//require_once(APPPATH . 'libraries/facebook.php');
+require_once(APPPATH . 'libraries/facebook.php');
 
 class Test extends CI_Controller
 {
@@ -16,12 +16,18 @@ class Test extends CI_Controller
 	
  	function index() 
 	{		
-		//$user = $this->facebook_connect();
-		//$this->get_item();
-		$this->get_npc_dialog(41);
-		
-		//$data['map_icon'] = $this->gen_map_icon();
-		//$this->load->view('index.php', $data);
+		$data = $this->facebook_connect();
+
+		if($this->check_register($data['id_facebook']))
+		{
+			$data['isFirst'] = TRUE;
+			$this->load->view('test.php', $data);
+		}
+		else
+		{
+			$data['isFirst'] = FALSE;
+			$this->load->view('test.php', $data);
+		}
 	}
 	
 	// ------------------------------------------------------------------------
@@ -57,33 +63,34 @@ class Test extends CI_Controller
 			'appId'  => '119204944778534',
 			'secret' => '1375dadc2ad75f35365a99ab3cc02c2a',
 			'cookie' => true,
-			'domain' => 'http://lc.in.th/'
+			'domain' => 'http://192.168.9.39/lifecycle/test/'
 		));
 		
 		$session = $this->facebook->getSession();
 		
 		$url = $this->facebook->getLoginUrl(array(
-			'req_perms' => 'publish_stream',
+			'req_perms' => 'publish_stream,user_online_presence,friends_online_presence',
 			'canvas'    => 1,
-			'fbconnect' => 0,
+			'fbconnect' => 1,
 			'next'      => 'http://apps.facebook.com/thelifecycle/'
-		));
+		));	
 			
-		if(!$session)
-		{
-			echo '<script>top.location.href = "' . $url . '";</script>';
-		}
-		else
+		if($session)
 		{
 			try
 			{
-				$data = $this->facebook->api('/me');
+				$data['id_facebook'] = $this->facebook->getUser();
+					
 				return $data;
 			}
 			catch(Exception $e)
 			{
-				echo '<script>top.location.href = "' . $url . '";</script>';
+				echo '<script>top.location.href = "' . $url . '";<script>';
 			}
+		}
+		else
+		{
+			echo '<script>top.location.href = "' . $url . '";</script>';
 		}	
 	}
 	
@@ -93,15 +100,8 @@ class Test extends CI_Controller
 	{
 		$this->load->model('player_model');
 		$data = $this->player_model->check_register($id_facebook);
-		if(!$data)
-		{
-			echo '1111';	
-		}
-		else
-		{
-			echo '222';	
-		}
-
+		
+		return $data;
 	}
 	
 	// ------------------------------------------------------------------------
