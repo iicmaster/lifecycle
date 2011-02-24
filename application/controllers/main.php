@@ -16,6 +16,47 @@ class Main extends CI_Controller
 	
  	function index() 
 	{		
+		/*$data = $this->facebook_connect();
+		print_array($data);
+		exit();*/
+		$data = array(
+			'id' => '100001090580233',
+			'name' => 'Infinity Imagine',
+			'locale' => 1,
+			'image' => 'http://profile.ak.fbcdn.net/hprofile-ak-snc4/23254_100000381776149_958_q.jpg',
+			'id_character' => 1,
+			'location' => 434,
+			'id_job' => 0,
+			'fighting' => 0,
+			'working' => 0,
+			'moving' => 0,
+			'working_start' => 0,
+			'working_end' => 0,
+			'moving_start' => 0,
+			'moving_end' => 0,
+			'life_point' => 0,	 
+			'stamina_point' => 0,	 
+			'strength' => 0, 
+			'vitality' => 0,	 
+			'speed' => 0, 
+			'commucation' => 0, 
+			'inteliigent' => 0, 
+			'dexterity' => 0, 
+			'attack' => 0,	 
+			'defend' => 0, 
+			'dodge' => 0,	 
+			'accuracy' => 0, 
+			'mind_power' => 0,	 
+			'charisma' => 0, 
+			'negotiation' => 0, 
+			'level' => 1, 
+			'job_level' => 1,	 
+			'age' => 1,	 
+			'experience' => 0
+		);	
+	
+		$this->session->set_userdata($data);
+		
 		// set date
 		$data['map_icon'] = $this->_gen_map_icon();
 		
@@ -101,7 +142,7 @@ class Main extends CI_Controller
 				
 				if($this->facebook->api($check_user_online) && $this->facebook->api($check_friends_online) && $this->facebook->api($check_post_wall))
 				{
-					$sql = 'SELECT uid, name, online_presence, locale, pic_square 
+					$sql = 'SELECT uid, name, locale, pic_square 
 							FROM user 
 							WHERE uid = ' . $id_facebook;
 							
@@ -111,6 +152,7 @@ class Main extends CI_Controller
 							'query'	 => $sql
 						)
 					);
+					//$data = $this->facebook->api('/me');
 					
 					return $data;
 				}
@@ -154,6 +196,12 @@ class Main extends CI_Controller
 		$this->load->model('map_model');
 		$data = $this->map_model->get_detail($location_type, $id_location);
 		echo $data;
+	}
+	
+	function get_id_language($abbreviation)
+	{
+		$this->load->model('player_model');
+		return $this->player_model->get_id_language($abbreviation);
 	}
 }
 

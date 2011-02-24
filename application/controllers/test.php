@@ -27,10 +27,17 @@ class Test extends CI_Controller
 		{
 			$data['isFirst'] = FALSE;
 			$this->load->view('test.php', $data);
+<<<<<<< HEAD
 		}
 		$this->load->model('quest_model');
 		print_array($this->quest_model->get_full_description(13));*/
 		
+=======
+		}*/
+		/*$this->load->model('quest_model');
+		print_array($this->quest_model->get_full_description(13));
+		$this->session->set_userdata();*/
+>>>>>>> 37f97add13a4565f33e354e90ddae5a48b45fec2
 		$this->load->view('map.php');
 	}
 	
