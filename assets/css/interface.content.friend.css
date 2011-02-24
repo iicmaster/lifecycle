@@ -1,0 +1,104 @@
+/* ------------------------------------------------------------------------ */
+/* #section_bottom_friend */
+/* ------------------------------------------------------------------------ */
+
+#section_bottom_friend
+{
+	background:transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF,endColorstr=#CCFFFFFF);
+	
+	background-color: rgba(255, 255, 255, 0.8);
+	border: 1px solid #CCC;
+	float: right;
+	height: 88px;
+	margin: 5px;
+	padding: 5px;
+	width: 343px;
+	
+	/* CSS3 */
+	
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+		
+	box-shadow: 0px 0px 5px rgba(0,0,0, 0.2) inset;
+	-moz-box-shadow: 0px 0px 5px rgba(0,0,0, 0.28) inset;
+	-webkit-box-shadow: 0px 0px 5px rgba(0,0,0, 0.2) inset;
+}
+	#section_bottom_friend .button_friend 
+	{
+		background: #DDD;	
+		border: inherit;
+		display: block;
+		height: 86px;
+		line-height: 86px;
+		text-align: center;
+		text-decoration: none;
+		width: 13px;
+		font-size:10px;
+	}
+	
+	#section_bottom_friend .button_friend:hover
+	{
+		background: #F90;
+	}
+	
+	#section_bottom_friend #button_prev 
+	{
+		float: left;
+		margin-right: 5.5px;
+		
+		/* CSS3 */
+		
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+		-moz-border-radius-topleft: 5px;
+		-moz-border-radius-bottomleft: 5px;
+	}
+	
+	#section_bottom_friend #button_next 
+	{
+		float: right;
+		margin-left: 5.5px;
+		
+		/* CSS3 */
+		
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+		-moz-border-radius-topright: 5px;
+		-moz-border-radius-bottomright: 5px;
+	}
+	
+	#section_bottom_friend ul
+	{
+		width: 300px;
+		height: 88px;
+		overflow: hidden;	
+	}
+	
+	#section_bottom_friend ul li
+	{
+		cursor: pointer;
+		float: left;	
+		height: 40px;
+		text-align: left;
+		padding: 2px;
+		overflow: hidden;	
+		width: 146px;
+	}
+	
+	#section_bottom_friend ul li:hover
+	{
+		background: #D8EAF7;
+	}
+	
+	#section_bottom_friend ul li img
+	{
+		float: left;
+		width: 40px;
+		height: 40px;
+		margin-right: 5px;	
+	}
+		
+/* End of file main.php */
+/* Location: ./application/controllers/main.php */		

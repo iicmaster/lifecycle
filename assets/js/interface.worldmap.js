@@ -11,6 +11,13 @@ $(function()
 			text: false,
 			title: ''
 		},
+		show: 
+		{ 
+			effect: 
+			{ 
+				type: 'fade' 
+			}
+		},
 		hide: 
 		{
 			fixed: true
@@ -21,6 +28,10 @@ $(function()
 			{
 				target: 'topMiddle',
 				tooltip: 'bottomMiddle'
+			},
+			adjust: 
+			{ 
+				screen: true 
 			}
 		},
 		style: 
@@ -28,7 +39,10 @@ $(function()
 			//name: 'light', 
 			tip: true, 
 			padding: 0,
-			'min-width': '200px',
+			width: 
+			{ 
+				min: 200 
+			},
 			'text-align': 'center',
 			'white-space': 'nowrap',
 			title: 
