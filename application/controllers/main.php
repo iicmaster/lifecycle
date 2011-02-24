@@ -55,7 +55,7 @@ class Main extends CI_Controller
 			'appId'  => '119204944778534',
 			'secret' => '1375dadc2ad75f35365a99ab3cc02c2a',
 			'cookie' => true,
-			'domain' => 'http://lc.in.th/'
+			'domain' => 'http://127.0.0.1/'
 		));
 		
 		$session = $this->facebook->getSession();
@@ -67,21 +67,58 @@ class Main extends CI_Controller
 			'next'      => 'http://apps.facebook.com/thelifecycle/'
 		));
 			
-		if(!$session)
-		{
-			echo '<script>top.location.href = "' . $url . '";</script>';
-		}
-		else
+		if($session)
 		{
 			try
 			{
 				$data = $this->facebook->api('/me');
-				return $data;
+				
+				$check_user_online = array(
+					'method' => 'users.hasAppPermission',
+					'uid' => $data['id'],
+					'ext_perm' => 'user_online_presence'
+				);
+				
+				$check_friends_online = array(
+					'method' => 'users.hasAppPermission',
+					'uid' => $data['id'],
+					'ext_perm' => 'friends_online_presence'
+				);
+				
+				$check_post_wall = array(
+					'method' => 'users.hasAppPermission',
+					'uid' => $data['id'],
+					'ext_perm' => 'publish_stream'
+				);
+				
+				if($this->facebook->api($check_user_online) && $this->facebook->api($check_friends_online) && $this->facebook->api($check_post_wall))
+				{
+					$sql = 'SELECT name, online_presence, locale, pic_square 
+							FROM user 
+							WHERE uid = ' . $data['id'];
+							
+					$data = $this->facebook->api(
+						array(
+							'method' => 'fql.query',
+							'query'	 => $sql
+						)
+					);
+					
+					return $data;
+				}
+				else
+				{
+					echo '<script>top.location.href = "' . $url . '";<script>';
+				}
 			}
 			catch(Exception $e)
 			{
 				echo '<script>top.location.href = "' . $url . '";</script>';
 			}
+		}
+		else
+		{
+			echo '<script>top.location.href = "' . $url . '";</script>';
 		}	
 	}
 	
