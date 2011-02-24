@@ -2,24 +2,26 @@
 
 //require_once(APPPATH . 'libraries/facebook.php');
 
-class Main extends CI_Controller
+class Test extends CI_Controller
 {
 	private $facebook;
 	
 	// ------------------------------------------------------------------------
 	
 	/**
-	  * Mian page and only this to display to player
+	  * Page for test code
 	  *
 	  * @access	public
 	  */
 	
  	function index() 
 	{		
-		// set date
-		$data['map_icon'] = $this->gen_map_icon();
+		//$user = $this->facebook_connect();
+		//$this->get_item();
+		$this->get_npc_dialog(41);
 		
-		$this->load->view('index.php', $data);
+		//$data['map_icon'] = $this->gen_map_icon();
+		//$this->load->view('index.php', $data);
 	}
 	
 	// ------------------------------------------------------------------------
@@ -104,7 +106,41 @@ class Main extends CI_Controller
 	
 	// ------------------------------------------------------------------------
 	
+	function get_item()
+	{
+		$this->load->model('item');
+		$data['arr'] = $this->item->get_info();
+		print_array($data['arr']);	
+	}
+	
+	function get_npc_dialog($id_npc)
+	{
+		$this->load->model('npc_model');
+		$data['arr'] = $this->npc_model->get_dialog($id_npc, 141);
+		print_array($data['arr']);
+	}
+	
+	function get_detail($location_type, $id_location)
+	{
+		$this->load->model('map_model');
+		$data['arr'] = $this->map_model->get_detail($location_type, $id_location);
+		print_array($data['arr']);
+	}
+	
+	function get_guidepost($id_location)
+	{
+		$this->load->model('map_model');
+		$data['arr'] = $this->map_model->get_guidepost($id_location);
+		print_array($data['arr']);
+	}
+	
+	function get_monster($id_section)
+	{
+		$this->load->model('map_model');
+		$data['arr'] = $this->map_model->get_monster($id_section);
+		print_array($data['arr']);
+	}
 }
 
-/* End of file main.php */
-/* Location: ./application/controllers/main.php */
+/* End of file test.php */
+/* Location: ./application/controllers/test.php */
