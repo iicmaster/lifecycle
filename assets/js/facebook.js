@@ -14,7 +14,7 @@ function invite_friends(title, message)
 	});
 }
 	
-function post_wall(url, picture, name, caption, description)
+function post_wall(caption, description, name, url, picture)
 {
 	FB.ui({
 		'method' : 'feed',
@@ -34,6 +34,7 @@ function post_wall(url, picture, name, caption, description)
 
 function get_friends()
 {
+	var data = '';
 	FB.api({'method' : 'friends.getAppUsers'},
 		function(fids)
 		{
@@ -45,8 +46,12 @@ function get_friends()
 				}, 
 				function(response)
 				{
-					return response;
-				}
+					for(var loop = 0;loop < response.length;loop++)
+					{
+						data += '<img src="' + response[loop]['pic_square'] + '" />';
+					}
+					$('#friends').html(data);
+				}		
 			);
 		}
 	);

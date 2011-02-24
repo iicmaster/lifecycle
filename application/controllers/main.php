@@ -49,13 +49,21 @@ class Main extends CI_Controller
 	
 	// ------------------------------------------------------------------------
 	
+	/**
+	  *
+	  * Check facebook login and permission
+	  *
+	  * $access public
+	  * $retuen array	$data 
+	  */
+	  
 	function facebook_connect()
 	{
 		$this->facebook = new Facebook(array(
 			'appId'  => '119204944778534',
 			'secret' => '1375dadc2ad75f35365a99ab3cc02c2a',
 			'cookie' => true,
-			'domain' => 'http://127.0.0.1/'
+			'domain' => 'http://lc.in.th/'
 		));
 		
 		$session = $this->facebook->getSession();
@@ -71,31 +79,31 @@ class Main extends CI_Controller
 		{
 			try
 			{
-				$data = $this->facebook->api('/me');
+				$id_facebook = $this->facebook->getUser();
 				
 				$check_user_online = array(
 					'method' => 'users.hasAppPermission',
-					'uid' => $data['id'],
+					'uid' => $id_facebook,
 					'ext_perm' => 'user_online_presence'
 				);
 				
 				$check_friends_online = array(
 					'method' => 'users.hasAppPermission',
-					'uid' => $data['id'],
+					'uid' => $id_facebook,
 					'ext_perm' => 'friends_online_presence'
 				);
 				
 				$check_post_wall = array(
 					'method' => 'users.hasAppPermission',
-					'uid' => $data['id'],
+					'uid' => $id_facebook,
 					'ext_perm' => 'publish_stream'
 				);
 				
 				if($this->facebook->api($check_user_online) && $this->facebook->api($check_friends_online) && $this->facebook->api($check_post_wall))
 				{
-					$sql = 'SELECT name, online_presence, locale, pic_square 
+					$sql = 'SELECT uid, name, online_presence, locale, pic_square 
 							FROM user 
-							WHERE uid = ' . $data['id'];
+							WHERE uid = ' . $id_facebook;
 							
 					$data = $this->facebook->api(
 						array(
@@ -124,19 +132,19 @@ class Main extends CI_Controller
 	
 	// ------------------------------------------------------------------------
 	
+	/**
+	  *
+	  * Check player register
+	  *
+	  * $access public
+	  * $return boolean		$data 
+	  */
+	  
 	function check_register($id_facebook)
 	{
 		$this->load->model('player_model');
 		$data = $this->player_model->check_register($id_facebook);
-		if(!$data)
-		{
-			echo '1111';	
-		}
-		else
-		{
-			echo '222';	
-		}
-
+		return $data;
 	}
 	
 	// ------------------------------------------------------------------------
