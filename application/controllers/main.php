@@ -21,6 +21,7 @@ class Main extends CI_Controller
 		
 		/*print_array($data);
 		exit();*/
+		
 		$data = array(
 			'id' => $facebook['uid'],
 			'name' => $facebook['name'],
@@ -188,7 +189,7 @@ class Main extends CI_Controller
 	  *
 	  * Check player register
 	  *
-	  * $access public
+	  * $access	public
 	  * $return boolean		$data 
 	  */
 	  
