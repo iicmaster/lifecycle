@@ -5,6 +5,7 @@
 <title>Life Cycle</title>
 <?php echo css_asset('reset.css'); ?>
 <?php echo css_asset('ui-lightness/jquery-ui-1.8rc2.custom.css'); ?>
+<?php echo css_asset('jquery.tipTip.css'); ?>
 <?php echo css_asset('interface.css'); ?>
 <?php echo css_asset('interface.worldmap.css'); ?>
 <?php echo css_asset('interface.conversation.css'); ?>
@@ -181,9 +182,10 @@
 <div id="fb-root"></div>
 <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
 <?php echo js_asset('facebook.js'); ?>
-<?php echo js_asset('jquery-1.4.2.min.js'); ?>
-<?php echo js_asset('jquery-ui-1.8rc2.custom.min.js'); ?>
+<?php echo js_asset('jquery-1.4.4.min.js'); ?>
+<?php echo js_asset('jquery-ui-1.8.9.custom.min.js'); ?>
 <?php echo js_asset('jquery.qtip.min.js'); ?>
+<?php echo js_asset('jquery.tipTip.min.js'); ?>
 
 <?php echo js_asset('interface.mainDisplay.js'); ?>
 <?php echo js_asset('interface.worldmap.js'); ?>

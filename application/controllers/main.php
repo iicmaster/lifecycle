@@ -6,22 +6,64 @@ class Main extends CI_Controller
 {
 	private $facebook;
 	
+	// ------------------------------------------------------------------------
+	
+	/**
+	  * Mian page and only this to display to player
+	  *
+	  * @access	public
+	  */
+	
  	function index() 
-	{
-		//$user = $this->facebook_connect();
-		//$this->get_item();
-		//$this->get_npc(41);
-		
+	{		
+		// set date
 		$data['map_icon'] = $this->gen_map_icon();
+		
 		$this->load->view('index.php', $data);
 	}
 	
-	function get_item()
+	// ------------------------------------------------------------------------
+	
+	/**
+	  * Page for test code
+	  *
+	  * @access	public
+	  */
+	
+ 	function test() 
 	{
-		$this->load->model('item');
-		$data['arr'] = $this->item->get_info();
-		print_array($data['arr']);	
+		//$user = $this->facebook_connect();
+		//$this->get_item();
+		$this->get_npc_dialog(41);
+		
 	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	  * Generate map's icon in world map
+	  *
+	  * @access	public
+	  * @return	string	$_html
+	  */
+	  
+	function gen_map_icon($status = 'enable', $type = 'all')
+	{
+		$this->load->model('map_model');
+		$_rows = $this->map_model->get_map($status, $type);
+		$_html = '';
+		
+		foreach($_rows as $_row)
+		{
+			$_class = ($_row->type == 0) ? 'map_icon_map' : 'map_icon_city';
+			
+			$_html .= '<div id="map_icon_'.$_row->id_map.'" class="'.$_class.'" rel="'.$_row->id_map.'" title="'.$_row->name.'"></div>';
+		}
+		
+		return $_html;
+	}
+	
+	// ------------------------------------------------------------------------
 	
 	function facebook_connect()
 	{
@@ -61,31 +103,6 @@ class Main extends CI_Controller
 	
 	// ------------------------------------------------------------------------
 	
-	/**
-	  * Generate map's icon in world map
-	  *
-	  * @access	public
-	  * @return	string	$html
-	  */
-	  
-	function gen_map_icon($status = 'enable', $type = 'all')
-	{
-		$this->load->model('map_model');
-		$_rows = $this->map_model->get_map($status, $type);
-		$_html = '';
-		
-		foreach($_rows as $_row)
-		{
-			$_class = ($_row->type == 0) ? 'map_icon_map' : 'map_icon_city';
-			
-			$_html .= '<div id="map_icon_'.$_row->id_map.'" class="'.$_class.'" rel="'.$_row->id_map.'" title="'.$_row->name.'"></div>';
-		}
-		
-		return $_html;
-	}
-	
-	// ------------------------------------------------------------------------
-	
 	function check_register($id_facebook)
 	{
 		$this->load->model('player_model');
@@ -101,7 +118,16 @@ class Main extends CI_Controller
 
 	}
 	
-	function get_npc($id_npc)
+	// ------------------------------------------------------------------------
+	
+	function get_item()
+	{
+		$this->load->model('item');
+		$data['arr'] = $this->item->get_info();
+		print_array($data['arr']);	
+	}
+	
+	function get_npc_dialog($id_npc)
 	{
 		$this->load->model('npc_model');
 		$data['arr'] = $this->npc_model->get_dialog($id_npc, 141);
