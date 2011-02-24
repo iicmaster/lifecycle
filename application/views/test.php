@@ -8,6 +8,7 @@
 <?php echo js_asset('jquery-1.4.4.min.js') ?>
 </head>
 <body>
+<input type="button" onClick="post_wall(1,2,3,4,5)" value="Post Wall" />
 <div id="friends"></div>
 <div id="fb-root"></div>
 <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>

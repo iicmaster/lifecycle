@@ -20,4 +20,13 @@ class Player_model extends CI_Model {
 			return TRUE;
 		}
 	}
+	
+	function get_id_language($abbreviation)
+	{
+		$sql = 'SELECT id_language FROM language WHERE abbreviation = "' . $abbreviation . '"';
+		$query = $this->db->query($sql);
+		$result = $query->result_array();
+		
+		return $result[0]['id_language'];
+	}
 }

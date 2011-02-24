@@ -6,14 +6,16 @@
 <?php echo js_asset('jquery-1.4.4.min.js') ?>
 <script>
 	$(function(){
+		var asd = 'asd';
 		$(':input.button').click(function(){
 			get_detail('map', $(this).attr('id'));
+			alert(asd);
 		});
 	});
 	function get_detail(location_type, id_location){
+		var d = Array('kok','kok');
 		$.post('<?php echo base_url(); ?>main/get_detail/' + location_type  + '/' + id_location, function(data){
-			alert(data['name']);
-			alert(data['description']);
+			asd = data;
 		},'json');	
 	}
 </script>
