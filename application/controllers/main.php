@@ -16,10 +16,14 @@ class Main extends CI_Controller
 	
  	function index() 
 	{		
+		/*$data = $this->facebook_connect();
+		print_array($data);
+		exit();*/
 		$data = array(
 			'id' => '100001090580233',
 			'name' => 'Infinity Imagine',
 			'locale' => 1,
+			'image' => 'http://profile.ak.fbcdn.net/hprofile-ak-snc4/23254_100000381776149_958_q.jpg',
 			'id_character' => 1,
 			'location' => 434,
 			'id_job' => 0,
@@ -138,7 +142,7 @@ class Main extends CI_Controller
 				
 				if($this->facebook->api($check_user_online) && $this->facebook->api($check_friends_online) && $this->facebook->api($check_post_wall))
 				{
-					/*$sql = 'SELECT uid, name, online_presence, locale, pic_square 
+					$sql = 'SELECT uid, name, locale, pic_square 
 							FROM user 
 							WHERE uid = ' . $id_facebook;
 							
@@ -147,8 +151,8 @@ class Main extends CI_Controller
 							'method' => 'fql.query',
 							'query'	 => $sql
 						)
-					);*/
-					$data = $this->facebook->api('/me');
+					);
+					//$data = $this->facebook->api('/me');
 					
 					return $data;
 				}
