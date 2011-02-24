@@ -33,9 +33,11 @@ class Quest_model extends CI_Model {
 	function get_full_description($id_quest)
 	{
 		$sql = 'SELECT * FROM quest
+				LEFT JOIN language_quest ON quest.id_quest = language_guest.id_quest 
+				LEFT JOIN npc ON quest.id_npc = npc.id_npc
 				LEFT JOIN quest_objective ON quest.id_quest = quest_objective.id_quest
 				LEFT JOIN quest_reward ON quest.id_quest = quest_reward.id_quest
-				WHERE id_quest = ' . $id_quest;
+				WHERE quest.id_quest = ' . $id_quest;
 				
 		$query = $this->db->query($sql);
 		

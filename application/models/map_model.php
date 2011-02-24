@@ -60,9 +60,13 @@ class Map_model extends CI_Model {
 		
 		$row = $this->db->get()->result_array();
 		
-		$result = comma_to_array($row[0]['id_' . $location_type] . ',' . $row[0]['name'] . ',' . $row[0]['description']);
+		$result = array(
+			'id_location' => $row[0]['id_' . $location_type],
+			'name'		  => $row[0]['name'],
+			'description'  => $row[0]['description']
+		);
 		
-		return $result;
+		return json_encode($result);
 	}	
 	 
 	// ------------------------------------------------------------------------
@@ -126,11 +130,16 @@ class Map_model extends CI_Model {
 		foreach($query->result() as $row)
 		{
 			$section = $this->get_detail('section', $row->target);
-			$guidepost = $row->id_guidepost . ',' . $section[1] . ',' . $section[2] . ',' . $row->image;
-			array_push($result, comma_to_array($guidepost));
+			$quidepost = array(
+				'id_target'	  => $row->id_guidepost,
+				'name'	  	  => $section[1],
+				'description' => $section[2],
+				'image'	      => $row->image
+			);
+			array_push($result, $guidepost);
 		}
 		
-		return $result;
+		return json_encode($result);
 	}
 	 
 	// ------------------------------------------------------------------------
@@ -167,7 +176,7 @@ class Map_model extends CI_Model {
 	  
 	function get_monster($id_section)
 	{
-		$sql = 'SELECT monster.id_monster, level_monster, id_section, name, description 
+		$sql = 'SELECT monster.id_monster, level_monster, name, description 
 				 FROM monster
 				 LEFT JOIN atlas_section_monster ON monster.id_monster = atlas_section_monster.id_monster
 				 LEFT JOIN language_monster ON monster.id_monster = language_monster.id_monster 
@@ -175,7 +184,7 @@ class Map_model extends CI_Model {
 			 
 		$query = $this->db->query($sql);
 		
-		return $query->result_array();
+		return json_encode($query->result_array());
 	}
 	
 	// ------------------------------------------------------------------------
@@ -197,7 +206,7 @@ class Map_model extends CI_Model {
 			 
 		$query = $this->db->query($sql);
 		
-		return $query->result_array();
+		return json_encode($query->result_array());
 	}
 	
 	// ------------------------------------------------------------------------

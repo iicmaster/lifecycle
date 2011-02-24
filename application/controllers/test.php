@@ -16,7 +16,7 @@ class Test extends CI_Controller
 	
  	function index() 
 	{		
-		$data = $this->facebook_connect();
+		/*$data = $this->facebook_connect();
 
 		if($this->check_register($data['id_facebook']))
 		{
@@ -28,6 +28,9 @@ class Test extends CI_Controller
 			$data['isFirst'] = FALSE;
 			$this->load->view('test.php', $data);
 		}
+		$this->load->model('quest_model');
+		print_array($this->quest_model->get_full_description(13));*/
+		$this->load->view('map.php');
 	}
 	
 	// ------------------------------------------------------------------------
@@ -110,35 +113,35 @@ class Test extends CI_Controller
 	{
 		$this->load->model('item');
 		$data['arr'] = $this->item->get_info();
-		print_array($data['arr']);	
+		echo $data['arr'];	
 	}
 	
 	function get_npc_dialog($id_npc)
 	{
 		$this->load->model('npc_model');
 		$data['arr'] = $this->npc_model->get_dialog($id_npc, 141);
-		print_array($data['arr']);
+		echo $data['arr'];
 	}
 	
 	function get_detail($location_type, $id_location)
 	{
 		$this->load->model('map_model');
 		$data['arr'] = $this->map_model->get_detail($location_type, $id_location);
-		print_array($data['arr']);
+		echo $data['arr'];
 	}
 	
 	function get_guidepost($id_location)
 	{
 		$this->load->model('map_model');
 		$data['arr'] = $this->map_model->get_guidepost($id_location);
-		print_array($data['arr']);
+		echo $data['arr'];
 	}
 	
 	function get_monster($id_section)
 	{
 		$this->load->model('map_model');
 		$data['arr'] = $this->map_model->get_monster($id_section);
-		print_array($data['arr']);
+		echo $data['arr'];
 	}
 }
 

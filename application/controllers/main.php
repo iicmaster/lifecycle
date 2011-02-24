@@ -149,6 +149,12 @@ class Main extends CI_Controller
 	
 	// ------------------------------------------------------------------------
 	
+	function get_detail($location_type, $id_location)
+	{
+		$this->load->model('map_model');
+		$data = $this->map_model->get_detail($location_type, $id_location);
+		echo $data;
+	}
 }
 
 /* End of file main.php */
