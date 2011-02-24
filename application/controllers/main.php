@@ -77,7 +77,7 @@ class Main extends CI_Controller
 		$session = $this->facebook->getSession();
 		
 		$url = $this->facebook->getLoginUrl(array(
-			'req_perms' => 'publish_stream',
+			'req_perms' => 'publish_stream,user_online_presence,friends_online_presence',
 			'canvas'    => 1,
 			'fbconnect' => 0,
 			'next'      => 'http://apps.facebook.com/thelifecycle/'
