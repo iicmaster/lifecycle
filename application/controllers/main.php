@@ -213,6 +213,12 @@ class Main extends CI_Controller
 		$this->load->model('player_model');
 		return $this->player_model->get_id_language($abbreviation);
 	}
+	
+	function feedback()
+	{
+		$this->load->model('support_model');
+		$this->support_model->feedback($_POST['type'], $_POST['topic'], $_POST['detail']);
+	}
 }
 
 /* End of file main.php */

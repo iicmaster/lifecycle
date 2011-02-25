@@ -17,7 +17,7 @@
 	<div id="section_top">
 		<span id="section_top_player_profile_image"><?php echo image_asset('profile.jpg', '', array('alt'=>'Profile Image', 'width'=>'40 ', 'height'=>'40')); ?></span> 
 		<div id="section_top_player_detail">
-			<span id="section_top_player_name">อัสดง นามไพเราะเสนาะหู</span>
+			<span id="section_top_player_name"><?php echo $this->session->userdata('name') ?></span>
 			<span id="section_top_player_level">ระดับ: <i>45</i></span> 
 			<span id="section_top_player_job">อาชีพ: <i>พนักงานเงินเดือน</i></span> 
 			<span id="section_top_player_job_lavel">ระดับ: <i>4</i></span> 
@@ -180,50 +180,6 @@
 			<a id="button_next" class="button_friend" href="#" title="Next">&#x25B6;</a>
 			<a id="button_prev" class="button_friend" href="#" title="Previous">&#x25C0;</a>
         	<ul>
-				<li>
-					<?php echo image_asset('profile_friend_1.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
-					<p>Lv. 13</p>
-					<p>คน: ตกงาน</p>
-				</li>
-				<li>
-					<?php echo image_asset('profile_friend_2.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
-					<p>Lv. XX</p>
-					<p>คน: พนักงานเงินเดือน</p>
-				</li>
-				<li>
-					<?php echo image_asset('profile_friend_3.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
-					<p>Lv. XX</p>
-					<p>แมว: ช๊อคคคค</p>
-				</li>
-				<li>
-					<?php echo image_asset('profile_friend_4.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
-					<p>Lv. XX</p>
-					<p>สัตว์ป่า: ทรพา</p>
-				</li>
-				<li>
-					<?php echo image_asset('profile_friend_5.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
-					<p>Lv. XX</p>
-				</li>
-				<li>
-					<?php echo image_asset('profile_friend_6.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
-					<p>Lv. XX</p>
-				</li>
-				<li>
-					<?php echo image_asset('profile_friend_7.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
-					<p>Lv. XX</p>
-				</li>
-				<li>
-					<?php echo image_asset('profile_friend_8.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
-					<p>Lv. XX</p>
-				</li>
-				<li>
-					<?php echo image_asset('profile_friend_9.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
-					<p>Lv. XX</p>
-				</li>
-				<li>
-					<?php echo image_asset('profile_friend_10.jpg', '', array('alt'=>'Friend\'s Profile Image')); ?>
-					<p>Lv. XX</p>
-				</li>
 			</ul>
         </div>
 		<div id="krama_orb" title="ชีวิตตกต่ำ เพราะกรรมนำพา"></div>
@@ -231,13 +187,12 @@
 </div>
 <div id="fb-root"></div>
 <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
-<?php echo js_asset('facebook.js'); ?>
 <?php echo js_asset('jquery-1.4.2.min.js'); ?>
 <?php echo js_asset('jquery-ui-1.8.9.custom.min.js'); ?>
 <?php echo js_asset('jquery.qtip.min.js'); ?>
 <?php echo js_asset('jquery.tipTip.min.js'); ?>
-
 <?php echo js_asset('interface.js'); ?>
 <?php echo js_asset('interface.worldmap.js'); ?>
+<?php echo js_asset('facebook.js'); ?>
 </body>
 </html>
