@@ -58,12 +58,14 @@ class Map_model extends CI_Model {
 		$this->db->join('language_atlas_' . $location_type, 'atlas_' . $location_type . '.id_' . $location_type . ' = language_atlas_' . $location_type . '.id_' . $location_type, 'left');
 		$this->db->where('id_language', 1);
 		
-		$row = $this->db->get()->result_array();
+		$rows = $this->db->get()->result_array();
+		
+		//print_array($rows);
 		
 		$result = array(
-			'id_location' => $row[0]['id_' . $location_type],
-			'name'		  => $row[0]['name'],
-			'description'  => $row[0]['description']
+			'id_location' => $rows[0]['id_' . $location_type],
+			'name'		  => $rows[0]['name'],
+			'description'  => $rows[0]['description']
 		);
 		
 		return json_encode($result);
@@ -118,28 +120,38 @@ class Map_model extends CI_Model {
 	  *
 	  * @access	public
 	  * @param 	int		$id_section		id of section
-	  * @return	array	$result			id_target, name, descrption, image
+	  * @return	array	$result			type, id_target, name, descrption, image
 	  */
 	  
 	function get_guidepost($id_section)
 	{ 
-		$sql = 'SELECT id_guidepost, target, image FROM atlas_guidepost WHERE location = ' . $id_section;
+		$sql = 'SELECT id_guidepost, target, target_type, image FROM atlas_guidepost WHERE id_location = ' . $id_section .' ORDER BY target_type';
 		$query = $this->db->query($sql);
 		$result = array();
 		
+		//print_array($query->result_array());
+		
 		foreach($query->result() as $row)
 		{
-			$section = $this->get_detail('section', $row->target);
+			//print_array($row);
+			
+			$target_type = ($row->target_type == 0) ? 'section' : 'store';
+			
+			$section = json_decode($this->get_detail($target_type, $row->target));
+			
+			//print_array($section);
+			
 			$quidepost = array(
-				'id_target'	  => $row->id_guidepost,
-				'name'	  	  => $section[1],
-				'description' => $section[2],
-				'image'	      => $row->image
+				'target_type'	=> $target_type,
+				'id_target'	  	=> $row->target,
+				'name'	  	 	=> $section->name,
+				'description'	=> $section->description,
+				'image'	      	=> $row->image
 			);
-			array_push($result, $guidepost);
+			array_push($result, $quidepost);
 		}
 		
-		return json_encode($result);
+		return $result;
 	}
 	 
 	// ------------------------------------------------------------------------

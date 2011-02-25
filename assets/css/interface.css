@@ -68,6 +68,14 @@ body
 }	
 
 	
+	
+	#section_top span 
+	{ 
+		float: left; 
+		line-height: 20px;
+		margin-right: 10px; 
+	}	
+	
 	#section_top_player_profile_image { margin: 0px 20px 0px 0px; }
 	
 	#section_top_player_detail 
@@ -80,13 +88,6 @@ body
 		top: 5px;
 		left: 50px;
 	}
-	
-		#section_top_player_detail span 
-		{ 
-			float: left; 
-			line-height: 20px;
-			margin-right: 10px; 
-		}	
 		
 		#section_top_player_name 
 		{ 
@@ -101,6 +102,24 @@ body
 		
 		#section_top_player_job { clear: left; }
 	
+	#section_top_player_location
+	{ 
+		position: absolute; 
+		height: 38px;
+		padding: 0px 5px;
+		top: 5px;
+		left: 360px;
+	}
+		#section_top_player_location_map 
+		{ 
+			font-size: 16px; 
+			font-weight: bold; 
+		}
+		
+		#section_top_player_location_section
+		{ 
+			clear: left;
+		}
 	
 	
 	#section_top_feedback
@@ -133,17 +152,9 @@ body
 		
 		/* CSS3 */
 		
-		/*border-radius: 40px;
-		-moz-border-radius: 40px;
-		-webkit-border-radius: 40px;*/
-		
 		box-shadow: 0px 0px 3px rgba(0,0,0, 0.2);
 		-moz-box-shadow: 0px 0px 3px rgba(0,0,0, 0.2);
 		-webkit-box-shadow: 0px 0px 3px rgba(0,0,0, 0.2);
-		
-		/*box-shadow: #F00 0px 0px 3px;
-		-moz-box-shadow: #F00 0px 0px 3px;
-		-webkit-box-shadow: #F00 0px 0px 3px;*/
 	}
 
 #section_main
@@ -378,10 +389,13 @@ body
 		ul.list li h3 {  font-size: 15px; margin-top: 5px; }
 		ul.list li p 
 		{ 
-			position:relative;
+			display: block;
 			float: left;
-			width: 235px;
+			height: 36px;
+			overflow: hidden;
 			padding-top: 5px;
+			position:relative;
+			width: 235px;
 		}
 		
 		ul.list li p.price span
@@ -545,8 +559,6 @@ body
 		-moz-background-size: 100%;
 		-webkit-background-size: 100%;
 	}
-	
-.qtip-tip { min-width: 200px;}		
 	
 .tooltip 
 {

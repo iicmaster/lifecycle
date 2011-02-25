@@ -23,6 +23,10 @@
 			<span id="section_top_player_job_lavel">ระดับ: <i>4</i></span> 
 			<span id="section_top_player_money">เงินสด: <i>3,589,741</i> ฿</span> 
 		</div>
+		<div id="section_top_player_location">
+			<span id="section_top_player_location_map" rel="1" >เมืองหลวงของมนุษย์ นิพันนรา</span>
+			<span id="section_top_player_location_section" rel="399" >ตลาดสด</span> 
+		</div>
 		<a id="section_top_feedback" href="#">Feed Back & Bug Report</a> 
 	</div>
 	<!--end section_top-->
@@ -67,22 +71,11 @@
 			</div>
 			<div id="tab_content_2">
 				<div class="tab_content_left">		
-					<ul class="list">
-						<li>
-							<?php echo image_asset('guidepost/tst_01.png', '', array('alt'=>'')); ?>
-							<h3>สถานีขนส่งสาธารณะ</h3>
-							<p>-</p>
-						</li>
-						<li>
-							<?php echo image_asset('guidepost/tst_02.png', '', array('alt'=>'')); ?>
-							<h3>ตลาดสวนมะม่วง</h3>
-							<p>-</p>
-						</li>
-					</ul>
+					<ul id="content_guidepost" class="list"></ul>
 				</div>
 				<div class="tab_content_right">
-					<ul class="list">
-						<li>
+					<ul id="content_npc" class="list">
+						<!--<li>
 							<?php echo image_asset('npc/icon_7.png', '', array('alt'=>'ดอกเตอร์ มีนา รักวิทย์')); ?>
 							<h3>ดอกเตอร์ มีนา รักวิทย์</h3>
 							<p>นักวิทยาศาสตร์ประจำสถาบันการวิจัย และพัฒนาแห่งสหพันธ์</p>
@@ -101,7 +94,7 @@
 							<?php echo image_asset('npc/icon_12.png', '', array('alt'=>'เฟร็ด บุญมี')); ?>
 							<h3>เฟร็ด บุญมี</h3>
 							<p>ลูกน้องคนสนิทของเสี่ยเช็ง และเป็นพี่คนกลางในบรรดาพี่น้องร่วมสาบานทั้ง 3</p>
-						</li>
+						</li>-->
 					</ul>	
 				</div>
 			</div>
@@ -192,6 +185,7 @@
 <?php echo js_asset('jquery.qtip.min.js'); ?>
 <?php echo js_asset('jquery.tipTip.min.js'); ?>
 <?php echo js_asset('interface.js'); ?>
+<?php echo js_asset('interface.guidepost.js'); ?>
 <?php echo js_asset('interface.worldmap.js'); ?>
 <?php echo js_asset('facebook.js'); ?>
 </body>

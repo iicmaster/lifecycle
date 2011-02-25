@@ -4,8 +4,8 @@
 $(function()
 {
 	/*$("#tab_content_1").fadeIn(350);*/
-	$("#tab_heading_button_1").addClass("active");
-	$("#tab_content_1").show();
+	$("#tab_heading_button_2").addClass("active");
+	$("#tab_content_2").show();
 	
 	
 	$("#tab_heading_button_1").click(function()
