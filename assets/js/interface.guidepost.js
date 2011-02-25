@@ -71,7 +71,7 @@ $(function()
 			
 		},'json')
 		//.success(function() { alert("second success"); })
-		.error(function() { alert("Error load content แก๊บเช็คด่วนที่ Section: " + id_location); })
+		.error(function() { alert('Error get_guidepost(' + id_location + ') แก๊บเช็คด่วนที่ Section: ' + id_location); })
 		//.complete(function() { alert("complete"); });
 	}
 	
@@ -97,7 +97,7 @@ $(function()
 			$.each(data, function(index){
 				
 				content = 	'<li>' +
-								'<img src="' + url_image + data[index].image + '.png" />' +
+								'<img src="' + url_image + data[index].id_npc + '.png" />' +
 								'<h3>' + data[index].name + '</h3>' +
 								'<p>' + data[index].description + '</p>' +
 							'</li>';
@@ -109,7 +109,8 @@ $(function()
 			//$("#tab_content_left ul.list").html();
 			
 			
-		},'json');
+		},'json')
+		.error(function() { alert('Error get_npc(' + id_location + ') แก๊บเช็คด่วนที่ Section: ' + id_location); })
 	}
 	
 	/* ------------------------------------------------------------------------ */
@@ -175,7 +176,7 @@ $(function()
 			
 		},'json');	
 	}
-	
+		
 	/* ------------------------------------------------------------------------ */
 	
 });
