@@ -15,7 +15,7 @@
 <!--<div id="banner">Advertising</div>-->
 <div id="interface">
 	<div id="section_top">
-		<span id="section_top_player_profile_image"><?php echo image_asset('profile.jpg', '', array('alt'=>'Profile Image', 'width'=>'40 ', 'height'=>'40')); ?></span> 
+		<span id="section_top_player_profile_image"><?php echo '<img src="' . $this->session->userdata('image') . '" width="40" heigth="40" />' ?></span> 
 		<div id="section_top_player_detail">
 			<span id="section_top_player_name"><?php echo $this->session->userdata('name') ?></span>
 			<span id="section_top_player_level">ระดับ: <i>45</i></span> 

@@ -1,4 +1,5 @@
 <?php
+
 class Support_model extends CI_Model {
 
 	function feedback($type, $topic, $detail)
@@ -20,3 +21,5 @@ class Support_model extends CI_Model {
 	}
 	
 }
+
+?>

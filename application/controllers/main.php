@@ -17,16 +17,16 @@ class Main extends CI_Controller
  	function index() 
 	{		
 		$facebook = $this->facebook_connect();
-		$language = $this->get_id_language($facebook['locale']);
+		$language = $this->get_id_language($facebook[0]['locale']);
 		
 		/*print_array($data);
 		exit();*/
 		
 		$data = array(
-			'id' => $facebook['uid'],
-			'name' => $facebook['name'],
+			'id' => $facebook[0]['uid'],
+			'name' => $facebook[0]['name'],
 			'id_language' => $language,
-			'image' => $facebook['pic_square'],
+			'image' => $facebook[0]['pic_square'],
 			'id_character' => 1,
 			'location' => 434,
 			'id_job' => 0,
@@ -103,12 +103,12 @@ class Main extends CI_Controller
 	  
 	function facebook_connect()
 	{
-		$data = array(
+		$data = array(array(
 			'uid' => '100001090580233',
 			'name' => 'Infinity Imagine',
 			'locale' => 'en_US',
 			'pic_square' => 'http://profile.ak.fbcdn.net/hprofile-ak-snc4/186726_100001090580233_2911516_q.jpg'
-		);
+		));
 		return $data;
 		
 		$this->facebook = new Facebook(array(
