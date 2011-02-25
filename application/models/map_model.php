@@ -223,6 +223,18 @@ class Map_model extends CI_Model {
 	
 	// ------------------------------------------------------------------------
 	
+	function get_map_name($id_section)
+	{
+		$sql = 'SELECT name, description
+				FROM atlas_section
+				LEFT JOIN atlas_zone ON atlas_section.id_section = atlas_zone.id_section
+				LEFT JOIN atlas_map ON atlas_zone.id_zone = atlas_map.id_zone
+				LEFT JOIN language_atlas_map ON atlas_map.id_map = language_atlas_map.id_map
+				WHERE atlas_section.id_section = ' . $id_section . ' AND id_language = 1';
+		$query = $this->db->query($sql);
+		
+		return json_encode($query->result_array());
+	}
 }
 
 /* End of file map.php */
