@@ -30,14 +30,15 @@ class Test extends CI_Controller
 <<<<<<< HEAD
 		}
 		$this->load->model('quest_model');
-		print_array($this->quest_model->get_full_description(13));*/
+		print_array($this->quest_model->get_full_description(13));
 		
 =======
 		}*/
 		/*$this->load->model('quest_model');
 		print_array($this->quest_model->get_full_description(13));
-		$this->session->set_userdata();*/
->>>>>>> 37f97add13a4565f33e354e90ddae5a48b45fec2
+		$this->session->set_userdata();
+>>>>>>> 37f97add13a4565f33e354e90ddae5a48b45fec2*/
+
 		$this->load->view('map.php');
 	}
 	
@@ -124,6 +125,14 @@ class Test extends CI_Controller
 		echo $data['arr'];	
 	}
 	
+	function get_npc($id_location)
+	{
+		$this->load->model('map_model');
+		$data['arr'] = $this->map_model->get_npc($id_location);
+		
+		echo json_encode($data['arr']);
+	}
+	
 	function get_npc_dialog($id_npc)
 	{
 		$this->load->model('npc_model');
@@ -138,10 +147,13 @@ class Test extends CI_Controller
 		echo $data['arr'];
 	}
 	
-	function get_guidepost($id_location)
+	function get_guidepost($id_section)
 	{
 		$this->load->model('map_model');
-		$data['arr'] = $this->map_model->get_guidepost($id_location);
+		
+		$data['arr'] = $this->map_model->get_guidepost($id_section);
+		
+		//print_array(json_decode($data['arr']));
 		echo $data['arr'];
 	}
 	

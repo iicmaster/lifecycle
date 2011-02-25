@@ -28,7 +28,7 @@ class Main extends CI_Controller
 			'id_language' => $language,
 			'image' => $facebook['pic_square'],
 			'id_character' => 1,
-			'location' => 434,
+			'location' => 399,
 			'id_job' => 0,
 			'fighting' => 0,
 			'working' => 0,
@@ -89,6 +89,38 @@ class Main extends CI_Controller
 		}
 		
 		return $_html;
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	  * Get guidepost in location (section, store, company)
+	  *
+	  * @access	public
+	  * @param 	int		$id_section		id of section
+	  * @return json
+	  */
+	
+	function get_guidepost($id_section)
+	{
+		$this->load->model('map_model');
+		echo json_encode($this->map_model->get_guidepost($id_section));
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	  * Get NPC in location (section, store, company)
+	  *
+	  * @access	public
+	  * @param 	int		$id_section		id of section
+	  * @return	json
+	  */
+	
+	function get_npc($id_location)
+	{
+		$this->load->model('map_model');		
+		echo json_encode($this->map_model->get_npc($id_location));
 	}
 	
 	// ------------------------------------------------------------------------
