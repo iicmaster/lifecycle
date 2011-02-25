@@ -1,0 +1,95 @@
+/* ------------------------------------------------------------------------ */
+/* interface.content */
+/* ------------------------------------------------------------------------ */
+
+/* ------------------------------------------------------------------------ */
+/* Content List */
+/* ------------------------------------------------------------------------ */
+		
+		ul#content_guidepost.list  
+		{ 
+			clear: both; 
+			height: 270px;
+			overflow-x: hidden;
+			overflow-y: scroll;
+		}
+		
+		ul.list li
+		{
+			height: 75px;
+			padding: 6px 5px;
+			border-bottom: 1px dashed #DDD;
+			overflow: hidden;
+			
+			/* CSS3 */
+			
+			border-radius: 5px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+		}
+		
+		ul.list li:first-child { border-top: 1px dashed #DDD; }
+		
+		ul.list li:hover
+		{
+			background-color: #FFEDE2;
+			border-left: 1px dashed #DDD;
+			border-right: 1px dashed #DDD;
+			cursor: pointer;
+			/*padding-left: 20px;*/
+			padding-left: 4px;
+			
+			box-shadow: rgba(255, 143, 53, 0.7) 0px 0px 10px;
+			-moz-box-shadow: rgba(255, 143, 53, 0.7) 0px 0px 10px;
+			-webkit-box-shadow: rgba(255, 143, 53, 0.7) 0px 0px 10px;
+		}
+		
+		ul.list li img { float: left; margin-right: 5px; }
+		ul.list li h3 {  font-size: 15px; margin-top: 5px; }
+		ul.list li p 
+		{ 
+			display: block;
+			float: left;
+			height: 36px;
+			overflow: hidden;
+			padding-top: 5px;
+			position:relative;
+			width: 230px;
+		}
+		
+		ul.list li p.price span
+		{
+			background-color: #66BC5A;
+			/*background-color: rgba(0, 155, 0, 0.6);*/
+			border: 1px solid #090;
+			color: #FFF;
+			font-weight: bold;
+			padding: 3px 15px;
+			position: absolute;
+			right: 5px;	
+			
+			/* CSS3 */
+			
+			text-shadow: -1px -1px 0 #4190AF;
+		
+			border-radius: 24px;
+			-moz-border-radius: 24px;
+			-webkit-border-radius: 24px;
+			
+			box-shadow: 0px 0px 4px rgba(0, 155, 0, 0.6));
+			-moz-box-shadow: 0px 0px 4px rgba(0, 155, 0, 0.6);
+			-webkit-box-shadow: 0px 0px 4px rgba(0,0,0, 0.3);
+		}
+		
+		ul.list li a
+		{
+			color: #09F;
+			height: 24px;
+			line-height: 24px;
+			text-decoration: none;
+		}
+
+
+		
+/* End of file interface.content.css */
+/* Location: ./assets/css/interface.content.css */		

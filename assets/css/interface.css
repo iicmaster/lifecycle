@@ -1,3 +1,7 @@
+/* ------------------------------------------------------------------------ */
+/* interface.css */	
+/* ------------------------------------------------------------------------ */
+
 body
 { 
 	background: #444;
@@ -357,79 +361,6 @@ body
 			text-align: right;
 		}
 		
-		ul.list li
-		{
-			height: 75px;
-			padding: 6px 5px;
-			border-bottom: 1px dashed #DDD;
-			overflow: hidden;
-			
-			border-radius: 5px;
-			-moz-border-radius: 5px;
-			-webkit-border-radius: 5px;
-		}
-		
-		ul.list li:first-child { border-top: 1px dashed #DDD; }
-		
-		ul.list li:hover
-		{
-			background-color: #FFEDE2;
-			border-left: 1px dashed #DDD;
-			border-right: 1px dashed #DDD;
-			cursor: pointer;
-			/*padding-left: 20px;*/
-			padding-left: 4px;
-			
-			box-shadow: rgba(255, 143, 53, 0.7) 0px 0px 10px;
-			-moz-box-shadow: rgba(255, 143, 53, 0.7) 0px 0px 10px;
-			-webkit-box-shadow: rgba(255, 143, 53, 0.7) 0px 0px 10px;
-		}
-		
-		ul.list li img { float: left; margin-right: 5px; }
-		ul.list li h3 {  font-size: 15px; margin-top: 5px; }
-		ul.list li p 
-		{ 
-			display: block;
-			float: left;
-			height: 36px;
-			overflow: hidden;
-			padding-top: 5px;
-			position:relative;
-			width: 235px;
-		}
-		
-		ul.list li p.price span
-		{
-			position: absolute;
-			right: 5px;	
-			padding: 3px 15px;
-			border: 1px solid #090;
-			/*background-color: rgba(0, 155, 0, 0.6);*/
-			background-color: #66BC5A;
-			color: #FFF;
-			
-			
-			text-shadow: -1px -1px 0 #4190AF;
-		
-			border-radius: 24px;
-			-moz-border-radius: 24px;
-			-webkit-border-radius: 24px;
-			
-			box-shadow: 0px 0px 4px rgba(0, 155, 0, 0.6));
-			-moz-box-shadow: 0px 0px 4px rgba(0, 155, 0, 0.6);
-			-webkit-box-shadow: 0px 0px 4px rgba(0,0,0, 0.3);
-			
-			font-weight: bold;
-		}
-		
-		ul.list li a
-		{
-			color: #09F;
-			height: 24px;
-			line-height: 24px;
-			text-decoration: none;
-		}
-
 #section_bottom
 { 
 	height: 110px;
@@ -542,8 +473,6 @@ body
 			#SP_bar, #SP_bar > div.ui-progressbar-value 	{ background-position: 0px -40px; }
 			#STA_bar, #STA_bar > div.ui-progressbar-value 	{ background-position: 0px -80px; }
 			#EXP_bar, #EXP_bar > div.ui-progressbar-value 	{ background-position: 0px -100px; width: 296px; }
-	
-	
 
 	#krama_orb
 	{
@@ -560,29 +489,5 @@ body
 		-webkit-background-size: 100%;
 	}
 	
-.tooltip 
-{
-	display:none;
-/*	background:transparent url(../js/jquery.tools/img/tooltip/white_arrow.png);
-	font-size:12px;
-	height:70px;
-	width:160px;
-	padding:25px;*/
-	
-	background-color: #FFF;
-	background: rgba(255, 255, 255, 0.9);
-	
-	border: 1px solid #999;
-	padding: 10px;
-	margin-top: -10px;
-		
-	/* CSS3 */
-	
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	
-	box-shadow: 0px 0px 8px rgba(0,0,0, 0.4);
-	-moz-box-shadow: 0px 0px 8px rgba(0,0,0, 0.4);
-	-webkit-box-shadow: 0px 0px 5px rgba(0,0,0, 0.2);
-}
+/* End of file interface.css */
+/* Location: ./assets/css/interface.css */	

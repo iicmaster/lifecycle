@@ -3,13 +3,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Life Cycle</title>
+<!-- CSS -->
 <?php echo css_asset('reset.css'); ?>
 <?php echo css_asset('ui-lightness/jquery-ui-1.8rc2.custom.css'); ?>
 <?php echo css_asset('jquery.tipTip.css'); ?>
 <?php echo css_asset('interface.css'); ?>
 <?php echo css_asset('interface.worldmap.css'); ?>
+<?php echo css_asset('interface.guidepost.css'); ?>
+<?php echo css_asset('interface.content.css'); ?>
 <?php echo css_asset('interface.content.friend.css'); ?>
 <?php echo css_asset('interface.conversation.css'); ?>
+
+<!-- JS -->
+<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
+<?php echo js_asset('jquery-1.5.1.min.js'); ?>
+<?php echo js_asset('jquery-ui-1.8.9.custom.min.js'); ?>
+<?php echo js_asset('jquery.qtip.min.js'); ?>
+<?php echo js_asset('jquery.tipTip.min.js'); ?>
+<?php echo js_asset('interface.js'); ?>
+<?php echo js_asset('interface.guidepost.js'); ?>
+<?php echo js_asset('interface.worldmap.js'); ?>
 </head>
 <body>
 <!--<div id="banner">Advertising</div>-->
@@ -24,8 +37,6 @@
 			<span id="section_top_player_money">เงินสด: <i>3,589,741</i> ฿</span> 
 		</div>
 		<div id="section_top_player_location">
-			<span id="section_top_player_location_map" rel="1" >เมืองหลวงของมนุษย์ นิพันนรา</span>
-			<span id="section_top_player_location_section" rel="399" >ตลาดสด</span> 
 		</div>
 		<a id="section_top_feedback" href="#">Feed Back & Bug Report</a> 
 	</div>
@@ -62,19 +73,23 @@
 						<a id="bt_map_info_close" class="ui-icon ui-icon-closethick">close</a>
 						<?php echo image_asset('map/path/4.png', '', array('alt'=>'Path')); ?>
 						<div id="map_description">
-							<h2>เขตเพาะปลูกทิศตะวันออกเฉียงใต้ ทุ่งชูก้า</h2>
-							<p>เขตที่นาเก่าของเมืองนิพันนรา เป็นพื้นที่นารกร้าง ที่มีต้นไม้พันธุ์พิเศษซึ่งเอื้อต่อการเจริญเติบโต ของต้นข้าวหอมมะลิสีทองเติบโตอยู่ ทำให้พันธุ์ข้าวของที่นี่มีลักษณะเฉพาะ เป็นเขตการเกษตรมีค่าที่สร้างรายได้และวัตถุดิบหายากให้กับชาวเมือง</p>
+							<h2></h2>
+							<p></p>
 						</div>
 						<div style="clear:both"></div>
 					</div>
 				</div>
 			</div>
 			<div id="tab_content_2">
-				<div class="tab_content_left">		
+				<div class="tab_content_left">
+					<div id="section_desctiption">	
+						<img id="section_pathroot" />	
+						<h2 id="section_top_player_location_map" rel="73" ></h2>
+						<h3 id="section_top_player_location_section" rel="408" ></h3> 
+					</div>
 					<ul id="content_guidepost" class="list"></ul>
 				</div>
 				<div class="tab_content_right">	
-					<div id="section_pathroot"></div>
 					<ul id="content_npc" class="list"></ul>	
 				</div>
 			</div>
@@ -158,15 +173,8 @@
 		<div id="krama_orb" title="ชีวิตตกต่ำ เพราะกรรมนำพา"></div>
 	</div><!--end section_bottom-->
 </div>
+<!-- Facebook JS -->
 <div id="fb-root"></div>
-<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
-<?php echo js_asset('jquery-1.4.2.min.js'); ?>
-<?php echo js_asset('jquery-ui-1.8.9.custom.min.js'); ?>
-<?php echo js_asset('jquery.qtip.min.js'); ?>
-<?php echo js_asset('jquery.tipTip.min.js'); ?>
-<?php echo js_asset('interface.js'); ?>
-<?php echo js_asset('interface.guidepost.js'); ?>
-<?php echo js_asset('interface.worldmap.js'); ?>
 <?php echo js_asset('facebook.js'); ?>
 </body>
 </html>

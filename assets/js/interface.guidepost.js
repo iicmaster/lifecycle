@@ -13,11 +13,13 @@ $(function()
 	  * Setup map's name, gutidpost, NPC
 	  */
 	  
-	var id_location = $('#section_top_player_location_section').attr('rel');
+	var id_section = $('#section_top_player_location_section').attr('rel');
 	
-	get_guidepost(id_location);
-	get_npc(id_location);
-	get_section_detail(id_location);
+	set_map_detail(id_section);
+	
+	set_secticon_name(id_section)
+	get_guidepost(id_section);
+	get_npc(id_section);
 	
 	/* ------------------------------------------------------------------------ */
 	
@@ -41,33 +43,36 @@ $(function()
 	  
 	function get_guidepost(id_location)
 	{  
+		
 		/* Ajax */
 		
 		var url = 'http://192.168.9.33/lifecycle/main/get_guidepost/' + id_location;
 		
 		$.post(url, function(data){
 			
+			$("#content_guidepost").html('');
+		
 			var url_image = 'http://192.168.9.33/lifecycle/assets/images/guidepost/';
 			var content;
 			
-			$("#content_guidepost").html('');
-			
 			$.each(data, function(index){
+				
+				var alphabet = (data[index].target_type == 'section') ? ' - ' + data[index].alphabet : '';
 				
 				content = 	'<li rel="' + data[index].id_target + '">' +
 								'<img src="' + url_image + data[index].image + '.png" />' +
-								'<h3>' + data[index].name + '</h3>' +
+								'<h3> [ '+ data[index].id_target + alphabet + ' ] ' + data[index].name + '</h3>' +
 								'<p>' + data[index].description + '</p>' +
 							'</li>';
 				
 				$("#content_guidepost").append(content);
-				//alert(content);
+				
 			});
 			
-			//$("#tab_content_left ul.list").html();
-			
-			
-		},'json');	
+		},'json')
+		//.success(function() { alert("second success"); })
+		.error(function() { alert("Error load content แก๊บเช็คด่วนที่ Section: " + id_location); })
+		//.complete(function() { alert("complete"); });
 	}
 	
 	/* ------------------------------------------------------------------------ */
@@ -117,42 +122,33 @@ $(function()
 	{  
 		get_guidepost(id_location);
 		get_npc(id_location);
-		get_section_detail(id_location);
 		
-		
-		set_location_name('section', id_location);
-		get_map_detail(id_location)
+		set_secticon_name(id_location);
+		set_map_detail(id_location)
 	}
 	
 	/* ------------------------------------------------------------------------ */
 	
 	/**
-	  * 
+	  * Set location name and id in #interface > #section_top
 	  */
 	  
-	function get_section_detail(id_section)
-	{  
-		var url_image = 'http://192.168.9.33/lifecycle/assets/images/map/path_section/';
-		var section_map_pathroot = '<img src="' + url_image + id_section + '.png" />'
-		$("#section_pathroot").html(section_map_pathroot);
-	}
-	
-	/* ------------------------------------------------------------------------ */
-	
-	/**
-	  * Set location name
-	  */
-	  
-	function set_location_name(location_type, id_location)
+	function set_secticon_name(id_section)
 	{  
 		/* Ajax */
 		
-		var url = 'http://192.168.9.33/lifecycle/main/get_detail/' + location_type  + '/' + id_location;
+		var url = 'http://192.168.9.33/lifecycle/main/get_detail/section/' + id_section;
 		
 		$.post(url, function(data){
 				
-			$("#section_top_player_location_"+location_type).html(data['name']);
-			$("#section_top_player_location_"+location_type).attr('rel', id_location);			
+			$('#section_top_player_location_section').html(data['name'] + ' ( ' + id_section + ' )');
+			$('#section_top_player_location_section').attr('rel', id_section);	
+			
+			var url_image = 'http://192.168.9.33/lifecycle/assets/images/map/path_section/';
+			var section_map_pathroot = url_image + id_section + '.png';
+			
+			$("#section_pathroot").attr('src', section_map_pathroot);
+					
 		},'json');	
 	}
 	
@@ -162,7 +158,7 @@ $(function()
 	  * Get map id
 	  */
 	  
-	function get_map_detail(id_section)
+	function set_map_detail(id_section)
 	{  
 		/* Ajax */
 		

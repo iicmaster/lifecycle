@@ -69,55 +69,6 @@ class Test extends CI_Controller
 	
 	// ------------------------------------------------------------------------
 	
-	function facebook_connect()
-	{
-		$this->facebook = new Facebook(array(
-			'appId'  => '119204944778534',
-			'secret' => '1375dadc2ad75f35365a99ab3cc02c2a',
-			'cookie' => true,
-			'domain' => 'http://192.168.9.39/lifecycle/test/'
-		));
-		
-		$session = $this->facebook->getSession();
-		
-		$url = $this->facebook->getLoginUrl(array(
-			'req_perms' => 'publish_stream,user_online_presence,friends_online_presence',
-			'canvas'    => 1,
-			'fbconnect' => 1,
-			'next'      => 'http://apps.facebook.com/thelifecycle/'
-		));	
-			
-		if($session)
-		{
-			try
-			{
-				$data['id_facebook'] = $this->facebook->getUser();
-					
-				return $data;
-			}
-			catch(Exception $e)
-			{
-				echo '<script>top.location.href = "' . $url . '";<script>';
-			}
-		}
-		else
-		{
-			echo '<script>top.location.href = "' . $url . '";</script>';
-		}	
-	}
-	
-	// ------------------------------------------------------------------------
-	
-	function check_register($id_facebook)
-	{
-		$this->load->model('player_model');
-		$data = $this->player_model->check_register($id_facebook);
-		
-		return $data;
-	}
-	
-	// ------------------------------------------------------------------------
-	
 	function get_item()
 	{
 		$this->load->model('item');
@@ -130,7 +81,7 @@ class Test extends CI_Controller
 		$this->load->model('map_model');
 		$data['arr'] = $this->map_model->get_npc($id_location);
 		
-		echo json_encode($data['arr']);
+		echo $data['arr'];
 	}
 	
 	function get_npc_dialog($id_npc)
@@ -153,8 +104,8 @@ class Test extends CI_Controller
 		
 		$data['arr'] = $this->map_model->get_guidepost($id_section);
 		
-		//print_array(json_decode($data['arr']));
-		echo $data['arr'];
+		print_array($data['arr']);
+		//echo $data['arr'];
 	}
 	
 	function get_monster($id_section)

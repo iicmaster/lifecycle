@@ -254,7 +254,7 @@ class Main extends CI_Controller
 	{
 		$this->load->model('map_model');
 		$data = $this->map_model->get_detail($location_type, $id_location);
-		echo $data;
+		echo json_encode($data);
 	}
 	
 	function get_id_language($abbreviation)
