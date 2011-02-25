@@ -45,7 +45,7 @@
 			<div id="tab_heading_button_group">
 				<a id="tab_heading_button_1" href="#nogo">แผนที่</a> 
 				<a id="tab_heading_button_2" href="#nogo">ป้ายบอกทาง</a> 
-				<!--<a id="tab_heading_button_3" href="#nogo">สนทนา</a>-->
+				<a id="tab_heading_button_3" href="#nogo">สนทนา</a>
 			</div>
 		</div>
 		<!--end section_main_tab_heading-->

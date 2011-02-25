@@ -16,22 +16,38 @@ class Karma_model extends CI_Model {
 	 
 	function set_character_karma($id_character, $id_karma)
 	{
-		$sql_karma = 'SELECT karma_type FROM karma WHERE id_karma = ' . $id_karma . ' LIMIT 1';
+		// Step 1
+		$sql_karma = 'SELECT * FROM karma 
+					  LEFT JOIN karma_retribution ON karma.id_karma = karma_retribution.id_karma
+					  WHERE id_karma = ' . $id_karma;
 		$query_karma = $this->db->query($sql_karma);
+		$karma = $query_karma->result_array();
 		
-		$data = $this->get_character_karma($id_character);
+		$character_karma = $this->get_character_karma($id_character);
 		
-		foreach($query->result() as $row)
+		if($karma[0]['karma_type'] == 1)
 		{
-			if($row->karma_type == 1)
-			{
-	
-			}
-			elseif($row->karma_type == 2)
-			{
-				
-			}
+			$data = array('karma_good' => $character_karma[0]['karma_good'] + 1);
+			$this->db->where('id_character', $id_character);
+			$this->db->update('character_karma', $data);
 		}
+		elseif($karma[0]['karma_type'] == 2)
+		{
+			$data = array('karma_bad' => $character_karma[0]['karma_bad'] + 1);
+			$this->db->where('id_character', $id_character);
+			$this->db->update('character_karma', $data);
+		}
+		// Step 2
+		$data = array(
+			'id_character' => $id_character,
+			'id_karma_result' => $karma[0]['id_krama_result'],
+			'krama_type' => $karma[0]['karma_type'],
+			'karma_result_type' => $karma[0]['karma_result_type'], 
+			'krama_speed' => $karma[0]['speed'],
+			'karma_piority' => $karma[0]['piority'],
+			'quantity' => $karma[0]['quantity'],
+		);
+		$this->db->insert('character_karma_retribution', $data);
 	}
 	 
 	// ------------------------------------------------------------------------
@@ -65,9 +81,14 @@ class Karma_model extends CI_Model {
 	 * @return	array						id_karma_result, karma_type
 	 */
 	 
-	function get_character_karma_retribution($id_character)
+	function get_character_karma_retribution($id_character, $karma_type, $karma_result_typee)
 	{
+		$sql = 'SELECT id_karma_result, karma_type 
+				FROM character_karma_retribution
+				ORDER BY karma_speed, karma_priority';
+		$query = $this->db->query($sql);
 		
+		return $query->result_array();
 	}
 	 
 	// ------------------------------------------------------------------------
