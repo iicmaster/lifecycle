@@ -163,6 +163,13 @@ class Test extends CI_Controller
 		$data['arr'] = $this->map_model->get_monster($id_section);
 		echo $data['arr'];
 	}
+	
+	
+	function get_map_detail($id_section)
+	{
+		$this->load->model('map_model');		
+		echo json_encode($this->map_model->get_map_detail($id_section));
+	}
 }
 
 /* End of file test.php */

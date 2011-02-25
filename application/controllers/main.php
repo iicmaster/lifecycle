@@ -126,6 +126,22 @@ class Main extends CI_Controller
 	// ------------------------------------------------------------------------
 	
 	/**
+	  * Get NPC in location (section, store, company)
+	  *
+	  * @access	public
+	  * @param 	int		$id_section		id of section
+	  * @return	json
+	  */
+	
+	function get_map_detail($id_section)
+	{
+		$this->load->model('map_model');		
+		echo json_encode($this->map_model->get_map_detail($id_section));
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
 	  *
 	  * Check facebook login and permission
 	  *

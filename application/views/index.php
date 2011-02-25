@@ -73,29 +73,9 @@
 				<div class="tab_content_left">		
 					<ul id="content_guidepost" class="list"></ul>
 				</div>
-				<div class="tab_content_right">
-					<ul id="content_npc" class="list">
-						<!--<li>
-							<?php echo image_asset('npc/icon_7.png', '', array('alt'=>'ดอกเตอร์ มีนา รักวิทย์')); ?>
-							<h3>ดอกเตอร์ มีนา รักวิทย์</h3>
-							<p>นักวิทยาศาสตร์ประจำสถาบันการวิจัย และพัฒนาแห่งสหพันธ์</p>
-						</li>
-						<li>
-							<?php echo image_asset('npc/icon_55.png', '', array('alt'=>'พ่อเลี้ยง กลั่น')); ?>
-							<h3>พ่อเลี้ยง กลั่น</h3>
-							<p>เจ้าของบริษัทห้างอาหารและยา หวังเปลี่ยนสี และคู่แข่งทางธุรกิจของเสี่ยเช็ง</p >
-						</li>
-						<li>
-							<?php echo image_asset('npc/icon_57.png', '', array('alt'=>'มิงค์')); ?>
-							<h3>มิงค์</h3>
-							<p>ลูกสาวสุดรักสุดหวงของพ่อเลี้ยงกลั่น</p>
-						</li>
-						<li>
-							<?php echo image_asset('npc/icon_12.png', '', array('alt'=>'เฟร็ด บุญมี')); ?>
-							<h3>เฟร็ด บุญมี</h3>
-							<p>ลูกน้องคนสนิทของเสี่ยเช็ง และเป็นพี่คนกลางในบรรดาพี่น้องร่วมสาบานทั้ง 3</p>
-						</li>-->
-					</ul>	
+				<div class="tab_content_right">	
+					<div id="section_pathroot"></div>
+					<ul id="content_npc" class="list"></ul>	
 				</div>
 			</div>
 			<div id="tab_content_3">
