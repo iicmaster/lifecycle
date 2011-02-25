@@ -1,3 +1,7 @@
+$(function(){
+	setTimeout(get_friends, 1);
+});
+
 FB.init({ 
 	'appId' : '119204944778534', 
 	'cookie' : true, 
@@ -48,9 +52,13 @@ function get_friends()
 				{
 					for(var loop = 0;loop < response.length;loop++)
 					{
-						data += '<img src="' + response[loop]['pic_square'] + '" />';
+						data += '<li>';
+						data += '<img src="' + response[loop]['pic_square'] + '" alt="' + response[loop]['name'] + '" title="' + response[loop]['name'] + '" />';
+						data += '<p>Lv. 1</p>';
+						data += '<p>คน : ตกงาน</p>';
+						data += '</li>';
 					}
-					$('#friends').html(data);
+					$('#section_bottom_friend ul').html(data);
 				}		
 			);
 		}
