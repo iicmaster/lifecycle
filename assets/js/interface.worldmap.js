@@ -157,6 +157,7 @@ $(function()
 			
 			var id_location = $('#section_top_player_location_map').attr('rel');
 			$("#interface").css('backgroundImage', 'url(http://localhost/lifecycle/assets/images/map/bg/' + id_location + '.jpg)');
+			
 			$("#worldmap").fadeIn();
 		});
 	});

@@ -46,6 +46,9 @@ $(function()
 		$("#tab_heading_button_group a").removeClass();
 		$(this).addClass('active');
 		
+		// change background to current location
+		var id_location = $('#section_top_player_location_map').attr('rel');
+		$("#interface").css('backgroundImage', 'url(http://localhost/lifecycle/assets/images/map/bg/' + id_location + '.jpg)');
 		
 		
 		// show tab content
@@ -56,6 +59,7 @@ $(function()
 				})
 			})
 		});
+		
 		
 		$("#LP_bar div").animate({width:"99%"});
 		$("#LP_bar i").text("99%");

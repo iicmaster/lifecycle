@@ -15,11 +15,7 @@ $(function()
 	  
 	var id_section = $('#section_top_player_location_section').attr('rel');
 	
-	set_map_detail(id_section);
-	
-	set_secticon_name(id_section)
-	get_guidepost(id_section);
-	get_npc(id_section);
+	set_character_location(id_section);
 	
 	/* ------------------------------------------------------------------------ */
 	
@@ -70,9 +66,7 @@ $(function()
 			});
 			
 		},'json')
-		//.success(function() { alert("second success"); })
 		.error(function() { alert('Error get_guidepost(' + id_location + ') แก๊บเช็คด่วนที่ Section: ' + id_location); })
-		//.complete(function() { alert("complete"); });
 	}
 	
 	/* ------------------------------------------------------------------------ */
@@ -92,7 +86,7 @@ $(function()
 			var url_image = 'http://192.168.9.33/lifecycle/assets/images/npc/icon/';
 			var content;
 			
-			$("#content_npc").html('');
+			$("#content_environment").html('');
 			
 			$.each(data, function(index){
 				
@@ -102,15 +96,45 @@ $(function()
 								'<p>' + data[index].description + '</p>' +
 							'</li>';
 				
-				$("#content_npc").append(content);
-				//alert(content);
+				$("#content_environment").append(content);
 			});
-			
-			//$("#tab_content_left ul.list").html();
-			
 			
 		},'json')
 		.error(function() { alert('Error get_npc(' + id_location + ') แก๊บเช็คด่วนที่ Section: ' + id_location); })
+	}
+	
+	/* ------------------------------------------------------------------------ */
+	
+	/**
+	  * Get Monster in location
+	  */
+	  
+	function get_monster(id_location)
+	{  
+		/* Ajax */
+		
+		var url = 'http://192.168.9.33/lifecycle/main/get_monster/' + id_location;
+		
+		$.post(url, function(data){
+			
+			var url_image = 'http://192.168.9.33/lifecycle/assets/images/monster/';
+			var content;
+			
+			$.each(data, function(index){
+				
+				content = 	'<li>' +
+								'<img src="' + url_image + data[index].id_monster + '.png" />' +
+								'<h3>' + data[index].name + '</h3>' +
+								'<p>' + data[index].description + '</p>' +
+							'</li>';
+				
+				$("#content_environment").append(content);
+				//alert(content);
+				
+			});
+			
+		},'json')
+		.error(function() { alert('Error get_monster(' + id_location + ') แก๊บเช็คด่วนที่ Section: ' + id_location); })
 	}
 	
 	/* ------------------------------------------------------------------------ */
@@ -121,11 +145,12 @@ $(function()
 	  
 	function set_character_location(id_location)
 	{  
+		set_map_detail(id_location)
+		set_secticon_name(id_location);
+		
 		get_guidepost(id_location);
 		get_npc(id_location);
-		
-		set_secticon_name(id_location);
-		set_map_detail(id_location)
+		get_monster(id_location);
 	}
 	
 	/* ------------------------------------------------------------------------ */
@@ -156,7 +181,7 @@ $(function()
 	/* ------------------------------------------------------------------------ */
 	
 	/**
-	  * Get map id
+	  * Set map detail
 	  */
 	  
 	function set_map_detail(id_section)
@@ -177,6 +202,19 @@ $(function()
 		},'json');	
 	}
 		
+	/* ------------------------------------------------------------------------ */
+	
+	/**
+	  * Teleport to section
+	  */
+	  
+	$('#teleport').click(function(){
+		
+		var id_section = $('#teleport_target').val();
+		set_character_location(id_section)
+		
+		alert('Teleport to Section: ' + id_section);
+	});
 	/* ------------------------------------------------------------------------ */
 	
 });

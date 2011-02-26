@@ -58,6 +58,8 @@
 				<a id="tab_heading_button_2" href="#nogo">ป้ายบอกทาง</a> 
 				<!--<a id="tab_heading_button_3" href="#nogo">สนทนา</a>-->
 			</div>
+			<input name="teleport_target" id="teleport_target" type="text" size="5" />
+			<input name="teleport"  id="teleport" type="button" value="Teleport !!" />
 		</div>
 		<!--end section_main_tab_heading-->
 		<div id="tab_content">
@@ -90,7 +92,7 @@
 					<ul id="content_guidepost" class="list"></ul>
 				</div>
 				<div class="tab_content_right">	
-					<ul id="content_npc" class="list"></ul>	
+					<ul id="content_environment" class="list"></ul>	
 				</div>
 			</div>
 			<div id="tab_content_3">

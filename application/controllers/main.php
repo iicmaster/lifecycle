@@ -126,7 +126,23 @@ class Main extends CI_Controller
 	// ------------------------------------------------------------------------
 	
 	/**
-	  * Get NPC in location (section, store, company)
+	  * Get Monster in location (section, store, company)
+	  *
+	  * @access	public
+	  * @param 	int		$id_section		id of section
+	  * @return	json
+	  */
+	
+	function get_monster($id_location)
+	{
+		$this->load->model('map_model');		
+		echo json_encode($this->map_model->get_monster($id_location));
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	  * Get Map detail (section, store, company)
 	  *
 	  * @access	public
 	  * @param 	int		$id_section		id of section

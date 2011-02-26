@@ -44,7 +44,17 @@
 			-webkit-box-shadow: rgba(255, 143, 53, 0.7) 0px 0px 10px;
 		}
 		
-		ul.list li img { float: left; margin-right: 5px; }
+		ul.list li img 
+		{ 
+			float: left; 
+			margin-right: 5px; 
+			
+			width: 75px;
+			height: 75px;
+			
+			/*max-width: 75px;*/
+			/*max-height: 75px;*/
+		}
 		ul.list li h3 {  font-size: 15px; margin-top: 5px; }
 		ul.list li p 
 		{ 

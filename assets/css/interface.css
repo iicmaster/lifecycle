@@ -340,13 +340,6 @@ body
 			overflow-y: auto;
 			overflow-x: hidden;
 		}
-		
-			
-		.tab_content_right img, .tab_content_left img
-		{
-			width: 75px;
-			height: 75px;
-		}
 
 		#section_main_tab_content_left_button
 		{

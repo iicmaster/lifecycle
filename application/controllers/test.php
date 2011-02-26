@@ -69,28 +69,6 @@ class Test extends CI_Controller
 	
 	// ------------------------------------------------------------------------
 	
-	function get_item()
-	{
-		$this->load->model('item');
-		$data['arr'] = $this->item->get_info();
-		echo $data['arr'];	
-	}
-	
-	function get_npc($id_location)
-	{
-		$this->load->model('map_model');
-		$data['arr'] = $this->map_model->get_npc($id_location);
-		
-		echo $data['arr'];
-	}
-	
-	function get_npc_dialog($id_npc)
-	{
-		$this->load->model('npc_model');
-		$data['arr'] = $this->npc_model->get_dialog($id_npc, 141);
-		echo $data['arr'];
-	}
-	
 	function get_detail($location_type, $id_location)
 	{
 		$this->load->model('map_model');
@@ -105,13 +83,35 @@ class Test extends CI_Controller
 		$data['arr'] = $this->map_model->get_guidepost($id_section);
 		
 		print_array($data['arr']);
-		//echo $data['arr'];
+	}
+	
+	function get_npc($id_location)
+	{
+		$this->load->model('map_model');
+		$data['arr'] = $this->map_model->get_npc($id_location);
+		
+		print_array($data['arr']);
 	}
 	
 	function get_monster($id_section)
 	{
 		$this->load->model('map_model');
 		$data['arr'] = $this->map_model->get_monster($id_section);
+		
+		print_array($data['arr']);
+	}
+	
+	function get_item()
+	{
+		$this->load->model('item');
+		$data['arr'] = $this->item->get_info();
+		echo $data['arr'];	
+	}
+	
+	function get_npc_dialog($id_npc)
+	{
+		$this->load->model('npc_model');
+		$data['arr'] = $this->npc_model->get_dialog($id_npc, 141);
 		echo $data['arr'];
 	}
 	

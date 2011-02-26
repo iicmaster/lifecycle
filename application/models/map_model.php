@@ -228,7 +228,7 @@ class Map_model extends CI_Model {
 			 
 		$query = $this->db->query($sql);
 		
-		return json_encode($query->result_array());
+		return $query->result_array();
 	}
 	
 	// ------------------------------------------------------------------------

@@ -12,6 +12,9 @@
 {
 	float: left;
 	margin-right: 5px;
+			
+	max-width: 75px;
+	max-height: 75px;
 }
 
 #section_desctiption h2
