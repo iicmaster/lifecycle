@@ -1,0 +1,99 @@
+/*------------------------------------------------------------------------*/
+/* interface.battle.css */	
+/*------------------------------------------------------------------------*/
+
+#tab_content_4 { position: relative; }
+
+#icon_sowrd
+{
+	height: 130px;
+	left: 295px;
+	top: 110px;
+	position: absolute;
+	width: 130px;
+	z-index: 10;
+}
+
+#character_battle_image
+{
+	background: url(../images/profile_big.jpg) center no-repeat;
+	border: 5px solid rgba(255, 255, 255, 0.8);
+	height: 150px;
+	margin: 20px auto;
+	width: 150px;
+	/* CSS3 */
+	
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+#tab_content_4 div.tab_content_right
+{
+	background: url(../images/monster/29.png) center no-repeat;
+	position: relative;
+	background-size: contain;
+	-moz-background-size: contain;
+	-webkit-background-size: contain;
+}
+
+#tab_content_4 div.tab_content_left
+{
+	background: none;
+	position: relative;
+}
+
+.battle_win
+{
+	color: #090;
+	font-size: 48px;
+	font-weight: bold;
+}
+
+.battle_lose
+{
+	color: #C00;
+	font-size: 48px;
+	font-weight: bold;
+}
+
+.battle_status
+{
+	background: transparent;
+ 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF, endColorstr=#CCFFFFFF); /* IE FIX */
+	background-color: rgba(255, 255, 255, 0.8);
+	bottom: 25px;
+	height: 100px;
+	padding: 20px;
+	position: absolute;
+	margin: auto;
+	text-align: center;
+	width: 303px;
+}
+
+.battle_status h2
+{
+	line-height: 50px;
+	margin-bottom: 8px;
+}
+
+.battle_status p
+{
+	font-size: 14px;
+	line-height: 25px;
+}
+
+.battle_status span
+{
+	margin: 0px 10px;
+	font-weight: bold;
+}
+
+.battle_status span i
+{
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* End of file interface.battle.css */
+/* Location: ./assets/css/interface.battle.css */	

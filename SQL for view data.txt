@@ -1,0 +1,78 @@
+﻿/* ------------------------------------------------------------ */
+/* Section */
+/* ------------------------------------------------------------ */
+
+SELECT atlas_map.id_map, atlas_section.id_section, alphabet, name, atlas_section.status
+FROM atlas_section 
+
+LEFT JOIN language_atlas_section 
+ON atlas_section.id_section  = language_atlas_section .id_section 
+
+LEFT JOIN atlas_zone
+ON atlas_section.id_zone = atlas_zone.id_zone
+
+LEFT JOIN atlas_map
+ON atlas_zone.id_map = atlas_map.id_map
+
+ORDER BY id_map, alphabet
+
+/* ------------------------------------------------------------ */
+/* Store */
+/* ------------------------------------------------------------ */
+
+SELECT id_section, atlas_store.id_store, name, status
+FROM atlas_store
+
+LEFT JOIN language_atlas_store
+ON atlas_store.id_store = language_atlas_store.id_store
+
+ORDER BY atlas_store.id_store
+
+/* ------------------------------------------------------------ */
+/* NPC */
+/* ------------------------------------------------------------ */
+
+SELECT npc.id_npc, language_npc.name, location as id_store, language_atlas_store.name as 'store name'
+FROM npc
+
+LEFT JOIN language_npc
+ON npc.id_npc = language_npc.id_npc
+
+LEFT JOIN language_atlas_store
+ON npc.location = language_atlas_store.id_store
+
+WHERE language_npc.id_language = 1
+
+/* ------------------------------------------------------------ */
+/* Monster */
+/* ------------------------------------------------------------ */
+
+SELECT atlas_section_monster.id_section, language_atlas_section.name, atlas_section_monster.id_monster, language_monster.name
+FROM atlas_section_monster
+
+LEFT JOIN language_atlas_section
+ON atlas_section_monster.id_section = language_atlas_section .id_section
+
+LEFT JOIN language_monster
+ON atlas_section_monster.id_monster = language_monster.id_monster
+
+WHERE language_monster.id_language = 1
+ORDER BY atlas_section_monster.id_section, atlas_section_monster.id_monster
+
+/* ------------------------------------------------------------ */
+/* Dialog */
+/* ------------------------------------------------------------ */
+
+SELECT dialog_group.id_group, dialog_group.group_name, step, npc.id_npc, ordering, dialog, id_target, dialog_group_dialog.target_type
+FROM dialog_group 
+
+LEFT JOIN npc 
+ON dialog_group.id_npc = npc.id_npc
+
+LEFT JOIN dialog_group_dialog 
+ON dialog_group.id_group = dialog_group_dialog.id_group
+
+LEFT JOIN language_dialog 
+ON dialog_group_dialog.id_dialog = language_dialog.id_dialog
+
+ORDER BY dialog_group.id_group, ordering

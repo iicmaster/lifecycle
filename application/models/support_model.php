@@ -3,20 +3,22 @@
 class Support_model extends CI_Model {
 
 	function feedback($type, $topic, $detail)
-	{
-		$data = array(
-			'topic' => $topic,
-			'detail' => $detail,
-			'date_time' => date('Y-m-d H:i:s')
-		);
-		
+	{		
 		if($type == 0)
 		{
-			$this->db->insert('support_feedback', $data);	
+			$sql = 'INSERT INTO support_feedback SET	id_player = "' . $this->session->userdata('id') . '",
+														topic = "' . $topic . '",
+														detail = "' . $detail . '",
+														date_time = NOW()';			
+			return $this->db->query($sql);
 		}
 		else
 		{
-			$this->db->insert('support_bug_report', $data);	
+			$sql = 'INSERT INTO support_bug_report SET	id_player = "' . $this->session->userdata('id') . '",
+														topic = "' . $topic . '",
+														detail = "' . $detail . '",
+														date_time = NOW()';			
+			return $this->db->query($sql);
 		}
 	}
 	

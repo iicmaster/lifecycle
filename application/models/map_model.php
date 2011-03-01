@@ -46,29 +46,42 @@ class Map_model extends CI_Model {
 	  * @access	public
 	  * @param 	string	$location_type	type of location (district, map, zone, section, store, dungeon)
 	  * @param 	int		$id_location	id of location
-	  * @return	array	$result			id_location, name, descrption
+	  * @return	array	$result			id_location, name, descrption [,alphabet (if location type = section)]
 	  */
 	  
 	function get_detail($location_type, $id_location)
 	{
 		$this->db->select('atlas_' . $location_type . '.id_' . $location_type . ',name, description');
+		
+		if($location_type == 'section')
+		{
+			$this->db->select('alphabet');
+		}
+		
 		$this->db->from('atlas_' . $location_type);
 		$this->db->where('status', 1);
 		$this->db->where('atlas_' . $location_type . '.id_' . $location_type, $id_location);
 		$this->db->join('language_atlas_' . $location_type, 'atlas_' . $location_type . '.id_' . $location_type . ' = language_atlas_' . $location_type . '.id_' . $location_type, 'left');
 		$this->db->where('id_language', 1);
 		
+		//if( $this->db->get()->result_row() == )
+		
 		$rows = $this->db->get()->result_array();
 		
 		//print_array($rows);
 		
 		$result = array(
-			'id_location' => $rows[0]['id_' . $location_type],
-			'name'		  => $rows[0]['name'],
-			'description'  => $rows[0]['description']
+			'id_location'	=> $rows[0]['id_' . $location_type],
+			'name'			=> $rows[0]['name'],
+			'description'	=> $rows[0]['description']
 		);
 		
-		return json_encode($result);
+		if($location_type == 'section')
+		{
+			$result['alphabet'] = $rows[0]['alphabet'];
+		}
+		
+		return $result;
 	}	
 	 
 	// ------------------------------------------------------------------------
@@ -120,12 +133,12 @@ class Map_model extends CI_Model {
 	  *
 	  * @access	public
 	  * @param 	int		$id_section		id of section
-	  * @return	array	$result			type, id_target, name, descrption, image
+	  * @return	array	$result			target_type, id_target, name, descrption, image
 	  */
 	  
 	function get_guidepost($id_section)
 	{ 
-		$sql = 'SELECT id_guidepost, target, target_type, image FROM atlas_guidepost WHERE id_location = ' . $id_section .' ORDER BY target_type';
+		$sql = 'SELECT id_guidepost, id_target, target_type, image FROM atlas_guidepost WHERE id_location = ' . $id_section .' ORDER BY target_type';
 		$query = $this->db->query($sql);
 		$result = array();
 		
@@ -135,19 +148,38 @@ class Map_model extends CI_Model {
 		{
 			//print_array($row);
 			
-			$target_type = ($row->target_type == 0) ? 'section' : 'store';
+			//$target_type = ($row->target_type == 0) ? 'section' : 'store';
 			
-			$section = json_decode($this->get_detail($target_type, $row->target));
+			switch($row->target_type)
+			{
+				case 0:
+					$target_type = 'section';
+					break;
+				case 1:
+					$target_type = 'store';
+					break;
+				case 2:
+					$target_type = 'dungeon';
+					break;
+			}
+			
+			$section = $this->get_detail($target_type, $row->id_target);
 			
 			//print_array($section);
 			
 			$quidepost = array(
 				'target_type'	=> $target_type,
-				'id_target'	  	=> $row->target,
-				'name'	  	 	=> $section->name,
-				'description'	=> $section->description,
+				'id_target'	  	=> $row->id_target,
+				'name'	  	 	=> $section['name'],
+				'description'	=> $section['description'],
 				'image'	      	=> $row->image
 			);
+		
+			if($target_type == 'section')
+			{
+				$quidepost['alphabet'] = $section['alphabet'];
+			}
+			
 			array_push($result, $quidepost);
 		}
 		
@@ -196,7 +228,7 @@ class Map_model extends CI_Model {
 			 
 		$query = $this->db->query($sql);
 		
-		return json_encode($query->result_array());
+		return $query->result_array();
 	}
 	
 	// ------------------------------------------------------------------------

@@ -35,18 +35,33 @@ class NPC_model extends CI_Model {
 	  * @access	public
 	  * @param	int		$id_npc				id of NPC 
 	  * @param 	int		$id_dialog_group	id of dialog_group
-	  * @return	array						list of dialog in 2D array { ordering, dialog, link }
+	  * @return	array						ordering, dialog, , type, link
 	  */
 	  
-	function get_dialog($id_npc, $id_dialog_group)
+	function get_dialog($id_npc, $id_dialog_group = NULL)
 	{
-		$sql = 'SELECT ordering, dialog, link 
-				FROM dialog_group 
-				LEFT JOIN npc ON dialog_group.id_npc = npc.id_npc
-				LEFT JOIN dialog_group_dialog ON dialog_group.id_group = dialog_group_dialog.id_group
-				LEFT JOIN language_dialog ON dialog_group_dialog.id_dialog = language_dialog.id_dialog
-				WHERE dialog_group.id_npc = ' . $id_npc . ' and dialog_group.id_group = ' . $id_dialog_group . '
-				ORDER BY ordering';
+		$sql = 	'SELECT ordering, dialog, target_type, id_target '.
+				'FROM dialog_group '.
+				
+				'LEFT JOIN npc '.
+				'ON dialog_group.id_npc = npc.id_npc '.
+				
+				'LEFT JOIN dialog_group_dialog '.
+				'ON dialog_group.id_group = dialog_group_dialog.id_group '.
+				
+				'LEFT JOIN language_dialog '.
+				'ON dialog_group_dialog.id_dialog = language_dialog.id_dialog ';
+				
+		if($id_dialog_group == NULL)
+		{
+			$sql .=	'WHERE dialog_group.id_npc = "' . $id_npc . '" and dialog_group.step = 0 ';
+		}
+		else
+		{
+			$sql .=	'WHERE dialog_group.id_npc = ' . $id_npc . ' and dialog_group.id_group = ' . $id_dialog_group . ' ';
+		}
+		
+			$sql .=	'ORDER BY ordering';
 				
 		$query = $this->db->query($sql);
 		
@@ -65,12 +80,20 @@ class NPC_model extends CI_Model {
 	  
 	function get_npc_item($id_npc)
 	{
-		$sql = 'SELECT npc_item.id_item, name, description, price_buy, buy_rate
-				FROM npc_item 
-				LEFT JOIN npc ON npc_item.id_npc = npc.id_npc
-				LEFT JOIN item ON npc_item.id_item = item.id_item
-				LEFT JOIN language_item ON item.id_item = language_item.id_item
-				WHERE npc.id_npc = ' . $id_npc;
+		$sql = 	'SELECT npc_item.id_item, name, description, price_buy, buy_rate '.
+		'FROM npc_item '.
+		
+		'LEFT JOIN npc '. 
+		'ON npc_item.id_npc = npc.id_npc '.
+		
+		'LEFT JOIN item '.
+		'ON npc_item.id_item = item.id_item '.
+		
+		'LEFT JOIN language_item '.
+		'ON item.id_item = language_item.id_item '.
+		 
+		'WHERE npc.id_npc = ' . $id_npc . ' AND language_item.id_language = 1';
+				
 		$query = $this->db->query($sql);
 		$result = array();
 		
