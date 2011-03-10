@@ -19,44 +19,64 @@ class Main extends CI_Controller
 	{		
 		$facebook = $this->facebook_connect();
 		$language = $this->get_id_language($facebook[0]['locale']);
-		$character = $this->get_character_status(1);
+		$character = $this->get_character_status(2);
 		
 		// set session
 		$data = array(
-			'id' => $facebook[0]['uid'],
-			'name' => $facebook[0]['name'],
-			'id_language' => $language,
-			'image' => $facebook[0]['pic_square'],
-			'id_character' => $character[0]['id_character'],
-			'location' => $character[0]['location'],
-			'id_job' => $character[0]['id_job'],
-			'fighting' => $character[0]['fighting'],
-			'working' => $character[0]['working'],
-			'moving' => $character[0]['moving'],
-			'working_start' => $character[0]['working_start'],
-			'working_end' => $character[0]['working_end'],
-			'moving_start' => $character[0]['moving_start'],
-			'moving_end' => $character[0]['moving_end'],
-			'life_point' => $character[0]['life_point'],	 
-			'stamina_point' => $character[0]['stamina'],	 
-			'strength' => $character[0]['strength'], 
-			'vitality' => $character[0]['vitality'],	 
-			'speed' => $character[0]['speed'], 
-			'comunication' => $character[0]['comunication'], 
-			'intelligent' => $character[0]['intelligent'], 
-			'dexterity' => $character[0]['dexterity'], 
-			'attack' => $character[0]['attack'],	 
-			'defend' => $character[0]['defend'], 
-			'dodge' => $character[0]['dodge'],	 
-			'accuracy' => $character[0]['accuracy'], 
-			'mind_power' => $character[0]['mind_power'],	 
-			'charisma' => $character[0]['charisma'], 
-			'negotiation' => $character[0]['negotiation'], 
-			'level' => $character[0]['level'], 
-			'job_level' => $character[0]['level_job'],	 
-			'age' => $character[0]['age'],	 
-			'expericence' => $character[0]['expericence']
-		);	
+						'id'				=> $facebook[0]['uid'],
+						'name'				=> $facebook[0]['name'],
+						'id_language'		=> $language,
+						'image'				=> $facebook[0]['pic_square'],
+						'id_character'		=> $character['id_character'],
+						'level'				=> $character['level'], 
+						'money'				=> $character['money'], 
+						'exp'				=> $character['exp'],  
+						'exp_max'			=> $character['exp_max'],  
+						'hs'				=> $character['hs'], 
+						'id_location'		=> $character['id_location'],
+						'location_type'		=> $character['location_type'],
+						'is_fighting' 		=> $character['is_fighting'],
+						'is_working'		=> $character['is_working'],
+						'is_moving' 		=> $character['is_moving'],
+						'date_working_start'=> $character['date_working_start'],
+						'date_working_end'	=> $character['date_working_end'],
+						'date_moving_start'	=> $character['date_moving_start'],
+						'date_moving_end'	=> $character['date_moving_end'],
+						'age'				=> $character['age'],	 
+						'age_max'			=> $character['age_max'],	  
+						'str'				=> $character['str'],   
+						'str_ori'			=> $character['str_ori'], 
+						'vit'				=> $character['vit'],	
+						'vit_ori'			=> $character['vit_ori'],	
+						'spd'				=> $character['spd'],	
+						'spd_ori'			=> $character['spd_ori'],	
+						'com'				=> $character['com'],	
+						'com_ori'			=> $character['com_ori'],	
+						'int'				=> $character['int'],	
+						'int_ori'			=> $character['int_ori'],	
+						'dex'				=> $character['dex'],	
+						'dex_ori'			=> $character['dex_ori'],	
+						'mp'				=> $character['mp'],	
+						'mp_max'			=> $character['mp_max'],		
+						'lp'				=> $character['lp'],	
+						'lp_max'			=> $character['lp_max'],	
+						'sta'				=> $character['sta'],	
+						'sta_max'			=> $character['sta_max'],	
+						'atk'				=> $character['atk'],	
+						'atk_ori'			=> $character['atk_ori'],	
+						'def'				=> $character['def'],	
+						'def_ori'			=> $character['def_ori'],		
+						'dod'				=> $character['dod'],	
+						'dod_ori'			=> $character['dod_ori'],	
+						'cha'				=> $character['cha'],	
+						'cha_ori'			=> $character['cha_ori'],	
+						'acc'				=> $character['acc'],	
+						'acc_ori'			=> $character['acc_ori'],	
+						'neg'				=> $character['neg'],	
+						'neg_ori'			=> $character['neg_ori'],	
+						'pop'				=> $character['pop'],	 
+						'pop_ori'			=> $character['pop_ori']
+					);	
 
 		$this->session->set_userdata($data);
 		
@@ -202,6 +222,54 @@ class Main extends CI_Controller
 	{
 		$this->load->model('battle_model');
 		echo json_encode($this->battle_model->get_battle_result($this->session->userdata('id_character'), $id_monster));
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	  * Get character item
+	  *
+	  * @access	public
+	  * @return	json
+	  */
+	
+	function get_character_item()
+	{
+		$this->load->model('character_model');
+		echo json_encode($this->character_model->get_item($this->session->userdata('id_character')));
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	  * Set character item
+	  *
+	  * @access	public
+	  * @return	json
+	  */
+	
+	function set_character_location($location_type, $id_location)
+	{
+		switch($location_type)
+		{
+			case 'section':
+				$_location_type = 0;
+				break;
+			case 'store':
+				$_location_type = 1;
+				break;
+			case 'dungeon':
+				$_location_type = 2;
+				break;
+		}
+		
+		$arr_status = array(
+							'location_type' => $_location_type,
+							'id_location' => $id_location,
+							);
+							
+		$this->load->model('character_model');
+		$this->character_model->set_character_status($arr_status);	
 	}
 	
 	// ------------------------------------------------------------------------

@@ -28,9 +28,9 @@
 <?php echo js_asset('interface.guidepost.js'); ?>
 <?php echo js_asset('interface.conversation.js'); ?>
 <?php echo js_asset('interface.battle.js'); ?>
+<?php echo js_asset('interface.popup.js'); ?>
 </head>
 <body>
-<!--<div id="banner">Advertising</div>-->
 <div id="interface">
 	<div id="section_top">
 		<span id="section_top_player_profile_image" rel="<?php echo $this->session->userdata('id_character') ?>"><?php echo '<img src="' . $this->session->userdata('image') . '" width="40" heigth="40" />' ?></span> 
@@ -57,13 +57,14 @@
 				<!--<a id="bt_popup_skill" href="#nogo">Option</a>-->
 			</div>
 			<div id="tab_heading_button_group">
-				<a id="tab_heading_button_1" href="#nogo">แผนที่</a> 
-				<a id="tab_heading_button_2" href="#nogo">ป้ายบอกทาง</a> 
-				<a id="tab_heading_button_3" href="#nogo">สนทนา</a>
-				<a id="tab_heading_button_4" href="#nogo">ต่อสู้</a>
+				<a id="tab_heading_button_1" rel="1">แผนที่</a> 
+				<a id="tab_heading_button_2" rel="2">ป้ายบอกทาง</a> 
+				<a id="tab_heading_button_3" rel="3">สนทนา</a>
+				<a id="tab_heading_button_4" rel="4">ต่อสู้</a>
 			</div>
 			<input name="teleport_target" id="teleport_target" type="text" size="5" />
-			<input name="teleport"  id="teleport" type="button" value="Teleport !!" />
+			<input name="teleport"  id="button_teleport" type="button" value="Teleport !!" />
+			<input name="teleport"  id="button_status" type="button" value="STA" />
 		</div>
 		<!--end section_main_tab_heading-->
 		<div id="tab_content">
@@ -77,7 +78,7 @@
 					<a id="bt_map_info_open">Info</a>
 					<div id="map_info">
 						<a id="bt_map_info_close" class="ui-icon ui-icon-closethick">close</a>
-						<?php echo image_asset('map/path/4.png', '', array('alt'=>'Path')); ?>
+						<img alt="Path" />	
 						<div id="map_description">
 							<h2></h2>
 							<p></p>
@@ -90,8 +91,20 @@
 				<div class="tab_content_left">
 					<div id="section_desctiption">	
 						<img id="section_pathroot" />	
-						<h2 id="section_top_player_location_map" rel="" ></h2>
-						<h3 id="section_top_player_location_section" rel="<?php echo $this->session->userdata('location') ?>" ></h3> 
+						<?php 
+							if($this->session->userdata('location_type') == 0)
+							{
+								$this->load->model('map_model');		
+								$character_map = $this->map_model->get_map_detail($this->session->userdata('id_location'));
+							}
+							else
+							{
+								$character_map = array('id_map'=>'', 'name'=>'');
+							}
+						?>
+						<h2 id="section_top_player_location_map" rel="<?php echo $character_map['id_map']; ?>" ><?php echo $character_map['name']; ?> ( <?php echo $character_map['id_map']; ?> )</h2>
+						<h3 id="section_top_player_location_section" rel="<?php if($this->session->userdata('location_type') == 0){ echo $this->session->userdata('id_location'); } ?>" >ย่าน: <i></i></h3> 
+						<h4 id="section_top_player_location_store" rel="<?php if($this->session->userdata('location_type') == 1){ echo $this->session->userdata('id_location'); } ?>" >ภายใน: <i></i></h4> 
 					</div>
 					<ul id="content_guidepost" class="list"></ul>
 				</div>
@@ -115,6 +128,7 @@
 			</div>
 			<div id="tab_content_4">
 				<?php echo image_asset('icon_sowrd.png', '', array('alt'=>'Battle', 'id'=>'icon_sowrd')); ?>
+				<a id="button_finish_battle">จบการต่อสู้</a>
 				<div class="tab_content_left">
 					<div id="character_battle_image"></div>
 					<div class="battle_status">
@@ -149,21 +163,21 @@
 				<table border="0" cellspacing="0" cellpadding="0">
 					<tr>
 						<th>STR:</th>
-						<td id="character_str"><?php echo $this->session->userdata('strength') ?></td>
+						<td id="character_str"><?php echo $this->session->userdata('str') ?></td>
 						<th>COM:</th>
-						<td id="character_com"><?php echo $this->session->userdata('comunication') ?></td>
+						<td id="character_com"><?php echo $this->session->userdata('com') ?></td>
 					</tr>
 					<tr>
 						<th>VIT:</th>
-						<td id="character_vit"><?php echo $this->session->userdata('vitality') ?></td>
+						<td id="character_vit"><?php echo $this->session->userdata('vit') ?></td>
 						<th>INT:</th>
-						<td id="character_int"><?php echo $this->session->userdata('intelligent') ?></td>
+						<td id="character_int"><?php echo $this->session->userdata('int') ?></td>
 					</tr>
 					<tr>
 						<th>SPD:</th>
-						<td id="character_spd"><?php echo $this->session->userdata('speed') ?></td>
+						<td id="character_spd"><?php echo $this->session->userdata('spd') ?></td>
 						<th>DEX:</th>
-						<td id="character_dex"><?php echo $this->session->userdata('dexterity') ?></td>
+						<td id="character_dex"><?php echo $this->session->userdata('dex') ?></td>
 					</tr>
 				</table>
 
@@ -171,33 +185,43 @@
 				<table border="0" cellspacing="0" cellpadding="0">
 					<tr>
 						<th>LP:</th>
-						<td id="character_lp"><?php echo $this->session->userdata('life_point') ?></td>
+						<td id="character_lp"><i><?php echo $this->session->userdata('lp') ?></i> / <b><?php echo $this->session->userdata('lp_max') ?></b></td>
 						<th>MP:</th>
-						<td id="character_mp"><?php echo $this->session->userdata('mind_power') ?></td>
+						<td id="character_mp"><i><?php echo $this->session->userdata('mp') ?></i> / <b><?php echo $this->session->userdata('mp_max') ?></b></td>
 					</tr>
 					<tr>
 						<th>ATK:</th>
-						<td id="character_atk"><?php echo $this->session->userdata('attack') ?></td>
+						<td id="character_atk"><i><?php echo $this->session->userdata('atk') ?></i> / <b><?php echo $this->session->userdata('atk_ori') ?></b></td>
 						<th>DEF:</th>
-						<td id="character_def"><?php echo $this->session->userdata('defend') ?></td>
+						<td id="character_def"><i><?php echo $this->session->userdata('def') ?></i> / <b><?php echo $this->session->userdata('def_ori') ?></b></td>
 					</tr>
 					<tr>
 						<th>DOD:</th>
-						<td id="character_dod"><?php echo $this->session->userdata('dodge') ?></td>
-						<th>ACC:</th>
-						<td id="character_acc"><?php echo $this->session->userdata('accuracy') ?></td>
-					</tr>
-					<tr>
-						<th>NEG:</th>
-						<td id="character_neg"><?php echo $this->session->userdata('negotiation') ?></td>
-						<th>CAR:</th>
-						<td id="character_car"><?php echo $this->session->userdata('charisma') ?></td>
-					</tr>
-					<tr>
+						<td id="character_dod"><i><?php echo $this->session->userdata('dod') ?></i> / <b><?php echo $this->session->userdata('dod_ori') ?></b></td>
 						<th>STA:</th>
-						<td id="character_sta"><?php echo $this->session->userdata('stamina_point') ?></td>
+						<td id="character_sta"><i><?php echo $this->session->userdata('sta') ?></i> / <b><?php echo $this->session->userdata('sta_max') ?></b></td>
+					</tr>
+					<tr>
+						<th>ACC:</th>
+						<td id="character_acc"><i><?php echo $this->session->userdata('acc') ?></i> / <b><?php echo $this->session->userdata('acc_ori') ?></b></td>
+						<th>NEG:</th>
+						<td id="character_neg"><i><?php echo $this->session->userdata('neg') ?></i> / <b><?php echo $this->session->userdata('neg_ori') ?></b></td>
+					</tr>
+					<tr>
+						<th>CHA:</th>
+						<td id="character_car"><i><?php echo $this->session->userdata('cha') ?></i> / <b><?php echo $this->session->userdata('cha_ori') ?></b></td>
+						<th>POP:</th>
+						<td id="character_pop"><i><?php echo $this->session->userdata('pop') ?></i> / <b><?php echo $this->session->userdata('pop_ori') ?></b></td>
+					</tr>
+					<tr>
+						<th>AGE:</th>
+						<td id="character_age"><i><?php echo $this->session->userdata('age') ?></i> / <b><?php echo $this->session->userdata('age_max') ?></b></td>
 						<th>HS:</th>
-						<td id="character_hs">100%</td>
+						<td id="character_hs"><?php echo $this->session->userdata('hs') ?></td>
+					</tr>
+					<tr>
+						<th>EXP:</th>
+						<td id="character_exp" colspan="3"><i><?php echo $this->session->userdata('exp') ?></i> / <b><?php echo $this->session->userdata('exp_max') ?></b></td>
 					</tr>
 				</table>
 			</div>
@@ -210,7 +234,10 @@
 				<p>Desc: </p>
 			</div>
 			<div id="popup_item" title="Item">
-				<ul id="content_character_item">
+				<ul id="content_character_item" class="popup_item"></ul>
+			</div>
+			<div id="popup_notification" title="">
+				<ul id="content_notification">
 					
 				</ul>
 			</div>
@@ -245,11 +272,11 @@
 	<div id="section_bottom">
 		<div id="section_bottom_status">
 			<ul>
-				<li rel="<?php echo $this->session->userdata('life_point') ?>" title="Life Point : <?php echo $this->session->userdata('life_point') ?> / <?php echo $this->session->userdata('life_point') ?>"><b>LP</b><div id="LP_bar"><i>100%</i></div></li>
-				<li rel="100" title="Health Status : Normal"><b>HS</b><div id="HS_bar"><i>ปกติ</i></div></li>
-				<li rel="<?php echo $this->session->userdata('mind_power') ?>" title="Mind Power : <?php echo $this->session->userdata('mind_power') ?> / <?php echo $this->session->userdata('mind_power') ?>"><b>MP</b><div id="SP_bar"><i>100%</i></div></li>
-				<li rel="<?php echo $this->session->userdata('stamina_point') ?>" title="Stamina Point : <?php echo $this->session->userdata('stamina_point') ?> / <?php echo $this->session->userdata('stamina_point') ?>"><b>STA</b><div id="STA_bar"><i>100%</i></div></li>
-				<li rel="<?php echo $this->session->userdata('expericence') ?>" title="Experience Point : <?php echo $this->session->userdata('expericence') ?> / <?php echo $this->session->userdata('expericence') ?>"><b>EXP</b><div id="EXP_bar"><i>100%</i></div></li>
+				<li rel="lp" title="Life Point: <?php echo $this->session->userdata('lp') ?> / <?php echo $this->session->userdata('lp_max') ?>"><b>LP</b><div id="lp_bar"><i><?php echo round($this->session->userdata('lp') * 100 / $this->session->userdata('lp_max')); ?>%</i></div></li>
+				<li rel="age" title="Age: <?php echo $this->session->userdata('age') ?>"><b>AGE</b><div id="age_bar"><i></i></div></li>
+				<li rel="mp" title="Mind Power: <?php echo $this->session->userdata('mp') ?> / <?php echo $this->session->userdata('mp_max') ?>"><b>MP</b><div id="mp_bar"><i><?php echo round($this->session->userdata('mp') * 100 / $this->session->userdata('mp_max')) ?>%</i></div></li>
+				<li rel="sta" title="Stamina Point: <?php echo $this->session->userdata('sta') ?> / <?php echo $this->session->userdata('sta_max') ?>"><b>STA</b><div id="sta_bar"><i><?php echo round($this->session->userdata('sta') * 100 / $this->session->userdata('sta_max')) ?>%</i></div></li>
+				<li rel="exp" title="Experience: <?php echo $this->session->userdata('exp') ?> / <?php echo $this->session->userdata('exp_max') ?>"><b>EXP</b><div id="exp_bar"><i><?php echo round($this->session->userdata('exp') * 100 / $this->session->userdata('exp_max')) ?>%</i></div></li>
 			</ul>
 		</div>
 		<div id="section_bottom_friend">
@@ -261,6 +288,7 @@
 		<div id="krama_orb" title="ชีวิตตกต่ำ เพราะกรรมนำพา"></div>
 	</div><!--end section_bottom-->
 </div>
+<div id="banner"><?php echo image_asset('logo_sipa.png', '', array('alt'=>'Sipa')); ?> <p>Life Cycle ได้รับเงินรางวัลสนับสนุนจากสำนักงานส่งเสริมอุตส่าหกรรมซอฟต์แวร์แห่งชาติ (องค์กรณ์มหาชน)</p></div>
 <!-- Facebook JS -->
 <div id="fb-root"></div>
 <?php echo js_asset('facebook.js'); ?>

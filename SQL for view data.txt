@@ -2,7 +2,7 @@
 /* Section */
 /* ------------------------------------------------------------ */
 
-SELECT atlas_map.id_map, atlas_section.id_section, alphabet, name, atlas_section.status
+SELECT atlas_map.id_map, language_atlas_map.name, atlas_section.id_section, alphabet, language_atlas_section.name, atlas_section.status
 FROM atlas_section 
 
 LEFT JOIN language_atlas_section 
@@ -13,6 +13,9 @@ ON atlas_section.id_zone = atlas_zone.id_zone
 
 LEFT JOIN atlas_map
 ON atlas_zone.id_map = atlas_map.id_map
+
+LEFT JOIN language_atlas_map
+ON language_atlas_map.id_map = atlas_map.id_map
 
 ORDER BY id_map, alphabet
 
@@ -76,3 +79,15 @@ LEFT JOIN language_dialog
 ON dialog_group_dialog.id_dialog = language_dialog.id_dialog
 
 ORDER BY dialog_group.id_group, ordering
+
+/* ------------------------------------------------------------ */
+/* Creature*/
+/* ------------------------------------------------------------ */
+
+SELECT language_creature.id_creature, language_creature.name, language_creature.short_description, language_creature.description, creature.status
+FROM creature
+
+LEFT JOIN language_creature
+ON creature.id_creature = language_creature.id_creature
+
+WHERE language_creature.id_language = 1

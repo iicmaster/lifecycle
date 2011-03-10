@@ -57,6 +57,10 @@ class Map_model extends CI_Model {
 		{
 			$this->db->select('alphabet');
 		}
+		else if($location_type == 'store')
+		{
+			$this->db->select('id_section');
+		}
 		
 		$this->db->from('atlas_' . $location_type);
 		$this->db->where('status', 1);
@@ -66,19 +70,23 @@ class Map_model extends CI_Model {
 		
 		//if( $this->db->get()->result_row() == )
 		
-		$rows = $this->db->get()->result_array();
+		$rows = $this->db->get()->row_array();
 		
 		//print_array($rows);
 		
 		$result = array(
-			'id_location'	=> $rows[0]['id_' . $location_type],
-			'name'			=> $rows[0]['name'],
-			'description'	=> $rows[0]['description']
+			'id_location'	=> $rows['id_' . $location_type],
+			'name'			=> $rows['name'],
+			'description'	=> $rows['description']
 		);
 		
 		if($location_type == 'section')
 		{
-			$result['alphabet'] = $rows[0]['alphabet'];
+			$result['alphabet'] = $rows['alphabet'];
+		}
+		else if($location_type == 'store')
+		{
+			$result['id_section'] = $rows['id_section'];
 		}
 		
 		return $result;
@@ -220,7 +228,7 @@ class Map_model extends CI_Model {
 	  
 	function get_monster($id_section)
 	{
-		$sql = 'SELECT monster.id_monster, level_monster, name, description 
+		$sql = 'SELECT monster.id_monster, name, description 
 				 FROM monster
 				 LEFT JOIN atlas_section_monster ON monster.id_monster = atlas_section_monster.id_monster
 				 LEFT JOIN language_monster ON monster.id_monster = language_monster.id_monster 
@@ -267,9 +275,9 @@ class Map_model extends CI_Model {
 		
 		//print_array($query->result_array());
 		
-		return $query->result_array();
+		return $query->row_array();
 	}
 }
 
-/* End of file map.php */
-/* Location: ./application/models/map.php */
+/* End of file map_model.php */
+/* Location: ./application/models/map_model.php */

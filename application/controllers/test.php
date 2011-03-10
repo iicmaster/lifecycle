@@ -92,6 +92,25 @@ class Test extends CI_Controller
 		$this->load->model('battle_model');
 		print_array($this->battle_model->get_battle_result($this->session->userdata('id_character'), $id_monster));
 	}
+	
+	/*------------------------------------------------------------------------*/
+	/* Character Item */
+	/*------------------------------------------------------------------------*/
+	
+	function get_character_item()
+	{
+		$this->load->model('character_model');
+		print_array($this->character_model->get_item($this->session->userdata('id_character')));
+	}
+	
+	/*------------------------------------------------------------------------*/
+	/* Session */
+	/*------------------------------------------------------------------------*/
+	
+	function get_character_session()
+	{
+		print_array($this->session->userdata);
+	}
 }
 
 /* End of file test.php */

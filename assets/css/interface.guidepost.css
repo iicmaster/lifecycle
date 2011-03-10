@@ -1,12 +1,16 @@
 /* ------------------------------------------------------------------------ */
 /* interface.guidepost.css */	
 /* ------------------------------------------------------------------------ */
+
+#tab_content_2 div.tab_content_left { overflow: hidden; }
 		
 #section_desctiption 
 {
-	height: 75px;
+	height: 80px;
 	padding: 5px;
-}		
+	border-bottom: 1px dashed #DDD;
+}	
+	
 #section_desctiption img
 {
 	float: left;
@@ -16,30 +20,26 @@
 	max-height: 75px;
 }
 
-#section_desctiption h2
+#section_desctiption h2, #section_desctiption h3, #section_desctiption h4
 {
+	clear: none;
 	float: left;
-	margin-top: 5px;
-}
-
-#section_desctiption h3
-{
-	position:absolute;
-	margin: 30px 0px 0px 81px;
 	padding-top: 5px;
+	width: 230px;
+	white-space: nowrap;
 }
 
 		#content_guidepost
 		{ 
 			clear: both; 
-			height: 270px;
+			height: 265px;
 			overflow-y: auto;
 			overflow-x: hidden;
 		}
 
-		#content_guidepost  li:first-child 
+		#content_guidepost li:first-child 
 		{ 
-			margin-top: 5px;
+			border-top: none;
 		}
 		
 /* End of file interface.guidepost.css */

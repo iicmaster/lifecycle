@@ -2,6 +2,8 @@
 /* interface.popup.css */	
 /*------------------------------------------------------------------------*/
 
+/* status */
+
 #popup_status h3
 {
 	margin: 10px 0px;	
@@ -18,15 +20,74 @@
 
 #popup_status th
 {
+	background: url(../images/interface/v_1/sprite_tabHeading.png) no-repeat;
+	background-position: 0px 0px;
 	width: 40px;
 }
 
 #popup_status td
 {
+	background: #FFF;
 	min-width: 70px;
+	font-size: 11px;
 }
 	
+#popup_status td i, #popup_status td b
+{
+	font-weight: normal;
+	font-style: normal;
+}
+	
+/* item */
 
+.popup_item li
+{
+	border-bottom: 1px dashed #DDD;
+	min-height: 36px;
+	position: relative;
+}
+
+.popup_item li:first-child { border-top: 1px dashed #DDD; }
+
+.popup_item li img
+{
+	width: 36px;
+	height: 36px;
+	float: left;
+	margin-right: 15px;
+}
+
+.popup_item li h3
+{
+	float: left;
+	line-height: 36px;
+}
+
+.popup_item li span
+{
+	background-color: #66BC5A;
+	/*background-color: rgba(0, 155, 0, 0.6);*/
+	border: 1px solid #090;
+	color: #FFF;
+	font-weight: bold;
+	padding: 3px 15px;
+	position: absolute;
+	top: 6px;
+	right: 5px;	
+	line-height: 16px;
+	
+	/* CSS3 */
+	
+	text-shadow: -1px -1px 0 #4190AF;
+
+	border-radius: 24px;
+	-moz-border-radius: 24px;
+	-webkit-border-radius: 24px;
+	
+	box-shadow: 0px 0px 4px rgba(0, 155, 0, 0.6));
+	-moz-box-shadow: 0px 0px 4px rgba(0, 155, 0, 0.6);
+	-webkit-box-shadow: 0px 0px 4px rgba(0,0,0, 0.3);
+}
 
 /* End of file interface.popup.css */
 /* Location: ./assets/css/interface.popup.css */	

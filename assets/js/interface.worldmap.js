@@ -9,7 +9,7 @@ $(function()
 	/* World Map */	
 	/* ------------------------------------------------------------------------ */
 
-	//server_url = 'http://192.168.9.35/lifecycle/';
+	//URL_SERVER = 'http://192.168.9.35/lifecycle/';
 	
 	/**
 	  * Set up qtip
@@ -77,7 +77,7 @@ $(function()
 		var id = $(this).attr('id').replace("map_icon_", "");
 		var tooltip = $('#map_icon_'+id).qtip('api');
 		var title = $(tooltip.elements.content).text();
-		var content = '<img alt="'+id+'" rel="'+id+'" src="' + server_url + 'assets/images/map/icon/'+id+'.jpg" />';
+		var content = '<img alt="'+id+'" rel="'+id+'" src="' + URL_IMAGE + 'map/icon/'+id+'.jpg" />';
 		
 		tooltip.updateTitle(title);
 		tooltip.updateContent(content);
@@ -97,14 +97,14 @@ $(function()
 		// set new value
 		var id_map = $(this).attr('rel');
 		
-		$("#interface").css('backgroundImage', 'url(' + server_url + 'assets/images/map/bg/' + id_map + '.jpg)');
-		$("#mapDetail").css('backgroundImage', 'url(' + server_url + 'assets/images/map/' + id_map + '.jpg)');
-		$("#map_info img").attr('src', '' + server_url + 'assets/images/map/path/' + id_map + '.png');
+		$("#interface").css('backgroundImage', 'url(' + URL_IMAGE + 'map/bg/' + id_map + '.jpg)');
+		$("#mapDetail").css('backgroundImage', 'url(' + URL_IMAGE + 'map/' + id_map + '.jpg)');
+		$("#map_info img").attr('src', '' + URL_IMAGE + 'map/path/' + id_map + '.png');
 		
 		/* Ajax */
 		
 		var location_type = 'map';
-		var url = server_url + 'main/get_detail/' + location_type  + '/' + id_map;
+		var url = URL_SERVER + 'main/get_detail/' + location_type  + '/' + id_map;
 		$.post(url, function(data){
 				
 			$("#map_description h2").html(data['name']);
@@ -158,7 +158,7 @@ $(function()
 		$("#mapDetail").fadeOut(function(){
 			
 			var id_location = $('#section_top_player_location_map').attr('rel');
-			$("#interface").css('backgroundImage', 'url(' + server_url + 'assets/images/map/bg/' + id_location + '.jpg)');
+			$("#interface").css('backgroundImage', 'url(' + URL_IMAGE + 'map/bg/' + id_location + '.jpg)');
 			
 			$("#worldmap").fadeIn();
 		});

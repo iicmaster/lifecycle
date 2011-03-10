@@ -4,7 +4,7 @@
 
 body
 { 
-	background: #444;
+	background: #FFF;
 	margin: 0px;
 	font-family: "Microsoft Sans Serif";
 	font-size: 12px;
@@ -14,12 +14,20 @@ body
 
 #banner
 { 
-	border: 1px dashed #F00;
+	background: #FFF;
+	/*border: 1px dashed #F00;*/
 	height: 64px; 
-	margin: 0px 0px 15px 0px;
-	text-align: center;
 	line-height: 64px;
+	margin: 15px auto 0px auto;
+	text-align: center;
 	vertical-align: middle;
+	width: 740px;
+}
+
+#banner img
+{
+	float: left;
+	height: 64px; 	
 }
 
 #interface
@@ -33,9 +41,13 @@ body
 	
 	/* CSS3 */
 	
-	box-shadow: 0px 0px 10px rgba(255,255,255, 0.6);
+/*	box-shadow: 0px 0px 10px rgba(255,255,255, 0.6);
 	-moz-box-shadow: 0px 0px 10px rgba(255,255,255, 0.6);
-	-webkit-box-shadow: 0px 0px 10px rgba(255,255,255, 0.6);
+	-webkit-box-shadow: 0px 0px 10px rgba(255,255,255, 0.6);*/
+	
+	box-shadow: 0px 0px 8px rgba(0,0,0, 0.4);
+	-moz-box-shadow: 0px 0px 8px rgba(0,0,0, 0.4);
+	-webkit-box-shadow: 0px 0px 8px rgba(0,0,0, 0.4);
 	
 	background-size: auto 100%;
 	-moz-background-size: auto 100%;
@@ -52,6 +64,8 @@ body
 	background: transparent;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF,endColorstr=#CCFFFFFF);
 	background-color: rgba(255, 255, 255, 0.8);
+			
+	/* CSS3 */
 	
 	border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -84,13 +98,13 @@ body
 	
 	#section_top_player_detail 
 	{ 
-		position: absolute; 
 		border-left: 1px solid #CCC;
 		border-right: 1px solid #CCC;
 		height: 38px;
-		padding: 0px 5px;
-		top: 5px;
 		left: 50px;
+		padding: 0px 5px;
+		position: absolute; 
+		top: 5px;
 	}
 		
 		#section_top_player_name 
@@ -107,12 +121,12 @@ body
 		#section_top_player_job { clear: left; }
 	
 	#section_top_player_location
-	{ 
-		position: absolute; 
+	{  
 		height: 38px;
-		padding: 0px 5px;
-		top: 5px;
 		left: 360px;
+		padding: 0px 5px;
+		position: absolute;
+		top: 5px;
 	}
 		#section_top_player_location_map 
 		{ 
@@ -200,12 +214,14 @@ body
 			#tab_heading_button_group a
 			{
 				background: url(../images/interface/v_1/sprite_tabHeading.png) no-repeat;
+				border-left: 1px solid #DDD;
+				border-right: 1px solid #DDD;
 				color: #666;
+				cursor: pointer;
 				display: block;
 				float: left;
 				height: 30px;
-				border-left: 1px solid #DDD;
-				border-right: 1px solid #DDD;
+				line-height: 30px;
 				padding: 0px 8px;
 				text-decoration: none;
 			}
@@ -218,6 +234,8 @@ body
 			#tab_heading_button_group a:hover
 			{
 				background-position: 0px -30px;
+			
+				/* CSS3 */
 				
 				box-shadow: rgba(0, 174, 239, 0.2) 0px 0px 8px;
 				-moz-box-shadow: rgba(0, 174, 239, 0.2) 0px 0px 8px;
@@ -227,6 +245,8 @@ body
 			#tab_heading_button_group a:active, #tab_heading_button_group a.active
 			{
 				background-position: 0px -60px;
+			
+				/* CSS3 */
 				
 				box-shadow: rgba(255, 143, 53, 0.2) 0px 0px 8px;
 				-moz-box-shadow: rgba(255, 143, 53, 0.2) 0px 0px 8px;
@@ -253,15 +273,17 @@ body
 		
 		#tab_heading_menu a:hover
 		{
+			
+			background: url(../images/interface/v_1/sprite_tabHeading.png) no-repeat;
+			background-position: 0px 0px;
 			border: 1px solid #CCC;
 			padding: 0px 10px;
+			
+			/* CSS3 */
 			
 			border-radius: 5px;
 			-moz-border-radius: 5px;
 			-webkit-border-radius: 5px;
-			
-			background: url(../images/interface/v_1/sprite_tabHeading.png) no-repeat;
-			background-position: 0px 0px;
 				
 			box-shadow: 0px 0px 3px rgba(0,0,0, 0.2);
 			-moz-box-shadow: 0px 0px 3px rgba(0,0,0, 0.2);
@@ -270,15 +292,17 @@ body
 		
 		#tab_heading_menu a:active, #tab_heading_menu a.active
 		{
+			
+			background: url(../images/interface/v_1/sprite_tabHeading.png) no-repeat;
+			background-position: 0px -60px;
 			border: 1px solid #CCC;
 			padding: 0px 10px;
+			
+			/* CSS3 */
 			
 			border-radius: 5px;
 			-moz-border-radius: 5px;
 			-webkit-border-radius: 5px;
-			
-			background: url(../images/interface/v_1/sprite_tabHeading.png) no-repeat;
-			background-position: 0px -60px;
 			
 			box-shadow: rgba(255, 143, 53, 0.2) 0px 0px 8px;
 			-moz-box-shadow: rgba(255, 143, 53, 0.2) 0px 0px 8px;
@@ -298,6 +322,8 @@ body
 			height: 360px;
 			margin-bottom: 5px;
 			padding: 5px;
+			
+			/* CSS3 */
 			
 			border-radius: 5px;
 			-moz-border-radius: 5px;
@@ -392,6 +418,8 @@ body
 				line-height: 20px;
 				text-align: center;
 			
+				/* CSS3 */
+			
 				box-shadow: rgba(0,0,0, 0.3) 0px 0px 3px;
 				-moz-box-shadow: rgba(0,0,0, 0.3) 0px 0px 3px;
 				-webkit-box-shadow: rgba(0,0,0, 0.3) 0px 0px 3px;
@@ -399,11 +427,13 @@ body
 			
 			div.ui-progressbar-value
 			{
+				background-image: url(../images/interface/v_1/sprite_statusBar.png);
+				border: none;
+				left: 1px;
 				position: absolute;
 				top: 1px;
-				left: 1px;
-				border: none;
-				background-image: url(../images/interface/v_1/sprite_statusBar.png);
+			
+				/* CSS3 */
 				
 				border-radius: 0px;
 				-moz-border-radius: 0px;
@@ -427,6 +457,8 @@ body
 				background-image: url(../images/interface/v_1/sprite_statusBar.png);
 				background-position: 0px -120px;
 				width: 35px;
+			
+				/* CSS3 */
 				
 				border-top-left-radius: 20px;
 				-moz-border-radius-topleft: 20px;
@@ -441,8 +473,10 @@ body
 			div[id$="_bar"]
 			{
 				border-left: none;
-				position: relative;
 				min-width: 124px;
+				position: relative;
+			
+				/* CSS3 */
 				
 				border-top-right-radius: 20px;
 				-moz-border-radius-topright: 20px;
@@ -462,18 +496,18 @@ body
 				z-index: 2;
 			}
 			
-			#LP_bar, #LP_bar > div.ui-progressbar-value 	{ background-position: 0px -20px; }
-			#HS_bar, #HS_bar > div.ui-progressbar-value 	{ background-position: 0px -60px; }
-			#SP_bar, #SP_bar > div.ui-progressbar-value 	{ background-position: 0px -40px; }
-			#STA_bar, #STA_bar > div.ui-progressbar-value 	{ background-position: 0px -80px; }
-			#EXP_bar, #EXP_bar > div.ui-progressbar-value 	{ background-position: 0px -100px; width: 296px; }
+			#lp_bar, #lp_bar > div.ui-progressbar-value 	{ background-position: 0px -20px; }
+			#age_bar, #age_bar > div.ui-progressbar-value 	{ background-position: 0px -60px; }
+			#sp_bar, #sp_bar > div.ui-progressbar-value 	{ background-position: 0px -40px; }
+			#sta_bar, #sta_bar > div.ui-progressbar-value 	{ background-position: 0px -80px; }
+			#exp_bar, #exp_bar > div.ui-progressbar-value 	{ background-position: 0px -100px; width: 296px; }
 
 	#krama_orb
 	{
 		background-image: url(../images/interface/v_1/KramaOrb_red_small.png);
 		height: 100px;
-		position: absolute;
 		margin: -60px 0px 0px 320px;
+		position: absolute;
 		width: 100px;
 		
 		/* CSS3 */

@@ -4,9 +4,6 @@
 
 $(function()
 {
-	
-	/* ------------------------------------------------------------------------ */
-	/* Battle */	
 	/* ------------------------------------------------------------------------ */
 	
 	/**
@@ -17,91 +14,104 @@ $(function()
 		
 		id_monster = $(this).attr('rel');
 		
-		// active tab heading button
-		$("#tab_heading_button_group a").removeClass();
-		$('#tab_heading_button_4').addClass('active').show();
-		
-		// show tab content
-		$("div[id^=tab_content_]:not(:hidden)").fadeOut(350, function(){
-			
-			get_battle_result(id_monster);
-			$("#tab_content_4 div.tab_content_right").css('backgroundImage', 'url('+ server_url + 'assets/images/monster/' + id_monster + '.png)');
-			
-			$("#tab_content_4").fadeIn(350);
-				
-		});
+		//change_tab('preload');
+		get_battle_result(id_monster);
 		
 	});
 	
-	
 	/* ------------------------------------------------------------------------ */
-
+	
 	/**
-	  * Get battel result
+	  * Exit battle mode return to guidpost monde
 	  */
 	  
-	function get_battle_result(id_monster)
-	{  
-		/* Ajax */
+	$("#button_finish_battle").click(function(){
 		
-		var url = server_url + 'main/get_battle_result/' + id_monster;
+		change_tab(2);
 		
-		$.post(url, function(data){
+	});
+	
+});	
+
+/* ------------------------------------------------------------------------ */
+
+/**
+  * Get battel result
+  */
+  
+function get_battle_result(id_monster)
+{  
+	$("#tab_content_4 div.tab_content_right").css('backgroundImage', 'url('+ URL_IMAGE + 'monster/' + id_monster + '.png)');
+	
+	/* Ajax */
+	
+	var url = URL_SERVER + 'main/get_battle_result/' + id_monster;
+	
+	$.post(url, function(data){
+		
+		var url_image = URL_IMAGE + 'monster/';
+		var content;
+		
 			
-			var url_image = server_url + 'assets/images/monster/';
-			var content;
+		if(data.win == 'character')
+		{
+			var msg_lose = (data.monster_die == 0) ? 'LOSE' : 'DIE';
+			
+			// clear notification data
+			$("#content_notification").addClass('popup_item')
+									  .html('')
+									  .append('<li><h3>คุณได้รับ...</h3></li>')
+									  .append('<li><h3>ค่าประสบการณ์: ' + data.battle_exp + '</h3></li>');
+									  
+			$("#tab_content_4 div.tab_content_left h2").removeClass().addClass('battle_win').html('WIN');
+			$("#tab_content_4 div.tab_content_right h2").removeClass().addClass('battle_lose').html(msg_lose);
+			$("#button_finish_battle").html('จบการต่อสู้');
+			
+			// set receive item to notification
+			var url_image = URL_IMAGE + 'item/icon/';
+			$(data.item).each(function(index){
 				
-			if(data.win == 'character')
+				//alert(this.name);
+				
+				content = 	'<li>' +
+								'<img src="' + url_image + this.id_item + '.png" />' +
+								'<h3>' + this.name + ' <span>' + this.quantity + '</span></h3>' +
+							'</li>';
+				
+				$("#content_notification").append(content);
+			});
+			
+			$('#popup_notification').dialog( "option", "title", 'คุณชนะการต่อสู้' );
+			$('#popup_notification').dialog('open');
+		}
+		else
+		{
+			var msg_lose = (data.character_die == 0) ? 'LOSE' : 'DIE';
+			
+			$("#tab_content_4 div.tab_content_right h2").removeClass().addClass('battle_win').html('WIN');
+			$("#tab_content_4 div.tab_content_left h2").removeClass().addClass('battle_lose').html(msg_lose);
+			
+			if(data.character_die == 1)
 			{
-				$("#tab_content_4 div.tab_content_left h2").removeClass().addClass('battle_win').html('WIN');
-				$("#tab_content_4 div.tab_content_right h2").removeClass().addClass('battle_lose').html('LOSE');
+				$("#button_finish_battle").html('ไปเกิดใหม่');
 			}
-			else
-			{
-				$("#tab_content_4 div.tab_content_right h2").removeClass().addClass('battle_win').html('WIN');
-				$("#tab_content_4 div.tab_content_left h2").removeClass().addClass('battle_lose').html('LOSE');
-			}
-						
-			$("#character_battle_attack i").html(data.character_attack);
-			$("#character_battle_defend i").html(data.character_defend);
-			$("#character_battle_damage i").html(data.character_damage);
 			
-			$("#monster_battle_attack i").html(data.monster_attack);
-			$("#monster_battle_defend i").html(data.monster_defend);
-			$("#monster_battle_damage i").html(data.monster_damage);
-			
-			/*<div class="tab_content_left">
-				<div id="character_battle_image"></div>
-				<div class="battle_status">
-					<h2 class="battle_win">WIN</h2>
-					<p>
-						<span id="character_battle_attack">Attack: <i>300</i></span>
-						<span id="character_battle_defence">Defence: <i>500</i></span>
-						<br />
-						<span id="character_battle_damage">Total Damage: <i>1756</i></span>
-					</p>
-				</div>
-			
-			</div>
-			<div class="tab_content_right">
-				<div class="battle_status">
-					<h2 class="battle_lose">LOSE</h2>
-					<p>
-						<span id="monster_battle_attack">Attack: <i>300</i></span>
-						<span id="monster_battle_defence">Defence: <i>500</i></span>
-						<br />
-						<span id="monster_battle_damage">Total Damage: <i>1756</i></span>
-					</p>
-				</div>
-			</div>*/
-			
-		},'json')
-		.error(function() { alert('Error get_npc_dialog(' + id_npc + ', ' + id_dialog_group + ')'); })
-	}
-	
-	/* ------------------------------------------------------------------------ */
-	
-});
+		}
+					
+		$("#character_battle_attack i").html(data.character_attack);
+		$("#character_battle_defend i").html(data.character_defend);
+		$("#character_battle_damage i").html(data.character_damage);
+		
+		$("#monster_battle_attack i").html(data.monster_attack);
+		$("#monster_battle_defend i").html(data.monster_defend);
+		$("#monster_battle_damage i").html(data.monster_damage);
+		
+	},'json')
+	.error(function() { alert('Error get_battle_result(' + id_monster + ')'); })
+	.complete(function() { change_tab(4); });
+}
+
+/* ------------------------------------------------------------------------ */
 
 /* End of file interface.battle.js */
 /* Location: ./assets/js/interface.battle.js */	
