@@ -29,12 +29,18 @@
 	white-space: nowrap;
 }
 
+#section_desctiption i
+{
+	font-style: normal;
+	font-weight: normal;
+}
+
 		#content_guidepost
 		{ 
 			clear: both; 
-			height: 265px;
-			overflow-y: auto;
-			overflow-x: hidden;
+			/*height: 265px;*/
+			/*overflow-y: auto;
+			overflow-x: hidden;*/
 		}
 
 		#content_guidepost li:first-child 

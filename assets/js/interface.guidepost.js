@@ -197,6 +197,8 @@ function set_map_detail(id_section)
 	
 	$.post(url, function(data){
 		
+		alert(url);
+		
 		if(data['id_map'] != $('#section_top_player_location_map').attr('rel'))
 		{
 			content = 	'<li style="text-align: center;">' +
@@ -215,8 +217,8 @@ function set_map_detail(id_section)
 		$('#section_top_player_location_map').html(map_name);
 		$("#interface").css('backgroundImage', 'url(' + URL_IMAGE + 'map/bg/' + data['id_map'] + '.jpg)');
 		
-	},'json')
-	.error(function() { alert('Error: set_map_detail(' + id_section + ')'); });	
+	}, 'json')
+	.error(function() { alert('Error: set_map_detail(' + id_section + '), url: ' + url); });	
 }
 
 /* ------------------------------------------------------------------------ */
@@ -323,6 +325,9 @@ function change_location(location_type, id_location)
 	
 	set_character_location(location_type, id_location);
 }
+
+/* ------------------------------------------------------------------------ */
+
 
 /* End of file interface.guidepost.js */
 /* Location: ./assets/js/interface.guidepost.js */	

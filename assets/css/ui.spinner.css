@@ -1,0 +1,19 @@
+
+.ui-spinner
+{
+	position: relative;
+	padding: 1px;
+	margin: 0px 5px 0px 2px;
+}
+
+.ui-spinner-buttons
+{
+	position: absolute;
+	margin-top: -2px;
+}
+
+.ui-spinner-button
+{
+	overflow: hidden;
+	min-height: 10px;
+}

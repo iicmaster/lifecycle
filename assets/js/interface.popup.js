@@ -10,8 +10,8 @@ $(function()
 	
 	$("#popup_notification, #popup_status, #popup_skill, #popup_item, #popup_feedback").dialog({
 		autoOpen: false,
-		show: 'fade',
-		hide: 'fade'
+		show: 'drop',
+		hide: 'drop'
 	});
 	
 	// ------------------------------------------------------------------------
@@ -51,30 +51,6 @@ $(function()
 		
 		$('#popup_item').dialog('open');
 	});
-		
-	function get_character_item()
-	{  
-		/* AJAX */
-	
-		var url = URL_SERVER + 'main/get_character_item';
-		var url_image = URL_IMAGE + 'item/icon/';
-		
-		$.post(url, function(data) {
-			
-			$.each(data, function(index){
-													
-				content = 	'<li>' +
-								'<img src="' + url_image + data[index].id_item + '.png" />' +
-								'<h3>' + data[index].name + ' <span>' + data[index].quantity + '</span></h3>' +
-							'</li>';
-				
-				$("#content_character_item").html(content);
-			
-			});
-			
-		},'json')
-		.error(function() { alert('Error get_character_item()'); })
-	}
 	
 	// ------------------------------------------------------------------------
 	// Feedback & bug report
@@ -102,6 +78,31 @@ $(function()
 	// ------------------------------------------------------------------------
 	
 })
+		
+function get_character_item()
+{  
+	/* AJAX */
+
+	var url = URL_SERVER + 'main/get_character_item';
+	var url_image = URL_IMAGE + 'item/icon/';
+	$("#content_character_item").html('');
+	
+	$.post(url, function(data) {
+		
+		$.each(data, function(index){
+												
+			content = 	'<li>' +
+							'<img src="' + url_image + data[index].id_item + '.png" />' +
+							'<h3>' + data[index].name + ' <span>' + data[index].quantity + '</span></h3>' +
+						'</li>';
+			
+			$("#content_character_item").append(content);
+		
+		});
+		
+	},'json')
+	.error(function() { alert('Error get_character_item(), url: '+ url); })
+}
 
 /* End of file interface.js */
 /* Location: ./assets/js/interface.js */	

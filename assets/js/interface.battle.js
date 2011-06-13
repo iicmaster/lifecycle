@@ -58,7 +58,8 @@ function get_battle_result(id_monster)
 			var msg_lose = (data.monster_die == 0) ? 'LOSE' : 'DIE';
 			
 			// clear notification data
-			$("#content_notification").addClass('popup_item')
+			$("#content_notification").removeClass()
+									  .addClass('popup_item')
 									  .html('')
 									  .append('<li><h3>คุณได้รับ...</h3></li>')
 									  .append('<li><h3>ค่าประสบการณ์: ' + data.battle_exp + '</h3></li>');
@@ -83,6 +84,11 @@ function get_battle_result(id_monster)
 			
 			$('#popup_notification').dialog( "option", "title", 'คุณชนะการต่อสู้' );
 			$('#popup_notification').dialog('open');
+		
+			// Update EXP
+			var EXP = parseInt($("#character_exp").find("i").text()) +  parseInt(data.battle_exp);
+			$("#character_exp").find("i").text(EXP);
+			update_status_bar('exp');
 		}
 		else
 		{
@@ -95,7 +101,10 @@ function get_battle_result(id_monster)
 			{
 				$("#button_finish_battle").html('ไปเกิดใหม่');
 			}
-			
+			else
+			{
+				$("#button_finish_battle").html('จบการต่อสู้');
+			}
 		}
 					
 		$("#character_battle_attack i").html(data.character_attack);

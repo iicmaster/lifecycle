@@ -80,26 +80,32 @@ class NPC_model extends CI_Model {
 	  
 	function get_npc_item($id_npc)
 	{
-		$sql = 	'SELECT npc_item.id_item, name, description, price_buy, buy_rate '.
-		'FROM npc_item '.
+		$sql = 	'SELECT npc_item.id_item, name, description, price_sell, sell_rate '.
+				'FROM npc_item '.
 		
-		'LEFT JOIN npc '. 
-		'ON npc_item.id_npc = npc.id_npc '.
-		
-		'LEFT JOIN item '.
-		'ON npc_item.id_item = item.id_item '.
-		
-		'LEFT JOIN language_item '.
-		'ON item.id_item = language_item.id_item '.
-		 
-		'WHERE npc.id_npc = ' . $id_npc . ' AND language_item.id_language = 1';
+				'LEFT JOIN npc '. 
+				'ON npc_item.id_npc = npc.id_npc '.
+				
+				'LEFT JOIN item '.
+				'ON npc_item.id_item = item.id_item '.
+				
+				'LEFT JOIN language_item '.
+				'ON item.id_item = language_item.id_item '.
+				 
+				'WHERE npc.id_npc = ' . $id_npc . ' AND language_item.id_language = 1 '.
+				'ORDER BY npc_item.ordering';	
 				
 		$query = $this->db->query($sql);
 		$result = array();
 		
 		foreach($query->result() as $row)
 		{
-			array_push($result, comma_to_array($row->id_item . ',' . $row->name . ',' . $row->description . ',' . ($row->price_buy * $row->buy_rate / 100)));	
+			array_push($result, array(
+										'id_item'		=> $row->id_item,
+										'name'			=> $row->name,
+										'description'	=> $row->description,
+										'price'			=> $row->price_sell * ($row->sell_rate / 100)
+									));	
 		}
 		
 		return $result;

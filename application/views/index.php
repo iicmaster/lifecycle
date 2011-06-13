@@ -6,7 +6,7 @@
 <!-- CSS -->
 <?php echo css_asset('reset.css'); ?>
 <?php echo css_asset('ui-lightness/jquery-ui-1.8rc2.custom.css'); ?>
-<?php echo css_asset('jquery.tipTip.css'); ?>
+
 <?php echo css_asset('interface.css'); ?>
 <?php echo css_asset('interface.worldmap.css'); ?>
 <?php echo css_asset('interface.guidepost.css'); ?>
@@ -16,10 +16,12 @@
 <?php echo css_asset('interface.conversation.css'); ?>
 <?php echo css_asset('interface.popup.css'); ?>
 
-<!-- JS -->
-<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
+<?php echo css_asset('ui.spinner.css'); ?>
+
+<!-- JS 
+<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>-->
 <?php echo js_asset('jquery-1.5.1.min.js'); ?>
-<?php echo js_asset('jquery-ui-1.8.9.custom.min.js'); ?>
+<?php echo js_asset('jquery-ui-1.8.10.custom.min.js'); ?>
 <?php echo js_asset('jquery.qtip.min.js'); ?>
 
 <?php echo js_asset('interface.config.js'); ?>
@@ -29,6 +31,9 @@
 <?php echo js_asset('interface.conversation.js'); ?>
 <?php echo js_asset('interface.battle.js'); ?>
 <?php echo js_asset('interface.popup.js'); ?>
+
+<?php echo js_asset('ui.spinner.js'); ?>
+<?php echo js_asset('jquery.constrain.js'); ?>
 </head>
 <body>
 <div id="interface">
@@ -39,7 +44,7 @@
 			<span id="section_top_player_level">ระดับ: <i><?php echo $this->session->userdata('level') ?></i></span> 
 			<span id="section_top_player_job">อาชีพ: <i><?php echo $this->session->userdata('id_job') ?></i></span> 
 			<span id="section_top_player_job_lavel">ระดับ: <i><?php echo $this->session->userdata('job_level') ?></i></span> 
-			<span id="section_top_player_money">เงินสด: <i><?php echo $this->session->userdata('money') ?></i> ฿</span> 
+			<span id="character_money">เงินสด: <i><?php echo $this->session->userdata('money') ?></i> ฿</span> 
 		</div>
 		<a id="bt_popup_feedback" href="#nogo">Feed Back & Bug Report</a> 
 	</div>
@@ -64,7 +69,6 @@
 			</div>
 			<input name="teleport_target" id="teleport_target" type="text" size="5" />
 			<input name="teleport"  id="button_teleport" type="button" value="Teleport !!" />
-			<input name="teleport"  id="button_status" type="button" value="STA" />
 		</div>
 		<!--end section_main_tab_heading-->
 		<div id="tab_content">
@@ -102,7 +106,7 @@
 								$character_map = array('id_map'=>'', 'name'=>'');
 							}
 						?>
-						<h2 id="section_top_player_location_map" rel="<?php echo $character_map['id_map']; ?>" ><?php echo $character_map['name']; ?> ( <?php echo $character_map['id_map']; ?> )</h2>
+						<h2 id="section_top_player_location_map" rel="<?php echo $character_map['id_map']; ?>" ><?php echo $character_map['name']; ?> <?php echo '( ' . $character_map['id_map'] . ' )'; ?></h2>
 						<h3 id="section_top_player_location_section" rel="<?php if($this->session->userdata('location_type') == 0){ echo $this->session->userdata('id_location'); } ?>" >ย่าน: <i></i></h3> 
 						<h4 id="section_top_player_location_store" rel="<?php if($this->session->userdata('location_type') == 1){ echo $this->session->userdata('id_location'); } ?>" >ภายใน: <i></i></h4> 
 					</div>
@@ -112,6 +116,7 @@
 					<ul id="content_npc" class="list"></ul>	
 					<ul id="content_monster" class="list"></ul>	
 				</div>
+				<div style="clear:both"></div>
 			</div>
 			<div id="tab_content_3">
 				<div id="conversation">
@@ -125,31 +130,32 @@
 						<ul id="content_npc_item" class="list"></ul>	
 					</div>
 				</div>
+				<div style="clear:both"></div>
 			</div>
 			<div id="tab_content_4">
 				<?php echo image_asset('icon_sowrd.png', '', array('alt'=>'Battle', 'id'=>'icon_sowrd')); ?>
-				<a id="button_finish_battle">จบการต่อสู้</a>
+				<a id="button_finish_battle"></a>
 				<div class="tab_content_left">
 					<div id="character_battle_image"></div>
 					<div class="battle_status">
-						<h2 class="battle_win">WIN</h2>
+						<h2 class="battle_win"></h2>
 						<p>
-							<span id="character_battle_attack">Attack: <i>300</i></span>
-							<span id="character_battle_defend">Defend: <i>500</i></span>
+							<span id="character_battle_attack">Attack: <i></i></span>
+							<span id="character_battle_defend">Defend: <i></i></span>
 							<br />
-							<span id="character_battle_damage">Total Damage: <i>1756</i></span>
+							<span id="character_battle_damage">Total Damage: <i></i></span>
 						</p>
 					</div>
 				
 				</div>
 				<div class="tab_content_right">
 					<div class="battle_status">
-						<h2 class="battle_lose">LOSE</h2>
+						<h2 class="battle_lose"></h2>
 						<p>
-							<span id="monster_battle_attack">Attack: <i>300</i></span>
-							<span id="monster_battle_defend">Defend: <i>500</i></span>
+							<span id="monster_battle_attack">Attack: <i></i></span>
+							<span id="monster_battle_defend">Defend: <i></i></span>
 							<br />
-							<span id="monster_battle_damage">Total Damage: <i>1756</i></span>
+							<span id="monster_battle_damage">Total Damage: <i></i></span>
 						</p>
 					</div>
 				</div>
@@ -289,8 +295,8 @@
 	</div><!--end section_bottom-->
 </div>
 <div id="banner"><?php echo image_asset('logo_sipa.png', '', array('alt'=>'Sipa')); ?> <p>Life Cycle ได้รับเงินรางวัลสนับสนุนจากสำนักงานส่งเสริมอุตส่าหกรรมซอฟต์แวร์แห่งชาติ (องค์กรณ์มหาชน)</p></div>
-<!-- Facebook JS -->
-<div id="fb-root"></div>
-<?php echo js_asset('facebook.js'); ?>
+<!-- Facebook JS
+<div id="fb-root"></div> -->
+<?php //echo js_asset('facebook.js'); ?>
 </body>
 </html>

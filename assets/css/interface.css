@@ -34,7 +34,7 @@ body
 {
 	background: url(../images/map/bg/1.jpg) center no-repeat;
 /*	border: 1px solid #CCC;*/
-	height: 650px;
+	min-height: 650px;
 	margin: 10px auto;
 	padding: 5px;
 	width: 740px;
@@ -177,7 +177,7 @@ body
 
 #section_main
 { 
-	height: 450px;
+	min-height: 450px;
 	margin-top: 10px;
 	padding: 10px;
 	width: auto;
@@ -319,7 +319,7 @@ body
 			background-color: #FFF;
 			background: rgba(255, 255, 255, 0.5);
 			border: 1px solid #CCC;
-			height: 360px;
+			/*height: 360px;*/
 			margin-bottom: 5px;
 			padding: 5px;
 			
@@ -347,7 +347,7 @@ body
 		{
 			margin: auto;
 			width: 718px;
-			height: 403px;
+			min-height: 403px;
 			padding: 0px;
 			overflow: hidden;
 		}
@@ -356,14 +356,21 @@ body
 		{
 			float: left;
 			width: 343px;
-			overflow-y: auto;
-			overflow-x: hidden;
+			/*overflow-y: auto;
+			overflow-x: hidden;*/
 		}
 			
 		.tab_content_right
 		{
 			float: right;
 			width: 343px;
+			/*overflow-y: auto;
+			overflow-x: hidden;*/
+		}
+		
+		#tab_content_3 .tab_content_right, #tab_content_3 .tab_content_left, #tab_content_4 .tab_content_right, #tab_content_4 .tab_content_left
+		{ 
+			height: 360px; 
 			overflow-y: auto;
 			overflow-x: hidden;
 		}

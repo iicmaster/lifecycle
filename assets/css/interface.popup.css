@@ -37,8 +37,46 @@
 	font-weight: normal;
 	font-style: normal;
 }
+
+/* buy item */
+
+#popup_buy_item_image
+{
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 25px;
+}
+
+#popup_buy_item_name
+{
+	margin-bottom: 5px;
+}
+
+#popup_buy_item_price
+{
+	display: block;
+	margin-bottom: 5px;
+}
+
+#popup_buy_total
+{
+	clear: both;
+	position: relative;	
+	display: block;
+	font-size: 18px;
+	margin-top: 15px;
+}
+
+#popup_buy_total span
+{
+	position: absolute;
+	right: 0px;
+	display: inline;
+}
+
+
 	
-/* item */
+/* battel reward */
 
 .popup_item li
 {

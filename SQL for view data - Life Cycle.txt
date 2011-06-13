@@ -1,5 +1,31 @@
 ﻿/* ------------------------------------------------------------ */
-/* Section */
+/* View section in map */
+/* ------------------------------------------------------------ */
+
+SELECT 
+	atlas_map.id_map,
+	language_atlas_map.name, 
+	atlas_section.id_section, 
+	atlas_section.alphabet, 
+	language_atlas_section.name
+	
+FROM atlas_section
+
+LEFT JOIN language_atlas_section
+ON atlas_section.id_section = language_atlas_section.id_section
+
+LEFT JOIN atlas_map
+ON atlas_section.id_map = atlas_map.id_map
+
+LEFT JOIN language_atlas_map
+ON atlas_map.id_map = language_atlas_map.id_map
+
+/* WHERE atlas_map.id_map = 74 */
+
+ORDER BY atlas_map.id_map, atlas_section.alphabet
+
+/* ------------------------------------------------------------ */
+/* Section detail */
 /* ------------------------------------------------------------ */
 
 SELECT atlas_map.id_map, language_atlas_map.name, atlas_section.id_section, alphabet, language_atlas_section.name, atlas_section.status
@@ -18,6 +44,19 @@ LEFT JOIN language_atlas_map
 ON language_atlas_map.id_map = atlas_map.id_map
 
 ORDER BY id_map, alphabet
+
+/* ------------------------------------------------------------ */
+/* Maps detail */
+/* ------------------------------------------------------------ */
+
+SELECT 
+	atlas_map.id_map,
+	language_atlas_map.name
+	
+FROM atlas_map
+
+LEFT JOIN language_atlas_map
+ON atlas_map.id_map = language_atlas_map.id_map
 
 /* ------------------------------------------------------------ */
 /* Store */

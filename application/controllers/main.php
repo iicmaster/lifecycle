@@ -19,7 +19,7 @@ class Main extends CI_Controller
 	{		
 		$facebook = $this->facebook_connect();
 		$language = $this->get_id_language($facebook[0]['locale']);
-		$character = $this->get_character_status(2);
+		$character = $this->get_character_status(1);
 		
 		// set session
 		$data = array(
@@ -57,11 +57,14 @@ class Main extends CI_Controller
 						'dex'				=> $character['dex'],	
 						'dex_ori'			=> $character['dex_ori'],	
 						'mp'				=> $character['mp'],	
-						'mp_max'			=> $character['mp_max'],		
+						'mp_max'			=> $character['mp_max'],
+						'mp_ori'			=> $character['mp_ori'],		
 						'lp'				=> $character['lp'],	
 						'lp_max'			=> $character['lp_max'],	
+						'lp_ori'			=> $character['lp_ori'],	
 						'sta'				=> $character['sta'],	
 						'sta_max'			=> $character['sta_max'],	
+						'sta_ori'			=> $character['sta_ori'],	
 						'atk'				=> $character['atk'],	
 						'atk_ori'			=> $character['atk_ori'],	
 						'def'				=> $character['def'],	
