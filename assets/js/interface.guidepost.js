@@ -197,8 +197,6 @@ function set_map_detail(id_section)
 	
 	$.post(url, function(data){
 		
-		alert(url);
-		
 		if(data['id_map'] != $('#section_top_player_location_map').attr('rel'))
 		{
 			content = 	'<li style="text-align: center;">' +
